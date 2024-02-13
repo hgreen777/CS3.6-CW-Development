@@ -22,5 +22,10 @@ CS3.6-CW-Development
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:CS3._6_CW_Development.My.Resources.Resources.blc_logo">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>

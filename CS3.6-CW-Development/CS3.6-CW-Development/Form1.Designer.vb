@@ -23,6 +23,8 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.img_blc_logo = New System.Windows.Forms.PictureBox()
+        CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
@@ -34,17 +36,30 @@ Partial Class Form1
         Me.Button1.Text = "Test"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'img_blc_logo
+        '
+        Me.img_blc_logo.Image = Global.CS3._6_CW_Development.My.Resources.Resources.blc_logo
+        Me.img_blc_logo.Location = New System.Drawing.Point(64, 21)
+        Me.img_blc_logo.Name = "img_blc_logo"
+        Me.img_blc_logo.Size = New System.Drawing.Size(50, 50)
+        Me.img_blc_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.img_blc_logo.TabIndex = 1
+        Me.img_blc_logo.TabStop = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.img_blc_logo)
         Me.Controls.Add(Me.Button1)
         Me.Name = "Form1"
         Me.Text = "Form1"
+        CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents Button1 As Button
+    Friend WithEvents img_blc_logo As PictureBox
 End Class

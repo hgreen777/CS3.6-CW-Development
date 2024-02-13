@@ -11,3 +11,16 @@
 \\bil-file2\studentdocuments$\2022 Intake\bil0084757\Documents\Visual Studio 2022\Projects\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.exe
 \\bil-file2\studentdocuments$\2022 Intake\bil0084757\Documents\Visual Studio 2022\Projects\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.xml
 \\bil-file2\studentdocuments$\2022 Intake\bil0084757\Documents\Visual Studio 2022\Projects\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.pdb
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\bin\Debug\CS3.6-CW-Development.exe.config
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\bin\Debug\CS3.6-CW-Development.exe
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\bin\Debug\CS3.6-CW-Development.pdb
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\bin\Debug\CS3.6-CW-Development.xml
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.vbproj.AssemblyReference.cache
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.Form1.resources
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.Resources.resources
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.vbproj.GenerateResource.cache
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.vbproj.CoreCompileInputs.cache
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.exe
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.xml
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.pdb
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_login_screen.resources
