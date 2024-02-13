@@ -22,25 +22,15 @@ Partial Class frm_login_screen
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.img_blc_logo = New System.Windows.Forms.PictureBox()
         Me.lbl_login_TITLE = New System.Windows.Forms.Label()
         Me.lbl_username = New System.Windows.Forms.Label()
         Me.lbl_password = New System.Windows.Forms.Label()
-        Me.txt_username = New System.Windows.Forms.TextBox()
-        Me.txt_password = New System.Windows.Forms.TextBox()
-        Me.btn_login = New System.Windows.Forms.Button()
+        Me.txt_username_inp = New System.Windows.Forms.TextBox()
+        Me.txt_password_inp = New System.Windows.Forms.TextBox()
+        Me.btn_login_redir = New System.Windows.Forms.Button()
+        Me.img_blc_logo = New System.Windows.Forms.PictureBox()
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'img_blc_logo
-        '
-        Me.img_blc_logo.Image = Global.CS3._6_CW_Development.My.Resources.Resources.blc_logo
-        Me.img_blc_logo.Location = New System.Drawing.Point(100, 20)
-        Me.img_blc_logo.Name = "img_blc_logo"
-        Me.img_blc_logo.Size = New System.Drawing.Size(50, 50)
-        Me.img_blc_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.img_blc_logo.TabIndex = 2
-        Me.img_blc_logo.TabStop = False
         '
         'lbl_login_TITLE
         '
@@ -72,31 +62,41 @@ Partial Class frm_login_screen
         Me.lbl_password.TabIndex = 5
         Me.lbl_password.Text = "Password:"
         '
-        'txt_username
+        'txt_username_inp
         '
-        Me.txt_username.Font = New System.Drawing.Font("Calibri", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_username.Location = New System.Drawing.Point(260, 88)
-        Me.txt_username.Name = "txt_username"
-        Me.txt_username.Size = New System.Drawing.Size(198, 40)
-        Me.txt_username.TabIndex = 6
+        Me.txt_username_inp.Font = New System.Drawing.Font("Calibri", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_username_inp.Location = New System.Drawing.Point(260, 88)
+        Me.txt_username_inp.Name = "txt_username_inp"
+        Me.txt_username_inp.Size = New System.Drawing.Size(198, 40)
+        Me.txt_username_inp.TabIndex = 6
         '
-        'txt_password
+        'txt_password_inp
         '
-        Me.txt_password.Font = New System.Drawing.Font("Calibri", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_password.Location = New System.Drawing.Point(260, 140)
-        Me.txt_password.Name = "txt_password"
-        Me.txt_password.Size = New System.Drawing.Size(198, 40)
-        Me.txt_password.TabIndex = 7
+        Me.txt_password_inp.Font = New System.Drawing.Font("Calibri", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_password_inp.Location = New System.Drawing.Point(260, 140)
+        Me.txt_password_inp.Name = "txt_password_inp"
+        Me.txt_password_inp.Size = New System.Drawing.Size(198, 40)
+        Me.txt_password_inp.TabIndex = 7
         '
-        'btn_login
+        'btn_login_redir
         '
-        Me.btn_login.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_login.Location = New System.Drawing.Point(245, 201)
-        Me.btn_login.Name = "btn_login"
-        Me.btn_login.Size = New System.Drawing.Size(75, 34)
-        Me.btn_login.TabIndex = 8
-        Me.btn_login.Text = "LOGIN"
-        Me.btn_login.UseVisualStyleBackColor = True
+        Me.btn_login_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_login_redir.Location = New System.Drawing.Point(245, 201)
+        Me.btn_login_redir.Name = "btn_login_redir"
+        Me.btn_login_redir.Size = New System.Drawing.Size(75, 34)
+        Me.btn_login_redir.TabIndex = 8
+        Me.btn_login_redir.Text = "LOGIN"
+        Me.btn_login_redir.UseVisualStyleBackColor = True
+        '
+        'img_blc_logo
+        '
+        Me.img_blc_logo.Image = Global.CS3._6_CW_Development.My.Resources.Resources.blc_logo
+        Me.img_blc_logo.Location = New System.Drawing.Point(100, 20)
+        Me.img_blc_logo.Name = "img_blc_logo"
+        Me.img_blc_logo.Size = New System.Drawing.Size(50, 50)
+        Me.img_blc_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.img_blc_logo.TabIndex = 2
+        Me.img_blc_logo.TabStop = False
         '
         'frm_login_screen
         '
@@ -104,13 +104,15 @@ Partial Class frm_login_screen
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(143, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(220, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(584, 261)
-        Me.Controls.Add(Me.btn_login)
-        Me.Controls.Add(Me.txt_password)
-        Me.Controls.Add(Me.txt_username)
+        Me.Controls.Add(Me.btn_login_redir)
+        Me.Controls.Add(Me.txt_password_inp)
+        Me.Controls.Add(Me.txt_username_inp)
         Me.Controls.Add(Me.lbl_password)
         Me.Controls.Add(Me.lbl_username)
         Me.Controls.Add(Me.lbl_login_TITLE)
         Me.Controls.Add(Me.img_blc_logo)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MinimizeBox = False
         Me.Name = "frm_login_screen"
         Me.Text = "BLC Shift Manager (Login Screen)"
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).EndInit()
@@ -123,7 +125,7 @@ Partial Class frm_login_screen
     Friend WithEvents lbl_login_TITLE As Label
     Friend WithEvents lbl_username As Label
     Friend WithEvents lbl_password As Label
-    Friend WithEvents txt_username As TextBox
-    Friend WithEvents txt_password As TextBox
-    Friend WithEvents btn_login As Button
+    Friend WithEvents txt_username_inp As TextBox
+    Friend WithEvents txt_password_inp As TextBox
+    Friend WithEvents btn_login_redir As Button
 End Class

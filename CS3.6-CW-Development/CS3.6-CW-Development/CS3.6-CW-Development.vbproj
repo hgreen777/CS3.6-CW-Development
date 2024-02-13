@@ -86,6 +86,12 @@
     <Compile Include="frm_login_screen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frm_staffMenu.Designer.vb">
+      <DependentUpon>frm_staffMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_staffMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -110,6 +116,9 @@
     <EmbeddedResource Include="frm_login_screen.resx">
       <DependentUpon>frm_login_screen.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_staffMenu.resx">
+      <DependentUpon>frm_staffMenu.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -131,6 +140,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\blc_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notification_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
