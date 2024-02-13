@@ -28,13 +28,14 @@ Partial Class frm_login_screen
         Me.lbl_password = New System.Windows.Forms.Label()
         Me.txt_username = New System.Windows.Forms.TextBox()
         Me.txt_password = New System.Windows.Forms.TextBox()
+        Me.btn_login = New System.Windows.Forms.Button()
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'img_blc_logo
         '
         Me.img_blc_logo.Image = Global.CS3._6_CW_Development.My.Resources.Resources.blc_logo
-        Me.img_blc_logo.Location = New System.Drawing.Point(149, 20)
+        Me.img_blc_logo.Location = New System.Drawing.Point(100, 20)
         Me.img_blc_logo.Name = "img_blc_logo"
         Me.img_blc_logo.Size = New System.Drawing.Size(50, 50)
         Me.img_blc_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -45,7 +46,7 @@ Partial Class frm_login_screen
         '
         Me.lbl_login_TITLE.AutoSize = True
         Me.lbl_login_TITLE.Font = New System.Drawing.Font("Calibri", 35.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_login_TITLE.Location = New System.Drawing.Point(200, 20)
+        Me.lbl_login_TITLE.Location = New System.Drawing.Point(150, 20)
         Me.lbl_login_TITLE.Name = "lbl_login_TITLE"
         Me.lbl_login_TITLE.Size = New System.Drawing.Size(352, 58)
         Me.lbl_login_TITLE.TabIndex = 3
@@ -55,7 +56,7 @@ Partial Class frm_login_screen
         '
         Me.lbl_username.AutoSize = True
         Me.lbl_username.Font = New System.Drawing.Font("Calibri", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_username.Location = New System.Drawing.Point(171, 91)
+        Me.lbl_username.Location = New System.Drawing.Point(120, 91)
         Me.lbl_username.Name = "lbl_username"
         Me.lbl_username.Size = New System.Drawing.Size(134, 33)
         Me.lbl_username.TabIndex = 4
@@ -65,7 +66,7 @@ Partial Class frm_login_screen
         '
         Me.lbl_password.AutoSize = True
         Me.lbl_password.Font = New System.Drawing.Font("Calibri", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_password.Location = New System.Drawing.Point(179, 141)
+        Me.lbl_password.Location = New System.Drawing.Point(128, 141)
         Me.lbl_password.Name = "lbl_password"
         Me.lbl_password.Size = New System.Drawing.Size(126, 33)
         Me.lbl_password.TabIndex = 5
@@ -74,7 +75,7 @@ Partial Class frm_login_screen
         'txt_username
         '
         Me.txt_username.Font = New System.Drawing.Font("Calibri", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_username.Location = New System.Drawing.Point(311, 91)
+        Me.txt_username.Location = New System.Drawing.Point(260, 88)
         Me.txt_username.Name = "txt_username"
         Me.txt_username.Size = New System.Drawing.Size(198, 40)
         Me.txt_username.TabIndex = 6
@@ -82,17 +83,28 @@ Partial Class frm_login_screen
         'txt_password
         '
         Me.txt_password.Font = New System.Drawing.Font("Calibri", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_password.Location = New System.Drawing.Point(311, 141)
+        Me.txt_password.Location = New System.Drawing.Point(260, 140)
         Me.txt_password.Name = "txt_password"
         Me.txt_password.Size = New System.Drawing.Size(198, 40)
         Me.txt_password.TabIndex = 7
+        '
+        'btn_login
+        '
+        Me.btn_login.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_login.Location = New System.Drawing.Point(245, 201)
+        Me.btn_login.Name = "btn_login"
+        Me.btn_login.Size = New System.Drawing.Size(75, 34)
+        Me.btn_login.TabIndex = 8
+        Me.btn_login.Text = "LOGIN"
+        Me.btn_login.UseVisualStyleBackColor = True
         '
         'frm_login_screen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(143, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(220, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(684, 211)
+        Me.ClientSize = New System.Drawing.Size(584, 261)
+        Me.Controls.Add(Me.btn_login)
         Me.Controls.Add(Me.txt_password)
         Me.Controls.Add(Me.txt_username)
         Me.Controls.Add(Me.lbl_password)
@@ -113,4 +125,5 @@ Partial Class frm_login_screen
     Friend WithEvents lbl_password As Label
     Friend WithEvents txt_username As TextBox
     Friend WithEvents txt_password As TextBox
+    Friend WithEvents btn_login As Button
 End Class
