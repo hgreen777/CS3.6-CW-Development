@@ -80,13 +80,14 @@ Partial Class frm_login_screen
         '
         'btn_login_redir
         '
+        Me.btn_login_redir.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.btn_login_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_login_redir.Location = New System.Drawing.Point(245, 201)
         Me.btn_login_redir.Name = "btn_login_redir"
         Me.btn_login_redir.Size = New System.Drawing.Size(75, 34)
         Me.btn_login_redir.TabIndex = 8
         Me.btn_login_redir.Text = "LOGIN"
-        Me.btn_login_redir.UseVisualStyleBackColor = True
+        Me.btn_login_redir.UseVisualStyleBackColor = False
         '
         'img_blc_logo
         '

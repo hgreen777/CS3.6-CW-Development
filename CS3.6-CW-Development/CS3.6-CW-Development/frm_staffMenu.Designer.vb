@@ -24,11 +24,11 @@ Partial Class frm_staffMenu
     Private Sub InitializeComponent()
         Me.lbl_menu_TITLE = New System.Windows.Forms.Label()
         Me.btn_logout_redir = New System.Windows.Forms.Button()
+        Me.btn_takeShifts_redir = New System.Windows.Forms.Button()
+        Me.btn_myShifts_redir = New System.Windows.Forms.Button()
         Me.btn_notifications_redir = New System.Windows.Forms.Button()
         Me.btn_profile_redir = New System.Windows.Forms.Button()
         Me.img_blc_logo = New System.Windows.Forms.PictureBox()
-        Me.btn_takeShifts_redir = New System.Windows.Forms.Button()
-        Me.btn_myShifts_redir = New System.Windows.Forms.Button()
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -39,7 +39,7 @@ Partial Class frm_staffMenu
         Me.lbl_menu_TITLE.Location = New System.Drawing.Point(0, 0)
         Me.lbl_menu_TITLE.Margin = New System.Windows.Forms.Padding(3, 5, 3, 0)
         Me.lbl_menu_TITLE.Name = "lbl_menu_TITLE"
-        Me.lbl_menu_TITLE.Size = New System.Drawing.Size(734, 50)
+        Me.lbl_menu_TITLE.Size = New System.Drawing.Size(724, 50)
         Me.lbl_menu_TITLE.TabIndex = 4
         Me.lbl_menu_TITLE.Text = "<StaffFirstName> Menu (Staff)"
         Me.lbl_menu_TITLE.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -53,6 +53,30 @@ Partial Class frm_staffMenu
         Me.btn_logout_redir.TabIndex = 5
         Me.btn_logout_redir.Text = "LOGOUT"
         Me.btn_logout_redir.UseVisualStyleBackColor = True
+        '
+        'btn_takeShifts_redir
+        '
+        Me.btn_takeShifts_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btn_takeShifts_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_takeShifts_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btn_takeShifts_redir.Location = New System.Drawing.Point(165, 80)
+        Me.btn_takeShifts_redir.Name = "btn_takeShifts_redir"
+        Me.btn_takeShifts_redir.Size = New System.Drawing.Size(150, 70)
+        Me.btn_takeShifts_redir.TabIndex = 8
+        Me.btn_takeShifts_redir.Text = "Take Shifts"
+        Me.btn_takeShifts_redir.UseVisualStyleBackColor = True
+        '
+        'btn_myShifts_redir
+        '
+        Me.btn_myShifts_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btn_myShifts_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_myShifts_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btn_myShifts_redir.Location = New System.Drawing.Point(415, 80)
+        Me.btn_myShifts_redir.Name = "btn_myShifts_redir"
+        Me.btn_myShifts_redir.Size = New System.Drawing.Size(150, 70)
+        Me.btn_myShifts_redir.TabIndex = 9
+        Me.btn_myShifts_redir.Text = "My Shifts"
+        Me.btn_myShifts_redir.UseVisualStyleBackColor = True
         '
         'btn_notifications_redir
         '
@@ -92,36 +116,12 @@ Partial Class frm_staffMenu
         Me.img_blc_logo.TabIndex = 3
         Me.img_blc_logo.TabStop = False
         '
-        'btn_takeShifts_redir
-        '
-        Me.btn_takeShifts_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.btn_takeShifts_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_takeShifts_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_takeShifts_redir.Location = New System.Drawing.Point(175, 80)
-        Me.btn_takeShifts_redir.Name = "btn_takeShifts_redir"
-        Me.btn_takeShifts_redir.Size = New System.Drawing.Size(150, 70)
-        Me.btn_takeShifts_redir.TabIndex = 8
-        Me.btn_takeShifts_redir.Text = "Take Shifts"
-        Me.btn_takeShifts_redir.UseVisualStyleBackColor = True
-        '
-        'btn_myShifts_redir
-        '
-        Me.btn_myShifts_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.btn_myShifts_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_myShifts_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_myShifts_redir.Location = New System.Drawing.Point(425, 80)
-        Me.btn_myShifts_redir.Name = "btn_myShifts_redir"
-        Me.btn_myShifts_redir.Size = New System.Drawing.Size(150, 70)
-        Me.btn_myShifts_redir.TabIndex = 9
-        Me.btn_myShifts_redir.Text = "My Shifts"
-        Me.btn_myShifts_redir.UseVisualStyleBackColor = True
-        '
         'frm_staffMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(159, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(734, 181)
+        Me.ClientSize = New System.Drawing.Size(724, 181)
         Me.Controls.Add(Me.btn_myShifts_redir)
         Me.Controls.Add(Me.btn_takeShifts_redir)
         Me.Controls.Add(Me.btn_notifications_redir)

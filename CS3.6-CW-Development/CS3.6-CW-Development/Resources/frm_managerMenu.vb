@@ -1,5 +1,5 @@
-﻿Public Class frm_staffMenu
-    Private Sub frm_staffMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+﻿Public Class frm_managerMenu
+    Private Sub frm_managerMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '
         ' Formatting Buttons
         ' Loop through all buttons on the form and set the colour and round the edges.
