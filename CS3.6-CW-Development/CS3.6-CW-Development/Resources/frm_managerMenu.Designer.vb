@@ -41,7 +41,7 @@ Partial Class frm_managerMenu
         Me.btn_myShifts_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_myShifts_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_myShifts_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_myShifts_redir.Location = New System.Drawing.Point(423, 80)
+        Me.btn_myShifts_redir.Location = New System.Drawing.Point(445, 80)
         Me.btn_myShifts_redir.Name = "btn_myShifts_redir"
         Me.btn_myShifts_redir.Size = New System.Drawing.Size(150, 70)
         Me.btn_myShifts_redir.TabIndex = 16
@@ -53,7 +53,7 @@ Partial Class frm_managerMenu
         Me.btn_takeShifts_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_takeShifts_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_takeShifts_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_takeShifts_redir.Location = New System.Drawing.Point(175, 80)
+        Me.btn_takeShifts_redir.Location = New System.Drawing.Point(145, 80)
         Me.btn_takeShifts_redir.Name = "btn_takeShifts_redir"
         Me.btn_takeShifts_redir.Size = New System.Drawing.Size(150, 70)
         Me.btn_takeShifts_redir.TabIndex = 15
@@ -125,7 +125,7 @@ Partial Class frm_managerMenu
         Me.btn_allShifts_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_allShifts_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_allShifts_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_allShifts_redir.Location = New System.Drawing.Point(295, 181)
+        Me.btn_allShifts_redir.Location = New System.Drawing.Point(295, 175)
         Me.btn_allShifts_redir.Name = "btn_allShifts_redir"
         Me.btn_allShifts_redir.Size = New System.Drawing.Size(150, 70)
         Me.btn_allShifts_redir.TabIndex = 17
@@ -137,7 +137,7 @@ Partial Class frm_managerMenu
         Me.btn_editAcc_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_editAcc_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_editAcc_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_editAcc_redir.Location = New System.Drawing.Point(162, 257)
+        Me.btn_editAcc_redir.Location = New System.Drawing.Point(145, 270)
         Me.btn_editAcc_redir.Name = "btn_editAcc_redir"
         Me.btn_editAcc_redir.Size = New System.Drawing.Size(150, 70)
         Me.btn_editAcc_redir.TabIndex = 18
@@ -149,7 +149,7 @@ Partial Class frm_managerMenu
         Me.btn_sendNotis_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_sendNotis_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_sendNotis_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_sendNotis_redir.Location = New System.Drawing.Point(479, 257)
+        Me.btn_sendNotis_redir.Location = New System.Drawing.Point(445, 270)
         Me.btn_sendNotis_redir.Name = "btn_sendNotis_redir"
         Me.btn_sendNotis_redir.Size = New System.Drawing.Size(150, 70)
         Me.btn_sendNotis_redir.TabIndex = 19
@@ -161,9 +161,9 @@ Partial Class frm_managerMenu
         Me.btn_removeOldData_process.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_removeOldData_process.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_removeOldData_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_removeOldData_process.Location = New System.Drawing.Point(514, 394)
+        Me.btn_removeOldData_process.Location = New System.Drawing.Point(270, 365)
         Me.btn_removeOldData_process.Name = "btn_removeOldData_process"
-        Me.btn_removeOldData_process.Size = New System.Drawing.Size(198, 44)
+        Me.btn_removeOldData_process.Size = New System.Drawing.Size(200, 45)
         Me.btn_removeOldData_process.TabIndex = 20
         Me.btn_removeOldData_process.Text = "Remove old Shifts and Notifications"
         Me.btn_removeOldData_process.UseVisualStyleBackColor = True
@@ -172,7 +172,8 @@ Partial Class frm_managerMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(724, 450)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(47, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(151, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(724, 416)
         Me.Controls.Add(Me.btn_removeOldData_process)
         Me.Controls.Add(Me.btn_sendNotis_redir)
         Me.Controls.Add(Me.btn_editAcc_redir)
