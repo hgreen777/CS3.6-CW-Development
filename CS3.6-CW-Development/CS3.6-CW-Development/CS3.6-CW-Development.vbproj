@@ -92,6 +92,12 @@
     <Compile Include="frm_staffMenu.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frm_takeShifts.Designer.vb">
+      <DependentUpon>frm_takeShifts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_takeShifts.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_staffMenu.resx">
       <DependentUpon>frm_staffMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_takeShifts.resx">
+      <DependentUpon>frm_takeShifts.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

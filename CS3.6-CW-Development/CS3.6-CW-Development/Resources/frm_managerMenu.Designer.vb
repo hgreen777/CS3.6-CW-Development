@@ -22,17 +22,18 @@ Partial Class frm_managerMenu
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_managerMenu))
         Me.btn_myShifts_redir = New System.Windows.Forms.Button()
         Me.btn_takeShifts_redir = New System.Windows.Forms.Button()
         Me.btn_logout_redir = New System.Windows.Forms.Button()
         Me.lbl_menu_TITLE = New System.Windows.Forms.Label()
-        Me.btn_notifications_redir = New System.Windows.Forms.Button()
-        Me.btn_profile_redir = New System.Windows.Forms.Button()
-        Me.img_blc_logo = New System.Windows.Forms.PictureBox()
         Me.btn_allShifts_redir = New System.Windows.Forms.Button()
         Me.btn_editAcc_redir = New System.Windows.Forms.Button()
         Me.btn_sendNotis_redir = New System.Windows.Forms.Button()
         Me.btn_removeOldData_process = New System.Windows.Forms.Button()
+        Me.btn_notifications_redir = New System.Windows.Forms.Button()
+        Me.btn_profile_redir = New System.Windows.Forms.Button()
+        Me.img_blc_logo = New System.Windows.Forms.PictureBox()
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -82,44 +83,6 @@ Partial Class frm_managerMenu
         Me.lbl_menu_TITLE.Text = "<StaffFirstName> Menu (Manager)"
         Me.lbl_menu_TITLE.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btn_notifications_redir
-        '
-        Me.btn_notifications_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.btn_notifications_redir.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_notifications_redir.Image = Global.CS3._6_CW_Development.My.Resources.Resources.notification_icon
-        Me.btn_notifications_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_notifications_redir.Location = New System.Drawing.Point(609, 43)
-        Me.btn_notifications_redir.Name = "btn_notifications_redir"
-        Me.btn_notifications_redir.Size = New System.Drawing.Size(111, 31)
-        Me.btn_notifications_redir.TabIndex = 14
-        Me.btn_notifications_redir.Text = "Notifications"
-        Me.btn_notifications_redir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btn_notifications_redir.UseVisualStyleBackColor = True
-        '
-        'btn_profile_redir
-        '
-        Me.btn_profile_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.btn_profile_redir.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_profile_redir.Image = Global.CS3._6_CW_Development.My.Resources.Resources.profile_icon
-        Me.btn_profile_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_profile_redir.Location = New System.Drawing.Point(646, 6)
-        Me.btn_profile_redir.Name = "btn_profile_redir"
-        Me.btn_profile_redir.Size = New System.Drawing.Size(74, 31)
-        Me.btn_profile_redir.TabIndex = 13
-        Me.btn_profile_redir.Text = "Profile"
-        Me.btn_profile_redir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btn_profile_redir.UseVisualStyleBackColor = True
-        '
-        'img_blc_logo
-        '
-        Me.img_blc_logo.Image = Global.CS3._6_CW_Development.My.Resources.Resources.blc_logo
-        Me.img_blc_logo.Location = New System.Drawing.Point(-2, 0)
-        Me.img_blc_logo.Name = "img_blc_logo"
-        Me.img_blc_logo.Size = New System.Drawing.Size(40, 40)
-        Me.img_blc_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.img_blc_logo.TabIndex = 10
-        Me.img_blc_logo.TabStop = False
-        '
         'btn_allShifts_redir
         '
         Me.btn_allShifts_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
@@ -168,6 +131,44 @@ Partial Class frm_managerMenu
         Me.btn_removeOldData_process.Text = "Remove old Shifts and Notifications"
         Me.btn_removeOldData_process.UseVisualStyleBackColor = True
         '
+        'btn_notifications_redir
+        '
+        Me.btn_notifications_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btn_notifications_redir.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_notifications_redir.Image = Global.CS3._6_CW_Development.My.Resources.Resources.notification_icon
+        Me.btn_notifications_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btn_notifications_redir.Location = New System.Drawing.Point(609, 43)
+        Me.btn_notifications_redir.Name = "btn_notifications_redir"
+        Me.btn_notifications_redir.Size = New System.Drawing.Size(111, 31)
+        Me.btn_notifications_redir.TabIndex = 14
+        Me.btn_notifications_redir.Text = "Notifications"
+        Me.btn_notifications_redir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btn_notifications_redir.UseVisualStyleBackColor = True
+        '
+        'btn_profile_redir
+        '
+        Me.btn_profile_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btn_profile_redir.Font = New System.Drawing.Font("Calibri", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_profile_redir.Image = Global.CS3._6_CW_Development.My.Resources.Resources.profile_icon
+        Me.btn_profile_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btn_profile_redir.Location = New System.Drawing.Point(646, 6)
+        Me.btn_profile_redir.Name = "btn_profile_redir"
+        Me.btn_profile_redir.Size = New System.Drawing.Size(74, 31)
+        Me.btn_profile_redir.TabIndex = 13
+        Me.btn_profile_redir.Text = "Profile"
+        Me.btn_profile_redir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btn_profile_redir.UseVisualStyleBackColor = True
+        '
+        'img_blc_logo
+        '
+        Me.img_blc_logo.Image = Global.CS3._6_CW_Development.My.Resources.Resources.blc_logo
+        Me.img_blc_logo.Location = New System.Drawing.Point(0, 0)
+        Me.img_blc_logo.Name = "img_blc_logo"
+        Me.img_blc_logo.Size = New System.Drawing.Size(40, 40)
+        Me.img_blc_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.img_blc_logo.TabIndex = 10
+        Me.img_blc_logo.TabStop = False
+        '
         'frm_managerMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -185,6 +186,8 @@ Partial Class frm_managerMenu
         Me.Controls.Add(Me.btn_logout_redir)
         Me.Controls.Add(Me.img_blc_logo)
         Me.Controls.Add(Me.lbl_menu_TITLE)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm_managerMenu"
         Me.Text = "BLC Shift Manager (Shift Manager Menu)"
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).EndInit()

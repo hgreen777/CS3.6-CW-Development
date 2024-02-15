@@ -26,3 +26,4 @@ C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Devel
 C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_login_screen.resources
 C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_staffMenu.resources
 C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_managerMenu.resources
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_takeShifts.resources

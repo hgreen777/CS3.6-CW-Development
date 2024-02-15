@@ -22,6 +22,7 @@ Partial Class frm_staffMenu
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_staffMenu))
         Me.lbl_menu_TITLE = New System.Windows.Forms.Label()
         Me.btn_logout_redir = New System.Windows.Forms.Button()
         Me.btn_takeShifts_redir = New System.Windows.Forms.Button()
@@ -130,6 +131,7 @@ Partial Class frm_staffMenu
         Me.Controls.Add(Me.img_blc_logo)
         Me.Controls.Add(Me.lbl_menu_TITLE)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm_staffMenu"
         Me.Text = "BLC Shift Manager (Staff Menu)"
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).EndInit()

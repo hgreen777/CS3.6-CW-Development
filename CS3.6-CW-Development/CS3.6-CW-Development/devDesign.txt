@@ -1,0 +1,43 @@
+Font = Calibri
+
+Name Design
+dataitme_camalCaseVariableName_useInSystem
+
+eg:
+lbl_login_Title
+btn_login_process
+btn_back_redir
+lbl_shiftID_static
+lbl_shiftID_dynamic
+
+For all frames:
+	Set the background color to the rgb of designs
+	Add all data items and locate accordingly to the design
+	Name all data items
+	Set ideal window size and set to not resizable (FormBorderStyle= FixedSingle)
+	Add Button desing function to load event
+
+Backend Code Layout:
+'
+' Form Open & close Events
+'
+Read  + Write Data & Any important design changes like button rediesign
+'
+' Redirect Code
+'
+Redirect button click events
+'
+' Processes code ie buttons for processing data
+'
+Code for when a button is clicked for processing data
+'
+' Necessary visual changes code
+'
+ie inex changing code for listboxes
+
+' Add all the necessary comments to the code
+Annotation format (explain all variables and what the code does)
+
+See paper design not postprototype for acc implementation solutions to problems and how to implement them
+*/
+Ensure use designs in post-prototype and make sure the designs match the project.
