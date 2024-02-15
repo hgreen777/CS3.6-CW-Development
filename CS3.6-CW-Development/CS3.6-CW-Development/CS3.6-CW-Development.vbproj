@@ -166,5 +166,8 @@
   <ItemGroup>
     <None Include="Resources\notification_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="devDesign.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
