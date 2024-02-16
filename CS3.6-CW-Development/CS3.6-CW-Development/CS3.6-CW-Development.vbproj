@@ -86,6 +86,12 @@
     <Compile Include="frm_login_screen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frm_myShifts.Designer.vb">
+      <DependentUpon>frm_myShifts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_myShifts.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_staffMenu.Designer.vb">
       <DependentUpon>frm_staffMenu.vb</DependentUpon>
     </Compile>
@@ -128,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_login_screen.resx">
       <DependentUpon>frm_login_screen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_myShifts.resx">
+      <DependentUpon>frm_myShifts.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_staffMenu.resx">
       <DependentUpon>frm_staffMenu.vb</DependentUpon>
