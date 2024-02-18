@@ -41,3 +41,6 @@ Annotation format (explain all variables and what the code does)
 See paper design not postprototype for acc implementation solutions to problems and how to implement them
 */
 Ensure use designs in post-prototype and make sure the designs match the project.
+
+Make sure to validate any input from the user
+Make sure to check null case when accessing data in nodes etc for robust code
