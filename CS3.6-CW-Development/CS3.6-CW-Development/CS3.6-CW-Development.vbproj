@@ -98,10 +98,28 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frm_accountManager.Designer.vb">
+      <DependentUpon>frm_accountManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_accountManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_acountEditor.Designer.vb">
+      <DependentUpon>frm_acountEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_acountEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_allShifts.Designer.vb">
       <DependentUpon>frm_allShifts.vb</DependentUpon>
     </Compile>
     <Compile Include="frm_allShifts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_assignShifts.Designer.vb">
+      <DependentUpon>frm_assignShifts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_assignShifts.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_login_screen.Designer.vb">
@@ -114,6 +132,18 @@
       <DependentUpon>frm_myShifts.vb</DependentUpon>
     </Compile>
     <Compile Include="frm_myShifts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_notificationManager.Designer.vb">
+      <DependentUpon>frm_notificationManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_notificationManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_notifications.Designer.vb">
+      <DependentUpon>frm_notifications.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_notifications.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_staffMenu.Designer.vb">
