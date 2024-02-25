@@ -1,4 +1,4 @@
-Font = Calibri
+Font = Calibri 
 
 Name Design
 dataitme_camalCaseVariableName_useInSystem
