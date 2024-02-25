@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frm_allShifts
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frm_allShifts
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_allShifts))
         Me.grp_allShifts = New System.Windows.Forms.GroupBox()
@@ -30,6 +30,8 @@ Partial Class frm_allShifts
         Me.txt_startTime_inp = New System.Windows.Forms.TextBox()
         Me.txt_endTime_inp = New System.Windows.Forms.TextBox()
         Me.grp_shiftControl = New System.Windows.Forms.GroupBox()
+        Me.lbl_date = New System.Windows.Forms.Label()
+        Me.DatePicker = New System.Windows.Forms.DateTimePicker()
         Me.lbl_endDateTime_dynamic = New System.Windows.Forms.Label()
         Me.lbl_startDateTime_dynamic = New System.Windows.Forms.Label()
         Me.grp_selectedShift = New System.Windows.Forms.GroupBox()
@@ -41,8 +43,6 @@ Partial Class frm_allShifts
         Me.img_blc_logo = New System.Windows.Forms.PictureBox()
         Me.lbl_allShifts_TITLE = New System.Windows.Forms.Label()
         Me.chkbox_filterTaken = New System.Windows.Forms.CheckBox()
-        Me.DatePicker = New System.Windows.Forms.DateTimePicker()
-        Me.lbl_date = New System.Windows.Forms.Label()
         Me.btn_assignShift_redir = New System.Windows.Forms.Button()
         Me.btn_editShift_process = New System.Windows.Forms.Button()
         Me.btn_addShift_process = New System.Windows.Forms.Button()
@@ -123,6 +123,24 @@ Partial Class frm_allShifts
         Me.grp_shiftControl.TabIndex = 23
         Me.grp_shiftControl.TabStop = False
         Me.grp_shiftControl.Text = "Shift Control:"
+        '
+        'lbl_date
+        '
+        Me.lbl_date.AutoSize = True
+        Me.lbl_date.Font = New System.Drawing.Font("Calibri", 15.0!)
+        Me.lbl_date.Location = New System.Drawing.Point(6, 17)
+        Me.lbl_date.Name = "lbl_date"
+        Me.lbl_date.Size = New System.Drawing.Size(54, 24)
+        Me.lbl_date.TabIndex = 5
+        Me.lbl_date.Text = "Date:"
+        '
+        'DatePicker
+        '
+        Me.DatePicker.Location = New System.Drawing.Point(139, 19)
+        Me.DatePicker.MinDate = New Date(2024, 1, 1, 0, 0, 0, 0)
+        Me.DatePicker.Name = "DatePicker"
+        Me.DatePicker.Size = New System.Drawing.Size(137, 20)
+        Me.DatePicker.TabIndex = 4
         '
         'lbl_endDateTime_dynamic
         '
@@ -242,24 +260,6 @@ Partial Class frm_allShifts
         Me.chkbox_filterTaken.TabIndex = 25
         Me.chkbox_filterTaken.Text = ":Filter out taken Shifts"
         Me.chkbox_filterTaken.UseVisualStyleBackColor = True
-        '
-        'DatePicker
-        '
-        Me.DatePicker.Location = New System.Drawing.Point(139, 19)
-        Me.DatePicker.MinDate = New Date(2024, 1, 1, 0, 0, 0, 0)
-        Me.DatePicker.Name = "DatePicker"
-        Me.DatePicker.Size = New System.Drawing.Size(137, 20)
-        Me.DatePicker.TabIndex = 4
-        '
-        'lbl_date
-        '
-        Me.lbl_date.AutoSize = True
-        Me.lbl_date.Font = New System.Drawing.Font("Calibri", 15.0!)
-        Me.lbl_date.Location = New System.Drawing.Point(6, 17)
-        Me.lbl_date.Name = "lbl_date"
-        Me.lbl_date.Size = New System.Drawing.Size(54, 24)
-        Me.lbl_date.TabIndex = 5
-        Me.lbl_date.Text = "Date:"
         '
         'btn_assignShift_redir
         '

@@ -189,6 +189,9 @@
     <EmbeddedResource Include="frm_allShifts.resx">
       <DependentUpon>frm_allShifts.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_assignShifts.resx">
+      <DependentUpon>frm_assignShifts.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_login_screen.resx">
       <DependentUpon>frm_login_screen.vb</DependentUpon>
     </EmbeddedResource>
@@ -234,6 +237,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="devDesign.txt" />
+    <None Include="Resources\img_arrow%282%29.png" />
+    <None Include="Resources\img_arrow.png" />
     <None Include="Resources\ico_blc_logo.ico" />
     <None Include="Resources\ico_blc_logo.bmp" />
   </ItemGroup>
