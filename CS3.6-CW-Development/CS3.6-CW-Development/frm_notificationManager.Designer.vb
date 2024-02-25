@@ -36,10 +36,10 @@ Partial Class frm_notificationManager
         Me.grp_notificationContent = New System.Windows.Forms.GroupBox()
         Me.txt_notificationContent_inp = New System.Windows.Forms.TextBox()
         Me.grp_findStaff = New System.Windows.Forms.GroupBox()
-        Me.txt_staffFirstName_inp = New System.Windows.Forms.TextBox()
-        Me.lbl_searchInstructions = New System.Windows.Forms.Label()
-        Me.lbl_selectedStaffMember_static = New System.Windows.Forms.Label()
         Me.lbl_selectedStaffMember_dynamic = New System.Windows.Forms.Label()
+        Me.lbl_selectedStaffMember_static = New System.Windows.Forms.Label()
+        Me.lbl_searchInstructions = New System.Windows.Forms.Label()
+        Me.txt_staffFirstName_inp = New System.Windows.Forms.TextBox()
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grp_notificationRecipients.SuspendLayout()
         Me.grp_notificationContent.SuspendLayout()
@@ -194,13 +194,25 @@ Partial Class frm_notificationManager
         Me.grp_findStaff.TabStop = False
         Me.grp_findStaff.Text = "Find Staff Member:"
         '
-        'txt_staffFirstName_inp
+        'lbl_selectedStaffMember_dynamic
         '
-        Me.txt_staffFirstName_inp.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_staffFirstName_inp.Location = New System.Drawing.Point(159, 24)
-        Me.txt_staffFirstName_inp.Name = "txt_staffFirstName_inp"
-        Me.txt_staffFirstName_inp.Size = New System.Drawing.Size(141, 27)
-        Me.txt_staffFirstName_inp.TabIndex = 0
+        Me.lbl_selectedStaffMember_dynamic.AutoSize = True
+        Me.lbl_selectedStaffMember_dynamic.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_selectedStaffMember_dynamic.Location = New System.Drawing.Point(203, 73)
+        Me.lbl_selectedStaffMember_dynamic.Name = "lbl_selectedStaffMember_dynamic"
+        Me.lbl_selectedStaffMember_dynamic.Size = New System.Drawing.Size(120, 19)
+        Me.lbl_selectedStaffMember_dynamic.TabIndex = 36
+        Me.lbl_selectedStaffMember_dynamic.Text = "<StaffFirstName>"
+        '
+        'lbl_selectedStaffMember_static
+        '
+        Me.lbl_selectedStaffMember_static.AutoSize = True
+        Me.lbl_selectedStaffMember_static.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_selectedStaffMember_static.Location = New System.Drawing.Point(6, 73)
+        Me.lbl_selectedStaffMember_static.Name = "lbl_selectedStaffMember_static"
+        Me.lbl_selectedStaffMember_static.Size = New System.Drawing.Size(169, 19)
+        Me.lbl_selectedStaffMember_static.TabIndex = 35
+        Me.lbl_selectedStaffMember_static.Text = "Selected Staff Member:"
         '
         'lbl_searchInstructions
         '
@@ -213,25 +225,13 @@ Partial Class frm_notificationManager
         Me.lbl_searchInstructions.Text = "Search Staff " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Member (First Name):"
         Me.lbl_searchInstructions.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'lbl_selectedStaffMember_static
+        'txt_staffFirstName_inp
         '
-        Me.lbl_selectedStaffMember_static.AutoSize = True
-        Me.lbl_selectedStaffMember_static.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_selectedStaffMember_static.Location = New System.Drawing.Point(6, 73)
-        Me.lbl_selectedStaffMember_static.Name = "lbl_selectedStaffMember_static"
-        Me.lbl_selectedStaffMember_static.Size = New System.Drawing.Size(169, 19)
-        Me.lbl_selectedStaffMember_static.TabIndex = 35
-        Me.lbl_selectedStaffMember_static.Text = "Selected Staff Member:"
-        '
-        'lbl_selectedStaffMember_dynamic
-        '
-        Me.lbl_selectedStaffMember_dynamic.AutoSize = True
-        Me.lbl_selectedStaffMember_dynamic.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_selectedStaffMember_dynamic.Location = New System.Drawing.Point(203, 73)
-        Me.lbl_selectedStaffMember_dynamic.Name = "lbl_selectedStaffMember_dynamic"
-        Me.lbl_selectedStaffMember_dynamic.Size = New System.Drawing.Size(120, 19)
-        Me.lbl_selectedStaffMember_dynamic.TabIndex = 36
-        Me.lbl_selectedStaffMember_dynamic.Text = "<StaffFirstName>"
+        Me.txt_staffFirstName_inp.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_staffFirstName_inp.Location = New System.Drawing.Point(159, 24)
+        Me.txt_staffFirstName_inp.Name = "txt_staffFirstName_inp"
+        Me.txt_staffFirstName_inp.Size = New System.Drawing.Size(141, 27)
+        Me.txt_staffFirstName_inp.TabIndex = 0
         '
         'frm_notificationManager
         '
@@ -250,6 +250,7 @@ Partial Class frm_notificationManager
         Me.Controls.Add(Me.img_blc_logo)
         Me.Controls.Add(Me.lbl_notificationManager_TITLE)
         Me.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm_notificationManager"
         Me.Text = "BLC Shift Manager (Notification Manager)"

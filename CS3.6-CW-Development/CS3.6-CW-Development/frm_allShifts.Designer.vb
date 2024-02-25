@@ -327,6 +327,7 @@ Partial Class frm_allShifts
         Me.Controls.Add(Me.btn_back_redir)
         Me.Controls.Add(Me.img_blc_logo)
         Me.Controls.Add(Me.lbl_allShifts_TITLE)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm_allShifts"
         Me.Text = "BLC Shift Manager (All Shifts)"

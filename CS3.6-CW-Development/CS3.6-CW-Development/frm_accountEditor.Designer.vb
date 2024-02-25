@@ -75,7 +75,7 @@ Partial Class frm_accountEditor
         '
         Me.lbl_username_static.AutoSize = True
         Me.lbl_username_static.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_username_static.Location = New System.Drawing.Point(24, 63)
+        Me.lbl_username_static.Location = New System.Drawing.Point(30, 63)
         Me.lbl_username_static.Name = "lbl_username_static"
         Me.lbl_username_static.Size = New System.Drawing.Size(100, 24)
         Me.lbl_username_static.TabIndex = 34
@@ -85,7 +85,7 @@ Partial Class frm_accountEditor
         '
         Me.lbl_firstName_static.AutoSize = True
         Me.lbl_firstName_static.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_firstName_static.Location = New System.Drawing.Point(22, 108)
+        Me.lbl_firstName_static.Location = New System.Drawing.Point(30, 108)
         Me.lbl_firstName_static.Name = "lbl_firstName_static"
         Me.lbl_firstName_static.Size = New System.Drawing.Size(105, 24)
         Me.lbl_firstName_static.TabIndex = 35
@@ -95,7 +95,7 @@ Partial Class frm_accountEditor
         '
         Me.lbl_surname_static.AutoSize = True
         Me.lbl_surname_static.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_surname_static.Location = New System.Drawing.Point(22, 163)
+        Me.lbl_surname_static.Location = New System.Drawing.Point(28, 163)
         Me.lbl_surname_static.Name = "lbl_surname_static"
         Me.lbl_surname_static.Size = New System.Drawing.Size(102, 24)
         Me.lbl_surname_static.TabIndex = 36
@@ -105,7 +105,7 @@ Partial Class frm_accountEditor
         '
         Me.lbl_password_static.AutoSize = True
         Me.lbl_password_static.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_password_static.Location = New System.Drawing.Point(24, 219)
+        Me.lbl_password_static.Location = New System.Drawing.Point(30, 219)
         Me.lbl_password_static.Name = "lbl_password_static"
         Me.lbl_password_static.Size = New System.Drawing.Size(94, 24)
         Me.lbl_password_static.TabIndex = 37
@@ -168,7 +168,7 @@ Partial Class frm_accountEditor
         Me.lbl_username_dynamic.TabIndex = 43
         Me.lbl_username_dynamic.Text = "<StaffUserName>"
         '
-        'frm_acountEditor
+        'frm_accountEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -188,8 +188,9 @@ Partial Class frm_accountEditor
         Me.Controls.Add(Me.img_blc_logo)
         Me.Controls.Add(Me.lbl_accountEditor_TITLE)
         Me.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "frm_acountEditor"
+        Me.Name = "frm_accountEditor"
         Me.Padding = New System.Windows.Forms.Padding(0, 0, 10, 0)
         Me.Text = "BLC Shift Manager (Account Editor)"
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).EndInit()

@@ -192,6 +192,9 @@
     <EmbeddedResource Include="frm_accountEditor.resx">
       <DependentUpon>frm_accountEditor.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_accountManager.resx">
+      <DependentUpon>frm_accountManager.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_allShifts.resx">
       <DependentUpon>frm_allShifts.vb</DependentUpon>
     </EmbeddedResource>
