@@ -27,6 +27,11 @@ CS3.6-CW-Development
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:CS3._6_CW_Development.My.Resources.Resources.ico_blc_logo">
+<summary>
+  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+</summary>
+</member>
 <member name="P:CS3._6_CW_Development.My.Resources.Resources.notification_icon">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.

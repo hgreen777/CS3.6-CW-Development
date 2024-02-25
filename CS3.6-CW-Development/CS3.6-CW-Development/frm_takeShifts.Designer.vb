@@ -27,22 +27,22 @@ Partial Class frm_takeShifts
         Me.img_blc_logo = New System.Windows.Forms.PictureBox()
         Me.lbl_takeShifts_TITLE = New System.Windows.Forms.Label()
         Me.grp_suggestedShifts = New System.Windows.Forms.GroupBox()
-        Me.grp_allAvailableShifts = New System.Windows.Forms.GroupBox()
-        Me.grp_selectedShift = New System.Windows.Forms.GroupBox()
-        Me.grp_changeShiftTimes = New System.Windows.Forms.GroupBox()
-        Me.btn_takeShift_process = New System.Windows.Forms.Button()
         Me.lst_suggestedShifts = New System.Windows.Forms.ListBox()
+        Me.grp_allAvailableShifts = New System.Windows.Forms.GroupBox()
         Me.lst_availableShifts = New System.Windows.Forms.ListBox()
-        Me.txt_endTime_inp = New System.Windows.Forms.TextBox()
-        Me.txt_startTime_inp = New System.Windows.Forms.TextBox()
-        Me.lbl_startTime = New System.Windows.Forms.Label()
-        Me.lbl_endTime = New System.Windows.Forms.Label()
-        Me.lbl_shiftID_static = New System.Windows.Forms.Label()
-        Me.lbl_startDateTime_static = New System.Windows.Forms.Label()
-        Me.lbl_endDateTime_static = New System.Windows.Forms.Label()
-        Me.lbl_shiftID_dynamic = New System.Windows.Forms.Label()
-        Me.lbl_startDateTime_dynamic = New System.Windows.Forms.Label()
+        Me.grp_selectedShift = New System.Windows.Forms.GroupBox()
         Me.lbl_endDateTime_dynamic = New System.Windows.Forms.Label()
+        Me.lbl_startDateTime_dynamic = New System.Windows.Forms.Label()
+        Me.lbl_shiftID_dynamic = New System.Windows.Forms.Label()
+        Me.lbl_endDateTime_static = New System.Windows.Forms.Label()
+        Me.lbl_startDateTime_static = New System.Windows.Forms.Label()
+        Me.lbl_shiftID_static = New System.Windows.Forms.Label()
+        Me.grp_changeShiftTimes = New System.Windows.Forms.GroupBox()
+        Me.lbl_endTime = New System.Windows.Forms.Label()
+        Me.lbl_startTime = New System.Windows.Forms.Label()
+        Me.txt_startTime_inp = New System.Windows.Forms.TextBox()
+        Me.txt_endTime_inp = New System.Windows.Forms.TextBox()
+        Me.btn_takeShift_process = New System.Windows.Forms.Button()
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grp_suggestedShifts.SuspendLayout()
         Me.grp_allAvailableShifts.SuspendLayout()
@@ -92,6 +92,14 @@ Partial Class frm_takeShifts
         Me.grp_suggestedShifts.TabStop = False
         Me.grp_suggestedShifts.Text = "Suggested Shifts:"
         '
+        'lst_suggestedShifts
+        '
+        Me.lst_suggestedShifts.FormattingEnabled = True
+        Me.lst_suggestedShifts.Location = New System.Drawing.Point(6, 19)
+        Me.lst_suggestedShifts.Name = "lst_suggestedShifts"
+        Me.lst_suggestedShifts.Size = New System.Drawing.Size(363, 121)
+        Me.lst_suggestedShifts.TabIndex = 0
+        '
         'grp_allAvailableShifts
         '
         Me.grp_allAvailableShifts.Controls.Add(Me.lst_availableShifts)
@@ -101,6 +109,14 @@ Partial Class frm_takeShifts
         Me.grp_allAvailableShifts.TabIndex = 17
         Me.grp_allAvailableShifts.TabStop = False
         Me.grp_allAvailableShifts.Text = "All Available Shifts:"
+        '
+        'lst_availableShifts
+        '
+        Me.lst_availableShifts.FormattingEnabled = True
+        Me.lst_availableShifts.Location = New System.Drawing.Point(6, 19)
+        Me.lst_availableShifts.Name = "lst_availableShifts"
+        Me.lst_availableShifts.Size = New System.Drawing.Size(363, 225)
+        Me.lst_availableShifts.TabIndex = 1
         '
         'grp_selectedShift
         '
@@ -117,6 +133,66 @@ Partial Class frm_takeShifts
         Me.grp_selectedShift.TabStop = False
         Me.grp_selectedShift.Text = "Selected Shift:"
         '
+        'lbl_endDateTime_dynamic
+        '
+        Me.lbl_endDateTime_dynamic.AutoSize = True
+        Me.lbl_endDateTime_dynamic.Font = New System.Drawing.Font("Calibri", 15.0!)
+        Me.lbl_endDateTime_dynamic.Location = New System.Drawing.Point(151, 88)
+        Me.lbl_endDateTime_dynamic.Name = "lbl_endDateTime_dynamic"
+        Me.lbl_endDateTime_dynamic.Size = New System.Drawing.Size(210, 24)
+        Me.lbl_endDateTime_dynamic.TabIndex = 9
+        Me.lbl_endDateTime_dynamic.Text = "<DD/MM/YYYY HH:mm>"
+        '
+        'lbl_startDateTime_dynamic
+        '
+        Me.lbl_startDateTime_dynamic.AutoSize = True
+        Me.lbl_startDateTime_dynamic.Font = New System.Drawing.Font("Calibri", 15.0!)
+        Me.lbl_startDateTime_dynamic.Location = New System.Drawing.Point(151, 53)
+        Me.lbl_startDateTime_dynamic.Name = "lbl_startDateTime_dynamic"
+        Me.lbl_startDateTime_dynamic.Size = New System.Drawing.Size(210, 24)
+        Me.lbl_startDateTime_dynamic.TabIndex = 8
+        Me.lbl_startDateTime_dynamic.Text = "<DD/MM/YYYY HH:mm>"
+        '
+        'lbl_shiftID_dynamic
+        '
+        Me.lbl_shiftID_dynamic.AutoSize = True
+        Me.lbl_shiftID_dynamic.Font = New System.Drawing.Font("Calibri", 15.0!)
+        Me.lbl_shiftID_dynamic.Location = New System.Drawing.Point(151, 19)
+        Me.lbl_shiftID_dynamic.Name = "lbl_shiftID_dynamic"
+        Me.lbl_shiftID_dynamic.Size = New System.Drawing.Size(84, 24)
+        Me.lbl_shiftID_dynamic.TabIndex = 7
+        Me.lbl_shiftID_dynamic.Text = "<ShiftID>"
+        '
+        'lbl_endDateTime_static
+        '
+        Me.lbl_endDateTime_static.AutoSize = True
+        Me.lbl_endDateTime_static.Font = New System.Drawing.Font("Calibri", 15.0!)
+        Me.lbl_endDateTime_static.Location = New System.Drawing.Point(6, 88)
+        Me.lbl_endDateTime_static.Name = "lbl_endDateTime_static"
+        Me.lbl_endDateTime_static.Size = New System.Drawing.Size(140, 24)
+        Me.lbl_endDateTime_static.TabIndex = 6
+        Me.lbl_endDateTime_static.Text = "End Date/Time:"
+        '
+        'lbl_startDateTime_static
+        '
+        Me.lbl_startDateTime_static.AutoSize = True
+        Me.lbl_startDateTime_static.Font = New System.Drawing.Font("Calibri", 15.0!)
+        Me.lbl_startDateTime_static.Location = New System.Drawing.Point(6, 53)
+        Me.lbl_startDateTime_static.Name = "lbl_startDateTime_static"
+        Me.lbl_startDateTime_static.Size = New System.Drawing.Size(148, 24)
+        Me.lbl_startDateTime_static.TabIndex = 5
+        Me.lbl_startDateTime_static.Text = "Start Date/Time:"
+        '
+        'lbl_shiftID_static
+        '
+        Me.lbl_shiftID_static.AutoSize = True
+        Me.lbl_shiftID_static.Font = New System.Drawing.Font("Calibri", 15.0!)
+        Me.lbl_shiftID_static.Location = New System.Drawing.Point(6, 19)
+        Me.lbl_shiftID_static.Name = "lbl_shiftID_static"
+        Me.lbl_shiftID_static.Size = New System.Drawing.Size(69, 24)
+        Me.lbl_shiftID_static.TabIndex = 4
+        Me.lbl_shiftID_static.Text = "ShiftID:"
+        '
         'grp_changeShiftTimes
         '
         Me.grp_changeShiftTimes.Controls.Add(Me.lbl_endTime)
@@ -130,51 +206,15 @@ Partial Class frm_takeShifts
         Me.grp_changeShiftTimes.TabStop = False
         Me.grp_changeShiftTimes.Text = "Change Shift Times:"
         '
-        'btn_takeShift_process
+        'lbl_endTime
         '
-        Me.btn_takeShift_process.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.btn_takeShift_process.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_takeShift_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_takeShift_process.Location = New System.Drawing.Point(500, 350)
-        Me.btn_takeShift_process.Name = "btn_takeShift_process"
-        Me.btn_takeShift_process.Size = New System.Drawing.Size(150, 70)
-        Me.btn_takeShift_process.TabIndex = 19
-        Me.btn_takeShift_process.Text = "Take Shift"
-        Me.btn_takeShift_process.UseVisualStyleBackColor = True
-        '
-        'lst_suggestedShifts
-        '
-        Me.lst_suggestedShifts.FormattingEnabled = True
-        Me.lst_suggestedShifts.Location = New System.Drawing.Point(6, 19)
-        Me.lst_suggestedShifts.Name = "lst_suggestedShifts"
-        Me.lst_suggestedShifts.Size = New System.Drawing.Size(363, 121)
-        Me.lst_suggestedShifts.TabIndex = 0
-        '
-        'lst_availableShifts
-        '
-        Me.lst_availableShifts.FormattingEnabled = True
-        Me.lst_availableShifts.Location = New System.Drawing.Point(6, 19)
-        Me.lst_availableShifts.Name = "lst_availableShifts"
-        Me.lst_availableShifts.Size = New System.Drawing.Size(363, 225)
-        Me.lst_availableShifts.TabIndex = 1
-        '
-        'txt_endTime_inp
-        '
-        Me.txt_endTime_inp.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_endTime_inp.Location = New System.Drawing.Point(155, 62)
-        Me.txt_endTime_inp.Name = "txt_endTime_inp"
-        Me.txt_endTime_inp.Size = New System.Drawing.Size(100, 32)
-        Me.txt_endTime_inp.TabIndex = 0
-        Me.txt_endTime_inp.Text = "HH:mm"
-        '
-        'txt_startTime_inp
-        '
-        Me.txt_startTime_inp.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_startTime_inp.Location = New System.Drawing.Point(155, 19)
-        Me.txt_startTime_inp.Name = "txt_startTime_inp"
-        Me.txt_startTime_inp.Size = New System.Drawing.Size(100, 32)
-        Me.txt_startTime_inp.TabIndex = 1
-        Me.txt_startTime_inp.Text = "HH:mm"
+        Me.lbl_endTime.AutoSize = True
+        Me.lbl_endTime.Font = New System.Drawing.Font("Calibri", 15.0!)
+        Me.lbl_endTime.Location = New System.Drawing.Point(6, 65)
+        Me.lbl_endTime.Name = "lbl_endTime"
+        Me.lbl_endTime.Size = New System.Drawing.Size(135, 24)
+        Me.lbl_endTime.TabIndex = 3
+        Me.lbl_endTime.Text = "New End Time:"
         '
         'lbl_startTime
         '
@@ -186,75 +226,35 @@ Partial Class frm_takeShifts
         Me.lbl_startTime.TabIndex = 2
         Me.lbl_startTime.Text = "New Start Time:"
         '
-        'lbl_endTime
+        'txt_startTime_inp
         '
-        Me.lbl_endTime.AutoSize = True
-        Me.lbl_endTime.Font = New System.Drawing.Font("Calibri", 15.0!)
-        Me.lbl_endTime.Location = New System.Drawing.Point(6, 65)
-        Me.lbl_endTime.Name = "lbl_endTime"
-        Me.lbl_endTime.Size = New System.Drawing.Size(143, 24)
-        Me.lbl_endTime.TabIndex = 3
-        Me.lbl_endTime.Text = "New Start Time:"
+        Me.txt_startTime_inp.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_startTime_inp.Location = New System.Drawing.Point(155, 19)
+        Me.txt_startTime_inp.Name = "txt_startTime_inp"
+        Me.txt_startTime_inp.Size = New System.Drawing.Size(100, 32)
+        Me.txt_startTime_inp.TabIndex = 1
+        Me.txt_startTime_inp.Text = "HH:mm"
         '
-        'lbl_shiftID_static
+        'txt_endTime_inp
         '
-        Me.lbl_shiftID_static.AutoSize = True
-        Me.lbl_shiftID_static.Font = New System.Drawing.Font("Calibri", 15.0!)
-        Me.lbl_shiftID_static.Location = New System.Drawing.Point(6, 19)
-        Me.lbl_shiftID_static.Name = "lbl_shiftID_static"
-        Me.lbl_shiftID_static.Size = New System.Drawing.Size(69, 24)
-        Me.lbl_shiftID_static.TabIndex = 4
-        Me.lbl_shiftID_static.Text = "ShiftID:"
+        Me.txt_endTime_inp.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_endTime_inp.Location = New System.Drawing.Point(155, 62)
+        Me.txt_endTime_inp.Name = "txt_endTime_inp"
+        Me.txt_endTime_inp.Size = New System.Drawing.Size(100, 32)
+        Me.txt_endTime_inp.TabIndex = 0
+        Me.txt_endTime_inp.Text = "HH:mm"
         '
-        'lbl_startDateTime_static
+        'btn_takeShift_process
         '
-        Me.lbl_startDateTime_static.AutoSize = True
-        Me.lbl_startDateTime_static.Font = New System.Drawing.Font("Calibri", 15.0!)
-        Me.lbl_startDateTime_static.Location = New System.Drawing.Point(6, 53)
-        Me.lbl_startDateTime_static.Name = "lbl_startDateTime_static"
-        Me.lbl_startDateTime_static.Size = New System.Drawing.Size(148, 24)
-        Me.lbl_startDateTime_static.TabIndex = 5
-        Me.lbl_startDateTime_static.Text = "Start Date/Time:"
-        '
-        'lbl_endDateTime_static
-        '
-        Me.lbl_endDateTime_static.AutoSize = True
-        Me.lbl_endDateTime_static.Font = New System.Drawing.Font("Calibri", 15.0!)
-        Me.lbl_endDateTime_static.Location = New System.Drawing.Point(6, 88)
-        Me.lbl_endDateTime_static.Name = "lbl_endDateTime_static"
-        Me.lbl_endDateTime_static.Size = New System.Drawing.Size(140, 24)
-        Me.lbl_endDateTime_static.TabIndex = 6
-        Me.lbl_endDateTime_static.Text = "End Date/Time:"
-        '
-        'lbl_shiftID_dynamic
-        '
-        Me.lbl_shiftID_dynamic.AutoSize = True
-        Me.lbl_shiftID_dynamic.Font = New System.Drawing.Font("Calibri", 15.0!)
-        Me.lbl_shiftID_dynamic.Location = New System.Drawing.Point(151, 19)
-        Me.lbl_shiftID_dynamic.Name = "lbl_shiftID_dynamic"
-        Me.lbl_shiftID_dynamic.Size = New System.Drawing.Size(84, 24)
-        Me.lbl_shiftID_dynamic.TabIndex = 7
-        Me.lbl_shiftID_dynamic.Text = "<ShiftID>"
-        '
-        'lbl_startDateTime_dynamic
-        '
-        Me.lbl_startDateTime_dynamic.AutoSize = True
-        Me.lbl_startDateTime_dynamic.Font = New System.Drawing.Font("Calibri", 15.0!)
-        Me.lbl_startDateTime_dynamic.Location = New System.Drawing.Point(151, 53)
-        Me.lbl_startDateTime_dynamic.Name = "lbl_startDateTime_dynamic"
-        Me.lbl_startDateTime_dynamic.Size = New System.Drawing.Size(210, 24)
-        Me.lbl_startDateTime_dynamic.TabIndex = 8
-        Me.lbl_startDateTime_dynamic.Text = "<DD/MM/YYYY HH:mm>"
-        '
-        'lbl_endDateTime_dynamic
-        '
-        Me.lbl_endDateTime_dynamic.AutoSize = True
-        Me.lbl_endDateTime_dynamic.Font = New System.Drawing.Font("Calibri", 15.0!)
-        Me.lbl_endDateTime_dynamic.Location = New System.Drawing.Point(151, 88)
-        Me.lbl_endDateTime_dynamic.Name = "lbl_endDateTime_dynamic"
-        Me.lbl_endDateTime_dynamic.Size = New System.Drawing.Size(210, 24)
-        Me.lbl_endDateTime_dynamic.TabIndex = 9
-        Me.lbl_endDateTime_dynamic.Text = "<DD/MM/YYYY HH:mm>"
+        Me.btn_takeShift_process.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btn_takeShift_process.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_takeShift_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btn_takeShift_process.Location = New System.Drawing.Point(500, 350)
+        Me.btn_takeShift_process.Name = "btn_takeShift_process"
+        Me.btn_takeShift_process.Size = New System.Drawing.Size(150, 70)
+        Me.btn_takeShift_process.TabIndex = 19
+        Me.btn_takeShift_process.Text = "Take Shift"
+        Me.btn_takeShift_process.UseVisualStyleBackColor = True
         '
         'frm_takeShifts
         '
