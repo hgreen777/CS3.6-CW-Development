@@ -39,7 +39,7 @@ Partial Class frm_allShifts
         Me.lbl_shiftID_static = New System.Windows.Forms.Label()
         Me.btn_back_redir = New System.Windows.Forms.Button()
         Me.img_blc_logo = New System.Windows.Forms.PictureBox()
-        Me.lbl_takeShifts_TITLE = New System.Windows.Forms.Label()
+        Me.lbl_allShifts_TITLE = New System.Windows.Forms.Label()
         Me.chkbox_filterTaken = New System.Windows.Forms.CheckBox()
         Me.DatePicker = New System.Windows.Forms.DateTimePicker()
         Me.lbl_date = New System.Windows.Forms.Label()
@@ -219,17 +219,17 @@ Partial Class frm_allShifts
         Me.img_blc_logo.TabIndex = 19
         Me.img_blc_logo.TabStop = False
         '
-        'lbl_takeShifts_TITLE
+        'lbl_allShifts_TITLE
         '
-        Me.lbl_takeShifts_TITLE.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lbl_takeShifts_TITLE.Font = New System.Drawing.Font("Calibri", 30.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_takeShifts_TITLE.Location = New System.Drawing.Point(0, 0)
-        Me.lbl_takeShifts_TITLE.Margin = New System.Windows.Forms.Padding(3, 5, 3, 0)
-        Me.lbl_takeShifts_TITLE.Name = "lbl_takeShifts_TITLE"
-        Me.lbl_takeShifts_TITLE.Size = New System.Drawing.Size(800, 50)
-        Me.lbl_takeShifts_TITLE.TabIndex = 20
-        Me.lbl_takeShifts_TITLE.Text = "Take Shifts"
-        Me.lbl_takeShifts_TITLE.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.lbl_allShifts_TITLE.Dock = System.Windows.Forms.DockStyle.Top
+        Me.lbl_allShifts_TITLE.Font = New System.Drawing.Font("Calibri", 30.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_allShifts_TITLE.Location = New System.Drawing.Point(0, 0)
+        Me.lbl_allShifts_TITLE.Margin = New System.Windows.Forms.Padding(3, 5, 3, 0)
+        Me.lbl_allShifts_TITLE.Name = "lbl_allShifts_TITLE"
+        Me.lbl_allShifts_TITLE.Size = New System.Drawing.Size(800, 50)
+        Me.lbl_allShifts_TITLE.TabIndex = 20
+        Me.lbl_allShifts_TITLE.Text = "All Shifts"
+        Me.lbl_allShifts_TITLE.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'chkbox_filterTaken
         '
@@ -326,7 +326,7 @@ Partial Class frm_allShifts
         Me.Controls.Add(Me.grp_selectedShift)
         Me.Controls.Add(Me.btn_back_redir)
         Me.Controls.Add(Me.img_blc_logo)
-        Me.Controls.Add(Me.lbl_takeShifts_TITLE)
+        Me.Controls.Add(Me.lbl_allShifts_TITLE)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm_allShifts"
         Me.Text = "BLC Shift Manager (All Shifts)"
@@ -357,7 +357,7 @@ Partial Class frm_allShifts
     Friend WithEvents lbl_shiftID_static As Label
     Friend WithEvents btn_back_redir As Button
     Friend WithEvents img_blc_logo As PictureBox
-    Friend WithEvents lbl_takeShifts_TITLE As Label
+    Friend WithEvents lbl_allShifts_TITLE As Label
     Friend WithEvents chkbox_filterTaken As CheckBox
     Friend WithEvents DatePicker As DateTimePicker
     Friend WithEvents lbl_date As Label
