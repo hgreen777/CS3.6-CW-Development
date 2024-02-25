@@ -107,10 +107,10 @@
     <Compile Include="frm_accountManager.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_acountEditor.Designer.vb">
-      <DependentUpon>frm_acountEditor.vb</DependentUpon>
+    <Compile Include="frm_accountEditor.Designer.vb">
+      <DependentUpon>frm_accountEditor.vb</DependentUpon>
     </Compile>
-    <Compile Include="frm_acountEditor.vb">
+    <Compile Include="frm_accountEditor.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_allShifts.Designer.vb">
@@ -188,6 +188,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_accountEditor.resx">
+      <DependentUpon>frm_accountEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_allShifts.resx">
       <DependentUpon>frm_allShifts.vb</DependentUpon>

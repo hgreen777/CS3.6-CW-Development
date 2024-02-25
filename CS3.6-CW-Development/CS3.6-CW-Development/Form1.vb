@@ -8,7 +8,7 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        frm_notificationManager.Show()
+        frm_accountEditor.Show()
         Me.Hide()
     End Sub
 

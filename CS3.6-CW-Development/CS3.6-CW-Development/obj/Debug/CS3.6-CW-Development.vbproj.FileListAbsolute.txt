@@ -32,3 +32,4 @@ C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Devel
 C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_assignShifts.resources
 C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_notifications.resources
 C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_notificationManager.resources
+C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_accountEditor.resources
