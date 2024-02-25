@@ -201,6 +201,9 @@
     <EmbeddedResource Include="frm_myShifts.resx">
       <DependentUpon>frm_myShifts.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_notificationManager.resx">
+      <DependentUpon>frm_notificationManager.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_notifications.resx">
       <DependentUpon>frm_notifications.vb</DependentUpon>
     </EmbeddedResource>
