@@ -49,6 +49,7 @@ Public Class frm_accountEditor
         End If
     End Sub
 
+    'Error 2 saying not writing properly b ut then it seems to be writing properly
     Private Sub btn_saveDetails_process_Click(sender As Object, e As EventArgs) Handles btn_saveDetails_process.Click
         MsgBox(activeUser)
         ' Check if the first name is valid

@@ -143,6 +143,10 @@ Module DataStructures
 
                 currentNode.nextStaffMember = New StaffMemberNode()  ' Creates a new node at the end of the linked list.
                 currentNode.nextStaffMember.staffMemberData = staffMember  ' Sets the data in the new node to the staff member data.
+
+                ' Write to file
+                If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not added") : Return
+
             End If
         End Sub
         '
@@ -182,7 +186,6 @@ Module DataStructures
             'Add new node
             addStaffMember(newStaffMember)
 
-            If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not updated") : Return
             MsgBox("User Updated")  ' Informs the user that the staff member has been updated.
         End Sub
         '
@@ -199,9 +202,9 @@ Module DataStructures
                 ' Checks if the first node in the linked list is the staff member to be removed.
                 If currentNode.staffMemberData.userName = staffUserName Then
                     _hashTable(hash) = currentNode.nextStaffMember  ' Sets the next node in the linked list to be the first node in the linked list.
-                    MsgBox("User Removed")  ' Informs the user that the staff member has been removed.
+                    'MsgBox("User Removed")  ' Informs the user that the staff member has been removed.
                     ' Write data to file
-                    If FileHandler.shiftWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return
+                    If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return
                 Else
                     ' Loop over the linked list to find the staff member to be removed.
                     While currentNode.nextStaffMember IsNot Nothing
@@ -209,7 +212,7 @@ Module DataStructures
                         If currentNode.nextStaffMember.staffMemberData.userName = staffUserName Then
                             currentNode.nextStaffMember = currentNode.nextStaffMember.nextStaffMember  ' Sets the next node in the linked list to the node after the next node.
                             MsgBox("User Removed")  ' Informs the user that the staff member has been removed.
-                            If FileHandler.shiftWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return
+                            If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return
                             Return
                         End If
 
