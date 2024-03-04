@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataStructures.vb" />
+    <Compile Include="FileHandler.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -184,7 +185,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="standardProcedures.vb" />
-    <Compile Include="validation.vb" />
+    <Compile Include="Validation.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">

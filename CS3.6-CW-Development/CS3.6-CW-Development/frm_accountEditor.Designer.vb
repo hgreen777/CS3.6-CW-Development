@@ -61,15 +61,14 @@ Partial Class frm_accountEditor
         '
         'lbl_accountEditor_TITLE
         '
-        Me.lbl_accountEditor_TITLE.Dock = System.Windows.Forms.DockStyle.Top
         Me.lbl_accountEditor_TITLE.Font = New System.Drawing.Font("Calibri", 27.0!, System.Drawing.FontStyle.Bold)
-        Me.lbl_accountEditor_TITLE.Location = New System.Drawing.Point(0, 0)
+        Me.lbl_accountEditor_TITLE.Location = New System.Drawing.Point(118, 0)
         Me.lbl_accountEditor_TITLE.Margin = New System.Windows.Forms.Padding(3, 5, 3, 0)
         Me.lbl_accountEditor_TITLE.Name = "lbl_accountEditor_TITLE"
-        Me.lbl_accountEditor_TITLE.Size = New System.Drawing.Size(627, 50)
+        Me.lbl_accountEditor_TITLE.Size = New System.Drawing.Size(519, 50)
         Me.lbl_accountEditor_TITLE.TabIndex = 32
         Me.lbl_accountEditor_TITLE.Text = "<StaffFirstName> Account Editor"
-        Me.lbl_accountEditor_TITLE.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.lbl_accountEditor_TITLE.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'lbl_username_static
         '

@@ -2,7 +2,7 @@
 ' Classes Structures = PascalCase
 ' Files and objects = snake_case
 'DS assumes data has all been validated
-
+Imports Validation
 Imports System.ComponentModel.DataAnnotations
 Imports System.IO
 Imports System.Text.RegularExpressions
@@ -90,12 +90,12 @@ Module DataStructures
     ' Hash Table will store users based of a first name
     ' Add, Find, Change, Delete
     Public Class StaffMembersHashTableDesign
-        Dim _hashTable(100) As StaffMemberNode     ' Creates a hash table with 100 cells (0-99) to store staff members.
+        Public _hashTable(100) As StaffMemberNode     ' Creates a hash table with 100 cells (0-99) to store staff members.
         Dim _size As Integer = 100                 ' Stores the size of the hash table (used to calculate the hash value).
         '
         ' FirstName from UserName
         ' Function to find the first name of a staff member given the staff member's username.
-        Private Function firstFromUserName(ByVal userName As String) As String
+        Public Function firstFromUserName(ByVal userName As String) As String
             Dim firstName As String                                     ' Stores the first name of the staff member.
             Dim secondCapIndex As Integer                               ' Stores the index of the second capital letter in the username.
             Dim allFoundCaps As MatchCollection                         ' Stores all the capital letters in the username.
@@ -174,8 +174,9 @@ Module DataStructures
         ' Updating a staff member.
         ' Function to update a staff member in the hash table.
         '
-        Public Sub updateStaffMember(ByVal oldStaffMember As StaffMember, ByVal newStaffMember As StaffMember)
-            Dim hash As Integer = hashValue(oldStaffMember.firstName)  ' Calculates the hash value for the staff member to be updated.
+        Public Sub updateStaffMember(ByVal oldUserName As String, ByVal newStaffMember As StaffMember)
+            Dim oldFirst As String = firstFromUserName(oldUserName)     ' Finds the first name of the staff member using the username.
+            Dim hash As Integer = hashValue(oldFirst)  ' Calculates the hash value for the staff member to be updated.
             Dim currentNode As StaffMemberNode = _hashTable(hash)       ' Creates a pointer to the current node in the linked list.
 
             ' Checks if the current cell in the hash table is empty (ie no staff members with a name that hashed to the same location).
@@ -183,8 +184,10 @@ Module DataStructures
                 ' Loop over the linked list to find the staff member to be updated.
                 While currentNode IsNot Nothing
                     ' Checks if the current node is the staff member to be updated.
-                    If currentNode.staffMemberData.userName = oldStaffMember.userName Then
+                    If currentNode.staffMemberData.userName = oldUserName Then
                         currentNode.staffMemberData = newStaffMember  ' Sets the data in the current node to the new staff member data.
+                        ' Write data to file
+                        If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not updated") : Return
                         MsgBox("User Updated")  ' Informs the user that the staff member has been updated.
                         Return
                     End If
@@ -209,7 +212,8 @@ Module DataStructures
                 If currentNode.staffMemberData.userName = staffUserName Then
                     _hashTable(hash) = currentNode.nextStaffMember  ' Sets the next node in the linked list to be the first node in the linked list.
                     MsgBox("User Removed")  ' Informs the user that the staff member has been removed.
-                    Return
+                    ' Write data to file
+                    If FileHandler.shiftWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return
                 Else
                     ' Loop over the linked list to find the staff member to be removed.
                     While currentNode.nextStaffMember IsNot Nothing
@@ -217,6 +221,7 @@ Module DataStructures
                         If currentNode.nextStaffMember.staffMemberData.userName = staffUserName Then
                             currentNode.nextStaffMember = currentNode.nextStaffMember.nextStaffMember  ' Sets the next node in the linked list to the node after the next node.
                             MsgBox("User Removed")  ' Informs the user that the staff member has been removed.
+                            If FileHandler.shiftWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return
                             Return
                         End If
 
@@ -425,37 +430,37 @@ Module DataStructures
         ' Assign Shift
         '  Ensure startTime and endTime has been validated before being passed in.....
         Public Function assignShift(ByVal startTime As String, ByVal endTime As String, ByVal shiftID As String, ByVal staffUserName As String) As Boolean
-            Dim result As Boolean = False
-            Dim startTimeValid As Boolean = True
-            Dim endTimeValid As Boolean = True
+            Dim startTimeValid As Boolean = True    ' Stores the result of the validation of the start time.
+            Dim endTimeValid As Boolean = True      ' Stores the result of the validation of the end time.
 
             ' Check the shiftID is of valid format
-            If validation.TypeInteger(shiftID) = False Then MsgBox("No shift Selected!") : Return False
+            If Validation.TypeInteger(shiftID) = False Then MsgBox("No shift Selected!") : Return False
             Dim oldData As Shift = find(shiftID)
 
-            'Validate oldData
+            ' Validate oldData is not nothing
+            If oldData.shiftID = Nothing Then MsgBox("Error: Shift not found") : Return False
 
             ' Validate TimeFormat
-            If validation.CorrectTimeFormat(startTime) = False Then startTimeValid = False
-            If validation.CorrectTimeFormat(endTime) = False Then endTimeValid = False
+            If Validation.correctTimeFormat(startTime) = False Then startTimeValid = False
+            If Validation.correctTimeFormat(endTime) = False Then endTimeValid = False
 
             ' If there are no time alterations for the shift.
             If startTime = "HH:mm" And endTime = "HH:mm" And shiftID <> "<ShiftID>" And staffUserName <> "<StaffUserName>" Then
                 ' Updating the shift data if there are no time alterations.
-                Dim newData As Shift = oldData
-                newData.isTaken = True
-                newData.staffUserName = staffUserName
+                Dim newData As Shift = oldData              ' Creates a new shift to store the new data.
+                newData.isTaken = True                      ' Sets the new shift to be taken.
+                newData.staffUserName = staffUserName       ' Sets the staff member that has taken the shift.
 
-                updateShiftData(oldData, newData)
+                updateShiftData(oldData, newData)           ' Updates the shift data in the linked list.
 
             ElseIf startTimeValid And endTimeValid And shiftID <> "<ShiftID>" And staffUserName <> "<StaffUserName" Then
                 ' Code for updating a shift if there are time alterations
-                Dim newStartTime As DateTime
-                Dim temp As String
-                Dim newEndTime As DateTime
+                Dim newStartTime As DateTime                ' Stores the new start time of the shift.
+                Dim temp As String                          ' Stores the temporary string to be used to manipulate the time.
+                Dim newEndTime As DateTime                  ' Stores the new end time of the shift.
 
-                newStartTime = oldData.startTime
-                newEndTime = oldData.endTime
+                newStartTime = oldData.startTime            ' Sets the new start time to be the same as the old start time.
+                newEndTime = oldData.endTime                ' Sets the new end time to be the same as the old end time.
 
                 ' Convert time to readable format
                 temp = newStartTime.ToString()
@@ -463,12 +468,15 @@ Module DataStructures
                 temp = "#" & temp & " " & startTime & ":00" & "#"
                 newStartTime = temp
 
+                ' Convert time to readable format
                 temp = newEndTime.ToString()
                 temp = temp.Substring(0, 11)
                 temp = "#" & temp & " " & endTime & ":00" & "#"
                 newEndTime = temp
 
+                ' Check if the new times are within the old shift time bounds
                 If oldData.startTime > newStartTime Or oldData.endTime < newEndTime Then
+                    ' If the new times are not within the old shift time bounds then inform the user and return false.
                     MsgBox("New Times are not in old shift time bounds")
                     Return False
                 End If
@@ -482,14 +490,16 @@ Module DataStructures
 
                 updateShiftData(oldData, newData)
 
+                ' Adding new shifts if the times have been altered. Early Shift
                 If oldData.startTime <> newStartTime Then
                     Dim newEarlyShift As Shift
-                    newEarlyShift.shiftID = nextAvailableID()
-                    newEarlyShift.startTime = oldData.startTime
-                    newEarlyShift.endTime = newStartTime
-                    add(newEarlyShift)
+                    newEarlyShift.shiftID = nextAvailableID()       ' Sets the shiftID of the new shift to be the next available ID.
+                    newEarlyShift.startTime = oldData.startTime     ' Sets the start time of the new shift to be the same as the old start time.
+                    newEarlyShift.endTime = newStartTime            ' Sets the end time of the new shift to be the new start time.
+                    add(newEarlyShift)                              ' Adds the new shift to the linked list.
                 End If
 
+                ' Adding new shifts if the times have been altered. Late Shift
                 If oldData.endTime <> newEndTime Then
                     Dim newLateShift As Shift
                     newLateShift.shiftID = nextAvailableID()
@@ -499,10 +509,14 @@ Module DataStructures
                     add(newLateShift)
                 End If
 
-                If FileHandler.writeShiftFile() = False Then MsgBox("Error: Writing to file. Shift not added") : If FileHandler.readShiftFile() = False Then MsgBox("Fatel Error: Please Restart Program") : Return False
+                ' If the shift times have been changed then the persistent data needs to be updated.
+                If FileHandler.shiftWrite() = False Then MsgBox("Error: Writing to file. Shift not added") : If FileHandler.shiftRead() = False Then MsgBox("Fatel Error: Please Restart Program") : Return False
 
+                MsgBox("Shift Successfully assigned to user") ' Informs the user that the shift has been successfully assigned to the user.
+                ' Return result to calling function
                 Return True
             Else
+                ' If the start time and end time are not valid then inform the user and return false.
                 MsgBox("Error: If you are trying to add custom times you must input a new start & end time. If you wish to keep the same end time then input that end time.")
                 Return False
             End If
@@ -551,7 +565,7 @@ Module DataStructures
         ' Ensure that if no shift is found then it skips it (counts as error but system not working perfectly is better then an error)
         Public Function usersSuggestedShifts() As List(Of Integer)
             Dim staffShifts As New List(Of Integer)                         ' Creates a new list of integers to store the shiftIDs of all the current shifts a user has.
-            staffShifts = findStaffShifts(GlobalVariables.ActiveUserID)     ' Finds all the shifts that a user owns and adds them to the list.
+            staffShifts = findStaffShifts(GlobalVariables.ActiveUserName)     ' Finds all the shifts that a user owns and adds them to the list.
             Dim available As New List(Of Integer)                           ' Creates a new list of integers to store all the shifts that are currently available for a staff member to take.
             available = availableShifts()                                   ' Populates the available List with all the available shifts.
 
@@ -593,5 +607,15 @@ Module DataStructures
     ' Class design for storing all subroutines related to storng and manupulating notification instance data
     ' Notificatyion Instance linked list
 
+    '
+    ' New Class Instance Creation.
+    '
+    Public StaffHashTable As New StaffMembersHashTableDesign    ' Creates a new instance of the StaffMembersHashTableDesign class.
+    Public ShiftLL As New ShiftsLinkedListDesign                ' Creates a new instance of the ShiftsLinkedListDesign class.
 
+    ' Class to store the active user's username as it needs to be persistent throughout forms.
+    Public Class GlobalVariables
+        Public Shared ActiveUserName As String  ' Stores the active user's username.
+    End Class
+    Public activeUser As String
 End Module
