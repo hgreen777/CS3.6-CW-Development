@@ -173,29 +173,17 @@ Module DataStructures
         '
         ' Updating a staff member.
         ' Function to update a staff member in the hash table.
-        '
+        ' Error 1: By changing the username (firstname) it means that first name does not hash to the same location anymore, therefore to update, the old node should be deleted and new one added.
         Public Sub updateStaffMember(ByVal oldUserName As String, ByVal newStaffMember As StaffMember)
-            Dim oldFirst As String = firstFromUserName(oldUserName)     ' Finds the first name of the staff member using the username.
-            Dim hash As Integer = hashValue(oldFirst)  ' Calculates the hash value for the staff member to be updated.
-            Dim currentNode As StaffMemberNode = _hashTable(hash)       ' Creates a pointer to the current node in the linked list.
 
-            ' Checks if the current cell in the hash table is empty (ie no staff members with a name that hashed to the same location).
-            If currentNode IsNot Nothing Then
-                ' Loop over the linked list to find the staff member to be updated.
-                While currentNode IsNot Nothing
-                    ' Checks if the current node is the staff member to be updated.
-                    If currentNode.staffMemberData.userName = oldUserName Then
-                        currentNode.staffMemberData = newStaffMember  ' Sets the data in the current node to the new staff member data.
-                        ' Write data to file
-                        If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not updated") : Return
-                        MsgBox("User Updated")  ' Informs the user that the staff member has been updated.
-                        Return
-                    End If
+            ' Remove the old node
+            removeStaffMember(oldUserName)
 
-                    currentNode = currentNode.nextStaffMember  ' Sets the current node to the next node in the linked list.
-                End While
-            End If
-            MsgBox("Error: Staff Member Does not exist - User not updated")  ' Informs the user that the staff member was not found in the hash table.
+            'Add new node
+            addStaffMember(newStaffMember)
+
+            If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not updated") : Return
+            MsgBox("User Updated")  ' Informs the user that the staff member has been updated.
         End Sub
         '
         ' Removing a staffmember from the hash table (deleting).

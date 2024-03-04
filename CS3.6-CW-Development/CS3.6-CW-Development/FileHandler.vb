@@ -76,7 +76,8 @@ Module FileHandler
         Catch ex As Exception
             ' If an error occurs close the file and return false
             FileClose(1)
-            MsgBox("Error Writing Staff Data, try restarting program. " & ex.ToString())  ' Display error message to user
+            MsgBox(ex.ToString())
+            MsgBox("Error Writing Staff Data, try restarting program.")  ' Display error message to user
             Return False
         End Try
 
