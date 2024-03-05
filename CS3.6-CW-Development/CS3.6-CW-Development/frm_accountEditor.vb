@@ -51,7 +51,6 @@ Public Class frm_accountEditor
 
     'Error 2 saying not writing properly b ut then it seems to be writing properly
     Private Sub btn_saveDetails_process_Click(sender As Object, e As EventArgs) Handles btn_saveDetails_process.Click
-        MsgBox(activeUser)
         ' Check if the first name is valid
         If Validation.PresenceValidation(txt_firstName_inp.Text) = False Then MsgBox("First Name is empty, please enter a valid first name.") : Return
         ' Check if the last name is valid
@@ -74,7 +73,6 @@ Public Class frm_accountEditor
 
         ' Update the active user to the new details
         activeUser = tmpStaff.userName
-        MsgBox(activeUser)
 
     End Sub
 End Class

@@ -135,6 +135,9 @@ Module DataStructures
             If currentNode Is Nothing Then
                 _hashTable(hash) = New StaffMemberNode()  ' Creates a new node in the hash table.
                 _hashTable(hash).staffMemberData = staffMember  ' Sets the data in the new node to the staff member data.
+
+                ' Write to file
+                If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not added") : Return
             Else
                 ' Loop over the linked list to find the end of the list.
                 While currentNode.nextStaffMember IsNot Nothing
@@ -205,15 +208,17 @@ Module DataStructures
                     'MsgBox("User Removed")  ' Informs the user that the staff member has been removed.
                     ' Write data to file
                     If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return
+                    Exit Sub
+
                 Else
                     ' Loop over the linked list to find the staff member to be removed.
                     While currentNode.nextStaffMember IsNot Nothing
                         ' Checks if the next node in the linked list is the staff member to be removed.
                         If currentNode.nextStaffMember.staffMemberData.userName = staffUserName Then
                             currentNode.nextStaffMember = currentNode.nextStaffMember.nextStaffMember  ' Sets the next node in the linked list to the node after the next node.
-                            MsgBox("User Removed")  ' Informs the user that the staff member has been removed.
+                            'MsgBox("User Removed")  ' Informs the user that the staff member has been removed.
                             If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return
-                            Return
+                            Exit Sub
                         End If
 
                         currentNode = currentNode.nextStaffMember  ' Sets the current node to the next node in the linked list.
@@ -221,7 +226,7 @@ Module DataStructures
                 End If
             Else
                 MsgBox("Error: Staff Member Does not exist - User already Removed")  ' Informs the user that the staff member was not found in the hash table.
-                Return
+                Exit Sub
             End If
             MsgBox("Error: User Not removed - Retry process or reset system")  ' Informs the user that the staff member was not removed from the hash table.
         End Sub
