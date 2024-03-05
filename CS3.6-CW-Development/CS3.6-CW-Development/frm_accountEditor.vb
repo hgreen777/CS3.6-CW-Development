@@ -67,12 +67,12 @@ Public Class frm_accountEditor
 
 
         ' Update the user's details in the hash table
-        DataStructures.StaffHashTable.updateStaffMember(activeUser, tmpStaff)
+        If DataStructures.StaffHashTable.updateStaffMember(activeUser, tmpStaff) Then
+            MsgBox("User details updated successfully.")
+            activeUser = tmpStaff.userName
+        End If
 
         ' Data is written back to file in ^^ Function
-
-        ' Update the active user to the new details
-        activeUser = tmpStaff.userName
 
     End Sub
 End Class

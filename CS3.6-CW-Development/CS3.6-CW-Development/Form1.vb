@@ -25,6 +25,15 @@
         tmpStaff.userName = "HarrisonGreen0"
         DataStructures.StaffHashTable.addStaffMember(tmpStaff)
 
+        tmpStaff.firstName = "James"
+        tmpStaff.lastName = "Smith"
+        tmpStaff.isManager = False
+        tmpStaff.fullTimeNO = 0
+        tmpStaff.password = "password"
+        tmpStaff.staffID = 1
+        tmpStaff.userName = "JamesSmith1"
+        DataStructures.StaffHashTable.addStaffMember(tmpStaff)
+
 
     End Sub
 End Class

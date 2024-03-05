@@ -1,1 +1,2 @@
 0,"Harrison","Green",0,#FALSE#,"HarrisonGreen0","password"
+1,"James","Smith",0,#FALSE#,"JamesSmith1","password"
