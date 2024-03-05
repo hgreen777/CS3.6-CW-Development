@@ -181,7 +181,7 @@ Module DataStructures
         ' Updating a staff member.
         ' Function to update a staff member in the hash table.
         ' Error 1: By changing the username (firstname) it means that first name does not hash to the same location anymore, therefore to update, the old node should be deleted and new one added.
-        Public Sub updateStaffMember(ByVal oldUserName As String, ByVal newStaffMember As StaffMember)
+        Public Function updateStaffMember(ByVal oldUserName As String, ByVal newStaffMember As StaffMember)
 
             ' Remove the old node
             removeStaffMember(oldUserName)
@@ -190,7 +190,8 @@ Module DataStructures
             addStaffMember(newStaffMember)
 
             MsgBox("User Updated")  ' Informs the user that the staff member has been updated.
-        End Sub
+            Return True
+        End Function
         '
         ' Removing a staffmember from the hash table (deleting).
         ' Function to remove a staff member from the hash table.
