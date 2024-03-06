@@ -75,4 +75,14 @@ Public Class frm_accountEditor
         ' Data is written back to file in ^^ Function
 
     End Sub
+
+    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
+        ' Check if the user is a manager, if they are then return to manager menu, else return to staff menu
+        If DataStructures.StaffHashTable.findStaffMember(activeUser, True).isManager Then
+            frm_managerMenu.Show()
+        Else
+            frm_staffMenu.Show()
+        End If
+        Me.Hide()
+    End Sub
 End Class

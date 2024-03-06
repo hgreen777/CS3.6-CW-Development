@@ -150,8 +150,10 @@ Partial Class frm_myShifts
         '
         'lst_myShifts
         '
+        Me.lst_myShifts.ColumnWidth = 100
         Me.lst_myShifts.FormattingEnabled = True
         Me.lst_myShifts.Location = New System.Drawing.Point(6, 19)
+        Me.lst_myShifts.MultiColumn = True
         Me.lst_myShifts.Name = "lst_myShifts"
         Me.lst_myShifts.Size = New System.Drawing.Size(363, 303)
         Me.lst_myShifts.TabIndex = 1

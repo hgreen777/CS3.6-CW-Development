@@ -324,7 +324,7 @@ Module DataStructures
 
             ' Loop over the whole LL to find either the end of the LL.
             ' Check if the next node to be checked is empty (if it is end of LL has been found).
-            While nextNode IsNot Nothing And newShiftData.shiftID > nextNode.shiftData.shiftID
+            While nextNode IsNot Nothing
                 ' Process to repeat process using next node.
                 currentNode = nextNode          ' Sets the current node to move the process ine node along.
                 nextNode = nextNode.nextShift   ' Sets the next node to the next node after the current node.
@@ -576,7 +576,7 @@ Module DataStructures
         '
         ' findstaffshifts
         ' A function that finds all the shifts a staff member has given a staffusername and returns a list of shiftIDs
-        Public Function findStaffShifts(ByVal inputUserName As Integer) As List(Of Integer)
+        Public Function findStaffShifts(ByVal inputUserName As String) As List(Of Integer)
             Dim returnArr As New List(Of Integer)   ' Creates a new list which will contain the list of shiftIDs to be returned to calling subroutine
 
             Dim currentNode As ShiftNode = _root    ' Creates a pointer to shift node which will be used to traverse the LL to find all the shifts which a staff member has.
