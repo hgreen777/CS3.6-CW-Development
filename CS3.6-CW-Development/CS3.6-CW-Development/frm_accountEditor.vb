@@ -15,7 +15,7 @@ Public Class frm_accountEditor
         lbl_username_dynamic.Text = activeUser
 
         ' Getting user details
-        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser)
+        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True)
 
         ' Set the textboxes to the current user's data
         txt_firstName_inp.Text = tmpStaff.firstName
@@ -59,7 +59,7 @@ Public Class frm_accountEditor
         If Validation.PresenceValidation(txt_password_inp.Text) = False Then MsgBox("Password is empty, please enter a valid password.") : Return
 
         ' Update User Details
-        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser) ' Get the current user's details
+        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True) ' Get the current user's details
         tmpStaff.firstName = txt_firstName_inp.Text
         tmpStaff.lastName = txt_surname_inp.Text
         tmpStaff.password = txt_password_inp.Text

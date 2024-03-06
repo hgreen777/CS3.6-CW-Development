@@ -26,7 +26,7 @@ Module FileHandler
             While Not EOF(1)
                 Input(1, tmpStaff.staffID)                                      ' Read staffID from file.
                 Input(1, tmpStaff.firstName) : Input(1, tmpStaff.lastName)      ' Read user's personal details from file.
-                Input(1, tmpStaff.isManager) : Input(1, tmpStaff.fullTimeNO)    ' Read staff type from file.
+                Input(1, tmpStaff.isManager) : Input(1, tmpStaff.isFullTime)    ' Read staff type from file.
                 Input(1, tmpStaff.userName) : Input(1, tmpStaff.password)       ' Read user's loging details from file.
 
                 ' Add the staff member to the hash table
@@ -61,7 +61,7 @@ Module FileHandler
                               currentNode.staffMemberData.staffID,
                               currentNode.staffMemberData.firstName,
                               currentNode.staffMemberData.lastName,
-                              currentNode.staffMemberData.fullTimeNO,
+                              currentNode.staffMemberData.isFullTime,
                               currentNode.staffMemberData.isManager,
                               currentNode.staffMemberData.userName,
                               currentNode.staffMemberData.password)
@@ -84,11 +84,60 @@ Module FileHandler
     End Function
 
     Public Function shiftWrite()
+        Try
+            FileOpen(1, shiftFile, OpenMode.Output)
 
+            Dim currentNode As ShiftNode = DataStructures.ShiftLL._root
+
+            While currentNode IsNot Nothing
+                WriteLine(1,
+                          currentNode.shiftData.shiftID,
+                          currentNode.shiftData.startTime, currentNode.shiftData.endTime,
+                          currentNode.shiftData.isTaken, currentNode.shiftData.staffUserName)
+
+                currentNode = currentNode.nextShift
+            End While
+        Catch ex As Exception
+            FileClose(1)
+            MsgBox("Error Writing to the shift file. Please Retry process then restart system.")
+            Return False
+        End Try
+
+        FileClose(1)
+        Return True
     End Function
 
     Public Function shiftRead()
+        Try
+            FileOpen(1, shiftFile, OpenMode.Input)
 
+            Dim tmpShift As Shift
+
+            If Not EOF(1) Then
+                Input(1, tmpShift.shiftID)
+                Input(1, tmpShift.startTime) : Input(1, tmpShift.endTime)
+                Input(1, tmpShift.isTaken) : Input(1, tmpShift.staffUserName)
+
+                DataStructures.ShiftLL.newList(tmpShift)
+            End If
+
+            While Not EOF(1)
+                Input(1, tmpShift.shiftID)
+                Input(1, tmpShift.startTime) : Input(1, tmpShift.endTime)
+                Input(1, tmpShift.isTaken) : Input(1, tmpShift.staffUserName)
+
+                DataStructures.ShiftLL.append(tmpShift)
+            End While
+
+            FileClose(1)
+
+        Catch ex As Exception
+            FileClose(1)
+
+            MsgBox("Error Reading Shift File: Please restart Program.")
+        End Try
+
+        Return True
     End Function
 
 

@@ -17,7 +17,7 @@ Module DataStructures
         Dim firstName As String     ' Stores the first name of a staff member.
         Dim lastName As String      ' Stores the last name of the staff member.
         Dim isManager As Boolean    ' Boolean stating wether the user is a manager or staff member.
-        Dim fullTimeNO As Integer   ' Unique number for full-time staff members (used when assigning shifts automatically).
+        Dim isFullTime As Boolean   ' Boolean Stating whether the user is a full time staff member.
         Dim userName As String      ' Stores the Auto-generated username based of other fields.
         Dim password As String      ' Stored the encrypted password for a user.
     End Structure
@@ -156,23 +156,51 @@ Module DataStructures
         ' Finding a staff member.
         ' Function to find a staff member in the hash table.
         '
-        Public Function findStaffMember(ByVal staffUserName As String) As StaffMember
-            Dim staffFirstName As String = firstFromUserName(staffUserName)  ' Finds the first name of the staff member using the username.
-            Dim hash As Integer = hashValue(staffFirstName)  ' Calculates the hash value for the staff member to be found.
-            Dim currentNode As StaffMemberNode = _hashTable(hash)    ' Creates a pointer to the current node in the linked list.
+        Public Function findStaffMember(ByVal staffUserName As String, ByVal isUserName As Boolean) As StaffMember
 
-            ' Checks if the current cell in the hash table is empty (ie no staff members with a name that hashed to the same location).
-            If currentNode IsNot Nothing Then
-                ' Loop over the linked list to find the staff member.
-                While currentNode IsNot Nothing
-                    ' Checks if the current node is the staff member being searched for.
-                    If currentNode.staffMemberData.userName = staffUserName Then
-                        Return currentNode.staffMemberData  ' Returns the staff member data to the calling function.
+            If isUserName = True Then
+                Dim staffFirstName As String = firstFromUserName(staffUserName)  ' Finds the first name of the staff member using the username.
+                Dim hash As Integer = hashValue(staffFirstName)  ' Calculates the hash value for the staff member to be found.
+                Dim currentNode As StaffMemberNode = _hashTable(hash)    ' Creates a pointer to the current node in the linked list.
+
+                ' Checks if the current cell in the hash table is empty (ie no staff members with a name that hashed to the same location).
+                If currentNode IsNot Nothing Then
+                    ' Loop over the linked list to find the staff member.
+                    While currentNode IsNot Nothing
+                        ' Checks if the current node is the staff member being searched for.
+                        If currentNode.staffMemberData.userName = staffUserName Then
+                            Return currentNode.staffMemberData  ' Returns the staff member data to the calling function.
+                        End If
+
+                        currentNode = currentNode.nextStaffMember  ' Sets the current node to the next node in the linked list.
+                    End While
+                End If
+            Else
+                ' Check if its the only node in the LL if it is then return that user
+                Dim hash As Integer = hashValue(staffUserName)  ' Calculates the hash value for the staff member to be found.
+                Dim currentNode As StaffMemberNode = _hashTable(hash)    ' Creates a pointer to the current node in the linked list.
+                If currentNode IsNot Nothing Then
+                    If currentNode.staffMemberData.firstName = staffUserName And currentNode.nextStaffMember Is Nothing Then
+                        Return currentNode.staffMemberData
                     End If
 
-                    currentNode = currentNode.nextStaffMember  ' Sets the current node to the next node in the linked list.
-                End While
+                    'Returns either way fix result bit
+                    While currentNode IsNot Nothing
+                        If currentNode.staffMemberData.firstName = staffUserName Then
+                            Dim result As Integer = MsgBox("Is the user you are searching for :" & currentNode.staffMemberData.userName, MsgBoxStyle.YesNo)
+
+                            If result = 6 Then
+                                Return currentNode.staffMemberData
+                            End If
+                        End If
+                        currentNode = currentNode.nextStaffMember
+                    End While
+                End If
+
+                ' If not then loop through LL and check if the name of the next node is the same as the input name and if it is put a yesno box to user to select the correct one once user says yes return that user.
             End If
+
+
 
             MsgBox("Error: Staff Member Does not exist")  ' Informs the user that the staff member was not found in the hash table.
             Return Nothing  ' Returns nothing to the calling function if the staff member was not found in the hash table.
@@ -189,14 +217,13 @@ Module DataStructures
             'Add new node
             addStaffMember(newStaffMember)
 
-            MsgBox("User Updated")  ' Informs the user that the staff member has been updated.
             Return True
         End Function
         '
         ' Removing a staffmember from the hash table (deleting).
         ' Function to remove a staff member from the hash table.
         '
-        Public Sub removeStaffMember(ByVal staffUserName As String)
+        Public Function removeStaffMember(ByVal staffUserName As String) As Boolean
             Dim staffFirstName As String = firstFromUserName(staffUserName)  ' Finds the first name of the staff member using the username.
             Dim hash As Integer = hashValue(staffFirstName)  ' Calculates the hash value for the staff member to be removed.
             Dim currentNode As StaffMemberNode = _hashTable(hash)    ' Creates a pointer to the current node in the linked list.
@@ -208,8 +235,8 @@ Module DataStructures
                     _hashTable(hash) = currentNode.nextStaffMember  ' Sets the next node in the linked list to be the first node in the linked list.
                     'MsgBox("User Removed")  ' Informs the user that the staff member has been removed.
                     ' Write data to file
-                    If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return
-                    Exit Sub
+                    If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return False
+                    Return True
 
                 Else
                     ' Loop over the linked list to find the staff member to be removed.
@@ -218,8 +245,8 @@ Module DataStructures
                         If currentNode.nextStaffMember.staffMemberData.userName = staffUserName Then
                             currentNode.nextStaffMember = currentNode.nextStaffMember.nextStaffMember  ' Sets the next node in the linked list to the node after the next node.
                             'MsgBox("User Removed")  ' Informs the user that the staff member has been removed.
-                            If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return
-                            Exit Sub
+                            If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return False
+                            Return True
                         End If
 
                         currentNode = currentNode.nextStaffMember  ' Sets the current node to the next node in the linked list.
@@ -227,10 +254,38 @@ Module DataStructures
                 End If
             Else
                 MsgBox("Error: Staff Member Does not exist - User already Removed")  ' Informs the user that the staff member was not found in the hash table.
-                Exit Sub
+                Return False
             End If
             MsgBox("Error: User Not removed - Retry process or reset system")  ' Informs the user that the staff member was not removed from the hash table.
-        End Sub
+            Return False
+        End Function
+        '
+        ' Function to find a unique ID.
+        '
+        Public Function findUniqueID() As Integer
+            Dim uniqueID As Integer = 0  ' Stores the unique ID to be returned to the calling function.
+
+            ' Loop over the whole hash table to find the highest unique ID.
+            For i = 0 To _hashTable.Length - 1
+                Dim currentNode As StaffMemberNode = _hashTable(i)  ' Creates a pointer to the current node in the linked list.
+
+                ' Checks if the current cell in the hash table is empty (ie no staff members with a name that hashed to the same location).
+                If currentNode IsNot Nothing Then
+                    ' Loop over the linked list to find the staff member with the highest unique ID.
+                    While currentNode IsNot Nothing
+                        ' Checks if the current node has a higher unique ID then the current highest unique ID.
+                        If currentNode.staffMemberData.staffID > uniqueID Then
+                            uniqueID = currentNode.staffMemberData.staffID  ' Sets the current highest unique ID to the unique ID of the current node.
+                        End If
+
+                        currentNode = currentNode.nextStaffMember  ' Sets the current node to the next node in the linked list.
+                    End While
+                End If
+            Next
+
+            uniqueID += 1  ' Increments the unique ID by 1 to ensure the next unique ID is unique.
+            Return uniqueID  ' Returns the unique ID to the calling function.
+        End Function
     End Class
 
     '
@@ -562,7 +617,7 @@ Module DataStructures
         ' Ensure that if no shift is found then it skips it (counts as error but system not working perfectly is better then an error)
         Public Function usersSuggestedShifts() As List(Of Integer)
             Dim staffShifts As New List(Of Integer)                         ' Creates a new list of integers to store the shiftIDs of all the current shifts a user has.
-            staffShifts = findStaffShifts(GlobalVariables.ActiveUserName)     ' Finds all the shifts that a user owns and adds them to the list.
+            staffShifts = findStaffShifts(activeUser)     ' Finds all the shifts that a user owns and adds them to the list.
             Dim available As New List(Of Integer)                           ' Creates a new list of integers to store all the shifts that are currently available for a staff member to take.
             available = availableShifts()                                   ' Populates the available List with all the available shifts.
 
@@ -610,9 +665,6 @@ Module DataStructures
     Public StaffHashTable As New StaffMembersHashTableDesign    ' Creates a new instance of the StaffMembersHashTableDesign class.
     Public ShiftLL As New ShiftsLinkedListDesign                ' Creates a new instance of the ShiftsLinkedListDesign class.
 
-    ' Class to store the active user's username as it needs to be persistent throughout forms.
-    Public Class GlobalVariables
-        Public Shared ActiveUserName As String  ' Stores the active user's username.
-    End Class
+    ' Public variable to store the active user's username as it needs to be persistent throughout forms.
     Public activeUser As String
 End Module

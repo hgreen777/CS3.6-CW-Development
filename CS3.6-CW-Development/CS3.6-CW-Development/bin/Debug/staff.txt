@@ -1,2 +1,3 @@
-0,"Harrison","Green",0,#FALSE#,"HarrisonGreen0","password"
-1,"James","Smith",0,#FALSE#,"JamesSmith1","password"
+0,"Harrison","Green",#TRUE#,#FALSE#,"HarrisonGreen0","password"
+1,"James","Smith",#FALSE#,#FALSE#,"JamesSmith1","password"
+2,"James","Davies",#FALSE#,#TRUE#,"JamesDavies2","password"

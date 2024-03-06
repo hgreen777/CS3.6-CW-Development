@@ -8,7 +8,7 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        frm_accountEditor.Show()
+        frm_managerMenu.Show()
         Me.Hide()
     End Sub
 
@@ -19,7 +19,7 @@
         tmpStaff.firstName = "Harrison"
         tmpStaff.lastName = "Green"
         tmpStaff.isManager = False
-        tmpStaff.fullTimeNO = 0
+        tmpStaff.isFullTime = True
         tmpStaff.password = "password"
         tmpStaff.staffID = 0
         tmpStaff.userName = "HarrisonGreen0"
@@ -28,10 +28,19 @@
         tmpStaff.firstName = "James"
         tmpStaff.lastName = "Smith"
         tmpStaff.isManager = False
-        tmpStaff.fullTimeNO = 0
+        tmpStaff.isFullTime = False
         tmpStaff.password = "password"
         tmpStaff.staffID = 1
         tmpStaff.userName = "JamesSmith1"
+        DataStructures.StaffHashTable.addStaffMember(tmpStaff)
+
+        tmpStaff.firstName = "James"
+        tmpStaff.lastName = "Davies"
+        tmpStaff.isManager = True
+        tmpStaff.isFullTime = False
+        tmpStaff.password = "password"
+        tmpStaff.staffID = 2
+        tmpStaff.userName = "JamesDavies2"
         DataStructures.StaffHashTable.addStaffMember(tmpStaff)
 
 

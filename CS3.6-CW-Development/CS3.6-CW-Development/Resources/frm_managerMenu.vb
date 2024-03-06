@@ -8,4 +8,19 @@
         Next
 
     End Sub
+
+    Private Sub btn_profile_redir_Click(sender As Object, e As EventArgs) Handles btn_profile_redir.Click
+        frm_accountEditor.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub btn_editAcc_redir_Click(sender As Object, e As EventArgs) Handles btn_editAcc_redir.Click
+        frm_accountManager.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub btn_myShifts_redir_Click(sender As Object, e As EventArgs) Handles btn_myShifts_redir.Click
+        frm_myShifts.Show()
+        Me.Hide()
+    End Sub
 End Class
