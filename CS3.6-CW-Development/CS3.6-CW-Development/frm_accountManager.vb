@@ -159,7 +159,7 @@ Public Class frm_accountManager
             tmpStaff.isFullTime = chBox_isfullTimeStaff.Checked
 
             ' Add the staff member to the hash table
-            DataStructures.StaffHashTable.addStaffMember(tmpStaff)
+            DataStructures.StaffHashTable.addStaffMember(tmpStaff, True)
             MsgBox("User details updated successfully.")
             MsgBox("New Username: " & tmpStaff.userName)
 

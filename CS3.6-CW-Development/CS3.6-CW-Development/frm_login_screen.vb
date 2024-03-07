@@ -27,9 +27,9 @@ Public Class frm_login_screen
             End If
             Me.Hide()
         Else
+            ' Error message for incorrect password.
             MsgBox("Incorrect Password")
         End If
-
     End Sub
 
     Private Sub frm_login_screen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -39,5 +39,17 @@ Public Class frm_login_screen
         For Each btn As Button In Me.Controls.OfType(Of Button)
             standardProcedures.RoundButton(btn)
         Next
+        '
+        ' Read all data from persistent data files and store in data sxtructures (memory)
+        '
+        ' Read all staff members from the staff file and store in the staff hash table. Exit system if error occurs.
+        If FileHandler.staffRead() = False Then MsgBox("Fatal Error Reading Staff Data: Exiting System.") : End
+        ' Read all shift data from the shift file and store in the shift linked list. Exit system if error occurs.
+        If FileHandler.shiftRead() = False Then MsgBox("Fatal Error Reading Shift Data: Exiting System.") : End
+        ' Read all notification data from the notification file and store in the notification binary tree. Exit system if error occurs.
+        'If FileHandler.notificationRead() = False Then MsgBox("Fatal Error Reading Notification Data: Exiting System.") : End
+        ' Read all the notification instance data from the notification file and store in the notification linked list. Exit system is error occurs.
+        'If FileHandler.notificationInstanceRead() = False Then MsgBox("Fatal Error Reading Notification Instance Data: Exiting System.") : End
+
     End Sub
 End Class

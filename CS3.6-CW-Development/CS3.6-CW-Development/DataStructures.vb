@@ -127,7 +127,7 @@ Module DataStructures
         ' Adding a new staff member
         ' Function to add a new staff member to the hash table.
         '
-        Public Sub addStaffMember(ByVal staffMember As StaffMember)
+        Public Sub addStaffMember(ByVal staffMember As StaffMember, ByVal shouldWrite As Boolean)
             Dim hash As Integer = hashValue(staffMember.firstName)  ' Calculates the hash value for the staff member to be added.
             Dim currentNode As StaffMemberNode = _hashTable(hash)    ' Creates a pointer to the current node in the linked list.
 
@@ -137,7 +137,10 @@ Module DataStructures
                 _hashTable(hash).staffMemberData = staffMember  ' Sets the data in the new node to the staff member data.
 
                 ' Write to file
-                If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not added") : Return
+                ' Should Write prevents Error #2 (See CS3.6a For more information.
+                If shouldWrite Then
+                    If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not added") : Return
+                End If
             Else
                 ' Loop over the linked list to find the end of the list.
                 While currentNode.nextStaffMember IsNot Nothing
@@ -148,7 +151,9 @@ Module DataStructures
                 currentNode.nextStaffMember.staffMemberData = staffMember  ' Sets the data in the new node to the staff member data.
 
                 ' Write to file
-                If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not added") : Return
+                If shouldWrite Then
+                    If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not added") : Return
+                End If
 
             End If
         End Sub
@@ -215,7 +220,7 @@ Module DataStructures
             removeStaffMember(oldUserName)
 
             'Add new node
-            addStaffMember(newStaffMember)
+            addStaffMember(newStaffMember, True)
 
             Return True
         End Function

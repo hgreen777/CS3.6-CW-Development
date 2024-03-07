@@ -26,11 +26,11 @@ Module FileHandler
             While Not EOF(1)
                 Input(1, tmpStaff.staffID)                                      ' Read staffID from file.
                 Input(1, tmpStaff.firstName) : Input(1, tmpStaff.lastName)      ' Read user's personal details from file.
-                Input(1, tmpStaff.isManager) : Input(1, tmpStaff.isFullTime)    ' Read staff type from file.
+                Input(1, tmpStaff.isFullTime) : Input(1, tmpStaff.isManager)    ' Read staff type from file.
                 Input(1, tmpStaff.userName) : Input(1, tmpStaff.password)       ' Read user's loging details from file.
 
                 ' Add the staff member to the hash table
-                DataStructures.StaffHashTable.addStaffMember(tmpStaff)
+                DataStructures.StaffHashTable.addStaffMember(tmpStaff, False)
             End While
             FileClose(1)    ' Close the file
             Return True     ' Return True if process was successful
@@ -140,5 +140,7 @@ Module FileHandler
         Return True
     End Function
 
-
+    Public Function notificationRead() As Boolean
+        Return False
+    End Function
 End Module

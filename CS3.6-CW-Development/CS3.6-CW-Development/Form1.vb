@@ -23,7 +23,7 @@
         tmpStaff.password = "password"
         tmpStaff.staffID = 0
         tmpStaff.userName = "HarrisonGreen0"
-        DataStructures.StaffHashTable.addStaffMember(tmpStaff)
+        DataStructures.StaffHashTable.addStaffMember(tmpStaff, True)
 
         tmpStaff.firstName = "James"
         tmpStaff.lastName = "Smith"
@@ -32,7 +32,7 @@
         tmpStaff.password = "password"
         tmpStaff.staffID = 1
         tmpStaff.userName = "JamesSmith1"
-        DataStructures.StaffHashTable.addStaffMember(tmpStaff)
+        DataStructures.StaffHashTable.addStaffMember(tmpStaff, True)
 
         tmpStaff.firstName = "James"
         tmpStaff.lastName = "Davies"
@@ -41,7 +41,7 @@
         tmpStaff.password = "password"
         tmpStaff.staffID = 2
         tmpStaff.userName = "JamesDavies2"
-        DataStructures.StaffHashTable.addStaffMember(tmpStaff)
+        DataStructures.StaffHashTable.addStaffMember(tmpStaff, True)
 
         Dim tmpShift As Shift
         tmpShift.shiftID = 0
@@ -97,7 +97,7 @@
         tmpShift.isTaken = False
         DataStructures.ShiftLL.append(tmpShift)
 
-
+        FileHandler.shiftWrite()
 
     End Sub
 
