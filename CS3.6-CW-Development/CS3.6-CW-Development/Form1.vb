@@ -45,55 +45,56 @@
 
         Dim tmpShift As Shift
         tmpShift.shiftID = 0
-        tmpShift.startTime = "00:00"
-        tmpShift.endTime = "23:59"
+        tmpShift.startTime = "25/07/2006-00:00"
+        tmpShift.endTime = "25/07/2006-23:59"
         tmpShift.isTaken = False
         tmpShift.staffUserName = "HarrisonGreen0"
         DataStructures.ShiftLL.append(tmpShift)
 
         tmpShift.shiftID = 1
-        tmpShift.startTime = "00:00"
-        tmpShift.endTime = "23:59"
+        tmpShift.startTime = "25/07/2006-00:00"
+        tmpShift.endTime = "25/07/2006-23:59"
         tmpShift.isTaken = False
         DataStructures.ShiftLL.append(tmpShift)
 
         tmpShift.shiftID = 2
-        tmpShift.startTime = "00:00"
-        tmpShift.endTime = "23:59"
+        tmpShift.startTime = "25/07/2006-00:00"
+        tmpShift.endTime = "25/07/2006-23:59"
         tmpShift.isTaken = True
         tmpShift.staffUserName = "HarrisonGreen0"
         DataStructures.ShiftLL.append(tmpShift)
 
         tmpShift.shiftID = 3
-        tmpShift.startTime = "00:00"
-        tmpShift.endTime = "23:59"
+        tmpShift.startTime = "25/07/2006-00:00"
+        tmpShift.endTime = "25/07/2006-23:59"
         tmpShift.isTaken = True
         tmpShift.staffUserName = "JamesSmith1"
         DataStructures.ShiftLL.append(tmpShift)
 
         tmpShift.shiftID = 4
-        tmpShift.startTime = "00:00"
-        tmpShift.endTime = "23:59"
+        'Include date
+        tmpShift.startTime = "25/07/2006-00:00"
+        tmpShift.endTime = "25/07/2006-23:59"
         tmpShift.isTaken = True
         tmpShift.staffUserName = "HarrisonGreen0"
         DataStructures.ShiftLL.append(tmpShift)
 
         tmpShift.shiftID = 5
-        tmpShift.startTime = "00:00"
-        tmpShift.endTime = "23:59"
+        tmpShift.startTime = "25/07/2006-00:00"
+        tmpShift.endTime = "25/07/2006-23:59"
         tmpShift.isTaken = False
         DataStructures.ShiftLL.append(tmpShift)
 
         tmpShift.shiftID = 6
-        tmpShift.startTime = "00:00"
-        tmpShift.endTime = "23:59"
+        tmpShift.startTime = "25/07/2006-00:00"
+        tmpShift.endTime = "25/07/2006-23:59"
         tmpShift.isTaken = True
         tmpShift.staffUserName = "HarrisonGreen0"
         DataStructures.ShiftLL.append(tmpShift)
 
         tmpShift.shiftID = 7
-        tmpShift.startTime = "00:00"
-        tmpShift.endTime = "23:59"
+        tmpShift.startTime = "25/07/2006-00:00"
+        tmpShift.endTime = "25/07/2006-23:59"
         tmpShift.isTaken = False
         DataStructures.ShiftLL.append(tmpShift)
 

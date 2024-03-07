@@ -33,9 +33,13 @@ Partial Class frm_myShifts
         Me.lbl_endDateTime_static = New System.Windows.Forms.Label()
         Me.lbl_startDateTime_static = New System.Windows.Forms.Label()
         Me.lbl_shiftID_static = New System.Windows.Forms.Label()
-        Me.lst_myShifts = New System.Windows.Forms.ListBox()
+        Me.lst_myShifts1 = New System.Windows.Forms.ListBox()
         Me.grp_myShifts = New System.Windows.Forms.GroupBox()
         Me.btn_removeShift_process = New System.Windows.Forms.Button()
+        Me.lst_myShifts = New System.Windows.Forms.ListView()
+        Me.shiftID = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.startTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.endTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grp_selectedShift.SuspendLayout()
         Me.grp_myShifts.SuspendLayout()
@@ -148,19 +152,20 @@ Partial Class frm_myShifts
         Me.lbl_shiftID_static.TabIndex = 4
         Me.lbl_shiftID_static.Text = "ShiftID:"
         '
-        'lst_myShifts
+        'lst_myShifts1
         '
-        Me.lst_myShifts.ColumnWidth = 100
-        Me.lst_myShifts.FormattingEnabled = True
-        Me.lst_myShifts.Location = New System.Drawing.Point(6, 19)
-        Me.lst_myShifts.MultiColumn = True
-        Me.lst_myShifts.Name = "lst_myShifts"
-        Me.lst_myShifts.Size = New System.Drawing.Size(363, 303)
-        Me.lst_myShifts.TabIndex = 1
+        Me.lst_myShifts1.ColumnWidth = 100
+        Me.lst_myShifts1.FormattingEnabled = True
+        Me.lst_myShifts1.Location = New System.Drawing.Point(178, 240)
+        Me.lst_myShifts1.MultiColumn = True
+        Me.lst_myShifts1.Name = "lst_myShifts1"
+        Me.lst_myShifts1.Size = New System.Drawing.Size(191, 82)
+        Me.lst_myShifts1.TabIndex = 1
         '
         'grp_myShifts
         '
         Me.grp_myShifts.Controls.Add(Me.lst_myShifts)
+        Me.grp_myShifts.Controls.Add(Me.lst_myShifts1)
         Me.grp_myShifts.Location = New System.Drawing.Point(10, 50)
         Me.grp_myShifts.Name = "grp_myShifts"
         Me.grp_myShifts.Size = New System.Drawing.Size(375, 330)
@@ -172,6 +177,7 @@ Partial Class frm_myShifts
         '
         Me.btn_removeShift_process.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_removeShift_process.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_removeShift_process.ForeColor = System.Drawing.Color.Red
         Me.btn_removeShift_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btn_removeShift_process.Location = New System.Drawing.Point(520, 230)
         Me.btn_removeShift_process.Name = "btn_removeShift_process"
@@ -179,6 +185,32 @@ Partial Class frm_myShifts
         Me.btn_removeShift_process.TabIndex = 20
         Me.btn_removeShift_process.Text = "Remove Selected Shift"
         Me.btn_removeShift_process.UseVisualStyleBackColor = True
+        '
+        'lst_myShifts
+        '
+        Me.lst_myShifts.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.shiftID, Me.startTime, Me.endTime})
+        Me.lst_myShifts.HideSelection = False
+        Me.lst_myShifts.Location = New System.Drawing.Point(6, 19)
+        Me.lst_myShifts.Name = "lst_myShifts"
+        Me.lst_myShifts.Size = New System.Drawing.Size(363, 215)
+        Me.lst_myShifts.TabIndex = 2
+        Me.lst_myShifts.UseCompatibleStateImageBehavior = False
+        Me.lst_myShifts.View = System.Windows.Forms.View.Details
+        '
+        'shiftID
+        '
+        Me.shiftID.Text = "ShiftID"
+        Me.shiftID.Width = 80
+        '
+        'startTime
+        '
+        Me.startTime.Text = "Start Time"
+        Me.startTime.Width = 130
+        '
+        'endTime
+        '
+        Me.endTime.Text = "End Time"
+        Me.endTime.Width = 130
         '
         'frm_myShifts
         '
@@ -214,7 +246,11 @@ Partial Class frm_myShifts
     Friend WithEvents lbl_endDateTime_static As Label
     Friend WithEvents lbl_startDateTime_static As Label
     Friend WithEvents lbl_shiftID_static As Label
-    Friend WithEvents lst_myShifts As ListBox
+    Friend WithEvents lst_myShifts1 As ListBox
     Friend WithEvents grp_myShifts As GroupBox
     Friend WithEvents btn_removeShift_process As Button
+    Friend WithEvents lst_myShifts As ListView
+    Friend WithEvents shiftID As ColumnHeader
+    Friend WithEvents startTime As ColumnHeader
+    Friend WithEvents endTime As ColumnHeader
 End Class
