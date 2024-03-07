@@ -33,7 +33,6 @@ Partial Class frm_myShifts
         Me.lbl_endDateTime_static = New System.Windows.Forms.Label()
         Me.lbl_startDateTime_static = New System.Windows.Forms.Label()
         Me.lbl_shiftID_static = New System.Windows.Forms.Label()
-        Me.lst_myShifts1 = New System.Windows.Forms.ListBox()
         Me.grp_myShifts = New System.Windows.Forms.GroupBox()
         Me.btn_removeShift_process = New System.Windows.Forms.Button()
         Me.lst_myShifts = New System.Windows.Forms.ListView()
@@ -152,20 +151,9 @@ Partial Class frm_myShifts
         Me.lbl_shiftID_static.TabIndex = 4
         Me.lbl_shiftID_static.Text = "ShiftID:"
         '
-        'lst_myShifts1
-        '
-        Me.lst_myShifts1.ColumnWidth = 100
-        Me.lst_myShifts1.FormattingEnabled = True
-        Me.lst_myShifts1.Location = New System.Drawing.Point(178, 240)
-        Me.lst_myShifts1.MultiColumn = True
-        Me.lst_myShifts1.Name = "lst_myShifts1"
-        Me.lst_myShifts1.Size = New System.Drawing.Size(191, 82)
-        Me.lst_myShifts1.TabIndex = 1
-        '
         'grp_myShifts
         '
         Me.grp_myShifts.Controls.Add(Me.lst_myShifts)
-        Me.grp_myShifts.Controls.Add(Me.lst_myShifts1)
         Me.grp_myShifts.Location = New System.Drawing.Point(10, 50)
         Me.grp_myShifts.Name = "grp_myShifts"
         Me.grp_myShifts.Size = New System.Drawing.Size(375, 330)
@@ -189,10 +177,11 @@ Partial Class frm_myShifts
         'lst_myShifts
         '
         Me.lst_myShifts.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.shiftID, Me.startTime, Me.endTime})
+        Me.lst_myShifts.FullRowSelect = True
         Me.lst_myShifts.HideSelection = False
         Me.lst_myShifts.Location = New System.Drawing.Point(6, 19)
         Me.lst_myShifts.Name = "lst_myShifts"
-        Me.lst_myShifts.Size = New System.Drawing.Size(363, 215)
+        Me.lst_myShifts.Size = New System.Drawing.Size(363, 305)
         Me.lst_myShifts.TabIndex = 2
         Me.lst_myShifts.UseCompatibleStateImageBehavior = False
         Me.lst_myShifts.View = System.Windows.Forms.View.Details
@@ -246,7 +235,6 @@ Partial Class frm_myShifts
     Friend WithEvents lbl_endDateTime_static As Label
     Friend WithEvents lbl_startDateTime_static As Label
     Friend WithEvents lbl_shiftID_static As Label
-    Friend WithEvents lst_myShifts1 As ListBox
     Friend WithEvents grp_myShifts As GroupBox
     Friend WithEvents btn_removeShift_process As Button
     Friend WithEvents lst_myShifts As ListView

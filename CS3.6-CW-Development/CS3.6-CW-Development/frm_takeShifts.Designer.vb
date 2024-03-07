@@ -27,9 +27,15 @@ Partial Class frm_takeShifts
         Me.img_blc_logo = New System.Windows.Forms.PictureBox()
         Me.lbl_takeShifts_TITLE = New System.Windows.Forms.Label()
         Me.grp_suggestedShifts = New System.Windows.Forms.GroupBox()
-        Me.lst_suggestedShifts = New System.Windows.Forms.ListBox()
+        Me.lst_suggestedShifts = New System.Windows.Forms.ListView()
+        Me.shiftID = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.startTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.endTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grp_allAvailableShifts = New System.Windows.Forms.GroupBox()
-        Me.lst_availableShifts = New System.Windows.Forms.ListBox()
+        Me.lst_availableShifts = New System.Windows.Forms.ListView()
+        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grp_selectedShift = New System.Windows.Forms.GroupBox()
         Me.lbl_endDateTime_dynamic = New System.Windows.Forms.Label()
         Me.lbl_startDateTime_dynamic = New System.Windows.Forms.Label()
@@ -94,11 +100,30 @@ Partial Class frm_takeShifts
         '
         'lst_suggestedShifts
         '
-        Me.lst_suggestedShifts.FormattingEnabled = True
+        Me.lst_suggestedShifts.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.shiftID, Me.startTime, Me.endTime})
+        Me.lst_suggestedShifts.FullRowSelect = True
+        Me.lst_suggestedShifts.HideSelection = False
         Me.lst_suggestedShifts.Location = New System.Drawing.Point(6, 19)
         Me.lst_suggestedShifts.Name = "lst_suggestedShifts"
-        Me.lst_suggestedShifts.Size = New System.Drawing.Size(363, 121)
-        Me.lst_suggestedShifts.TabIndex = 0
+        Me.lst_suggestedShifts.Size = New System.Drawing.Size(363, 127)
+        Me.lst_suggestedShifts.TabIndex = 20
+        Me.lst_suggestedShifts.UseCompatibleStateImageBehavior = False
+        Me.lst_suggestedShifts.View = System.Windows.Forms.View.Details
+        '
+        'shiftID
+        '
+        Me.shiftID.Text = "ShiftID"
+        Me.shiftID.Width = 80
+        '
+        'startTime
+        '
+        Me.startTime.Text = "Start Time"
+        Me.startTime.Width = 130
+        '
+        'endTime
+        '
+        Me.endTime.Text = "End Time"
+        Me.endTime.Width = 130
         '
         'grp_allAvailableShifts
         '
@@ -112,11 +137,30 @@ Partial Class frm_takeShifts
         '
         'lst_availableShifts
         '
-        Me.lst_availableShifts.FormattingEnabled = True
+        Me.lst_availableShifts.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3})
+        Me.lst_availableShifts.FullRowSelect = True
+        Me.lst_availableShifts.HideSelection = False
         Me.lst_availableShifts.Location = New System.Drawing.Point(6, 19)
         Me.lst_availableShifts.Name = "lst_availableShifts"
         Me.lst_availableShifts.Size = New System.Drawing.Size(363, 225)
-        Me.lst_availableShifts.TabIndex = 1
+        Me.lst_availableShifts.TabIndex = 21
+        Me.lst_availableShifts.UseCompatibleStateImageBehavior = False
+        Me.lst_availableShifts.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader1
+        '
+        Me.ColumnHeader1.Text = "ShiftID"
+        Me.ColumnHeader1.Width = 80
+        '
+        'ColumnHeader2
+        '
+        Me.ColumnHeader2.Text = "Start Time"
+        Me.ColumnHeader2.Width = 130
+        '
+        'ColumnHeader3
+        '
+        Me.ColumnHeader3.Text = "End Time"
+        Me.ColumnHeader3.Width = 130
         '
         'grp_selectedShift
         '
@@ -293,8 +337,6 @@ Partial Class frm_takeShifts
     Friend WithEvents grp_selectedShift As GroupBox
     Friend WithEvents grp_changeShiftTimes As GroupBox
     Friend WithEvents btn_takeShift_process As Button
-    Friend WithEvents lst_suggestedShifts As ListBox
-    Friend WithEvents lst_availableShifts As ListBox
     Friend WithEvents txt_endTime_inp As TextBox
     Friend WithEvents lbl_endTime As Label
     Friend WithEvents lbl_startTime As Label
@@ -305,4 +347,12 @@ Partial Class frm_takeShifts
     Friend WithEvents lbl_endDateTime_static As Label
     Friend WithEvents lbl_startDateTime_static As Label
     Friend WithEvents lbl_shiftID_static As Label
+    Friend WithEvents lst_suggestedShifts As ListView
+    Friend WithEvents shiftID As ColumnHeader
+    Friend WithEvents startTime As ColumnHeader
+    Friend WithEvents endTime As ColumnHeader
+    Friend WithEvents lst_availableShifts As ListView
+    Friend WithEvents ColumnHeader1 As ColumnHeader
+    Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents ColumnHeader3 As ColumnHeader
 End Class

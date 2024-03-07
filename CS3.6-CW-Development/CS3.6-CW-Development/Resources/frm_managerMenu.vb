@@ -28,4 +28,9 @@
         frm_allShifts.Show()
         Me.Hide()
     End Sub
+
+    Private Sub btn_takeShifts_redir_Click(sender As Object, e As EventArgs) Handles btn_takeShifts_redir.Click
+        frm_takeShifts.Show()
+        Me.Hide()
+    End Sub
 End Class
