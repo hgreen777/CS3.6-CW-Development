@@ -100,4 +100,9 @@
 
 
     End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        frm_login_screen.Show()
+        Me.Hide()
+    End Sub
 End Class

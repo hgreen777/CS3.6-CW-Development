@@ -75,6 +75,7 @@ Partial Class frm_login_screen
         Me.txt_password_inp.Font = New System.Drawing.Font("Calibri", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_password_inp.Location = New System.Drawing.Point(260, 140)
         Me.txt_password_inp.Name = "txt_password_inp"
+        Me.txt_password_inp.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txt_password_inp.Size = New System.Drawing.Size(198, 40)
         Me.txt_password_inp.TabIndex = 7
         '

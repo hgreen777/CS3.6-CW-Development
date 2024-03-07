@@ -1,8 +1,35 @@
-﻿Public Class frm_login_screen
+﻿Imports System.Data.Common
+
+Public Class frm_login_screen
     Private Sub btn_login_Click(sender As Object, e As EventArgs) Handles btn_login_redir.Click
-        'TODO: ACC Implement
-        frm_staffMenu.Show()
-        Me.Hide()
+        ' Validate input is present
+        If Validation.PresenceValidation(txt_username_inp.Text) = False Then MsgBox("Please enter a username") : Exit Sub
+        If Validation.PresenceValidation(txt_password_inp.Text) = False Then MsgBox("Please enter a password") : Exit Sub
+        ' Validate username is in the correct format.
+        If Validation.isUsernameFormat(txt_username_inp.Text) = False Then MsgBox("Username must be in the format FirstLastID") : Exit Sub
+
+        ' Check if the staff member exists
+        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(txt_username_inp.Text, True)
+        ' Check if the staff member function returns a node 
+        If tmpStaff.userName = Nothing Then Exit Sub ' Function includes error message
+
+        ' Check if the password is correct then open the correct menu.
+        If tmpStaff.password = txt_password_inp.Text Then
+            ' Set the active user to the staff member.
+            activeUser = tmpStaff.userName
+            ' Check user account type.
+            If tmpStaff.isManager Then
+                ' Open the manager menu.
+                frm_managerMenu.Show()
+            Else
+                ' Open the staff menu.
+                frm_staffMenu.Show()
+            End If
+            Me.Hide()
+        Else
+            MsgBox("Incorrect Password")
+        End If
+
     End Sub
 
     Private Sub frm_login_screen_Load(sender As Object, e As EventArgs) Handles MyBase.Load

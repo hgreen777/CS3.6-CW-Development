@@ -62,4 +62,18 @@ Module Validation
         Return True
     End Function
 
+    '
+    ' Validate string is in username Format
+    ' Ensure the input string is in a username format (FirstLastID) (ie HarrisonGreen0) String must contain exactly 2 capital letters and a number of x length at the end of the string.
+    Public Function isUsernameFormat(ByVal inp As String) As Boolean
+        ' Check if the input string has 2 capital letters.
+        ' Check if the input string has a number at the end of the string
+        ' Regex matches whether the input string as a character in range A-Z and then checks if there is a character in range 0-9 at the end of the (line) string.
+        If Regex.Matches(inp, "[A-Z]").Count <> 2 Or Regex.Matches(inp, "[0-9]$").Count = 0 Then
+            Return False ' Return False if the input string has failed validation
+        End If
+
+        Return True ' Return True if the input string has passed validation
+    End Function
+
 End Module
