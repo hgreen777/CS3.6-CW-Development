@@ -184,6 +184,12 @@ Public Class frm_accountManager
             Exit Sub
         End If
 
+        ' If the user is trying to delete their own account
+        If lbl_username_dynamic.Text = activeUser Then
+            MsgBox("Cannot delete your own account.")
+            Exit Sub
+        End If
+
         ' Get confirmation the user wants to delte account
         Dim result As Integer = MsgBox("Are you sure you want to delete this account?", MsgBoxStyle.YesNo, "Delete Account")
         If result = DialogResult.No Then Exit Sub

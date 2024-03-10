@@ -2,6 +2,9 @@
 Imports System.Text
 
 Public Class standardProcedures
+    ' Assign shifts to full-time staff members.
+
+
     Public Shared Sub RoundButton(btn As Button)
         'TODO: Comment Code (And sort the commented line out)
         btn.FlatStyle = FlatStyle.Flat

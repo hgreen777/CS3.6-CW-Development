@@ -112,21 +112,125 @@
         If Not Validation.correctTimeFormat(txt_startTime_inp.Text) Then MsgBox("Please enter a valid start time.") : Exit Sub
         If Not Validation.correctTimeFormat(txt_endTime_inp.Text) Then MsgBox("Please enter a valid end time.") : Exit Sub
 
+        ' Check the start time is before the end time
+        Dim tmpTime As DateTime = txt_startTime_inp.Text
+        Dim tmpTime2 As DateTime = txt_endTime_inp.Text
+        If tmpTime > tmpTime2 Then MsgBox("Start time must be before end time.") : Exit Sub
+
 
         ' Take the filled in details and create a new shift
         Dim newShift As Shift
         newShift.shiftID = DataStructures.ShiftLL.nextAvailableID()
-        MsgBox(newShift.shiftID)
         ' Set start time to include the date from the date picker and the time from the text box.
         newShift.startTime = dtePicker_date.Value.ToShortDateString & " " & txt_startTime_inp.Text
-        newShift.endTime = dtePicker_date.Value.ToShortDateString & " " & txt_startTime_inp.Text
+        newShift.endTime = dtePicker_date.Value.ToShortDateString & " " & txt_endTime_inp.Text
         newShift.isTaken = False
-        newShift.staffUserName = Nothing
+        newShift.staffUserName = "HarrisonGreen0"
         ' Add the shift to the linked list
         DataStructures.ShiftLL.add(newShift)
 
+        MsgBox("Shift added succesfully.") ' Inform the user the shift has been added successfully
+
+        ' Clears the text boxes and resets date picker
+        txt_startTime_inp.Text = "HH:mm"
+        txt_endTime_inp.Text = "HH:mm"
+        dtePicker_date.Value = Date.Now
+
         ' Update the list box
         frm_allShifts_VisibleChanged(sender, e)
+    End Sub
+
+    Private Sub btn_removeShift_process_Click(sender As Object, e As EventArgs) Handles btn_removeShift_process.Click
+        ' Ensure a shift is selected
+        If lbl_shiftID_dynamic.Text = "<ShiftID>" Then MsgBox("Please select a shift to remove.") : Exit Sub
+
+        ' Remove the shift from the linked list
+        DataStructures.ShiftLL.remove(Integer.Parse(lbl_shiftID_dynamic.Text))
+        MsgBox("Shift removed succesfully.") ' Inform the user the shift has been removed successfully
+
+        'Reset the labels
+        lbl_shiftID_dynamic.Text = "<ShiftID>"
+        lbl_startDateTime_dynamic.Text = "<DD/MM/YYYY HH:mm>"
+        lbl_endDateTime_dynamic.Text = "<DD/MM/YYYY HH:mm>"
+        lbl_isTaken_dynamic.Text = "<Yes/No>"
+        lbl_takenBy_dynamic.Text = "<StaffUserName>"
+
+
+        ' Update the list box
+        frm_allShifts_VisibleChanged(sender, e)
+    End Sub
+
+    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
+        ' Redirect to relevent menu for user type
+        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True) ' Get the active user details.
+        ' Check if the user is a manager or not
+        If tmpStaff.isManager Then
+            ' Show the manager menu is user is a manager
+            frm_managerMenu.Show()
+        Else
+            ' Show the staff menu if the user is not a manager
+            frm_staffMenu.Show()
+        End If
+        Me.Hide()   ' Hide the current form
+    End Sub
+
+    Private Sub btn_assignShift_redir_Click(sender As Object, e As EventArgs) Handles btn_assignShift_redir.Click
+        ' Redirect to the assign shift form
+        ' Ensure a shift is selected to redirect with the shiftID
+        If lbl_shiftID_dynamic.Text = "<ShiftID>" Then MsgBox("Please select a shift to assign.") : Exit Sub
+        ' Show the assign shifts form
+        frm_assignShifts.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub btn_editShift_process_Click(sender As Object, e As EventArgs) Handles btn_editShift_process.Click
+        ' User will not need to change the date if they are editing a shift so process should ignore the date time picker. Notify user of this - and ignore date picker in process.
+        ' Ensure a shift is selected
+        If lbl_shiftID_dynamic.Text = "<ShiftID>" Then MsgBox("Please select a shift to edit.") : Exit Sub
+
+        ' Check data has been inputted into the text boxes but ignoring date picker.
+        If Not Validation.PresenceValidation(txt_startTime_inp.Text) Then MsgBox("Please enter a start time.") : Exit Sub
+        If Not Validation.PresenceValidation(txt_endTime_inp.Text) Then MsgBox("Please enter an end time.") : Exit Sub
+
+        ' Validate time inputs
+        If Not Validation.correctTimeFormat(txt_startTime_inp.Text) Then MsgBox("Please enter a valid start time.") : Exit Sub
+        If Not Validation.correctTimeFormat(txt_endTime_inp.Text) Then MsgBox("Please enter a valid end time.") : Exit Sub
+
+        ' Check the start time is before the end time
+        Dim tmpTime As DateTime = txt_startTime_inp.Text
+        Dim tmpTime2 As DateTime = txt_endTime_inp.Text
+        If tmpTime > tmpTime2 Then MsgBox("Start time must be before end time.") : Exit Sub
+
+        ' Take the filled in details and create a new shift
+        Dim newShift As Shift   ' New shift based on old shift details to be used to update the shift.
+        Dim oldShift As Shift   ' Old shift to be used to find the shift to update and used in update function.
+        oldShift = DataStructures.ShiftLL.find(Integer.Parse(lbl_shiftID_dynamic.Text)) ' Find the shift to update
+        ' Check the shift exists
+        If oldShift.staffUserName Is Nothing Then MsgBox("Shift does not exist.") : Exit Sub
+        newShift = oldShift ' Set the new shift to the old shift details
+        ' Update the new shift time keeping the date the same as it is.
+        newShift.startTime = newShift.startTime.ToString.Substring(0, 10) & " " & txt_startTime_inp.Text
+        newShift.endTime = newShift.endTime.ToString.Substring(0, 10) & " " & txt_endTime_inp.Text
+
+        ' Add the shift to the linked list
+        DataStructures.ShiftLL.updateShiftData(oldShift, newShift)
+
+        MsgBox("Shift edited succesfully.") ' Inform the user the shift has been edited successfully
+
+        ' Clears the text boxes and resets date picker
+        txt_startTime_inp.Text = "HH:mm"
+        txt_endTime_inp.Text = "HH:mm"
+        dtePicker_date.Value = Date.Now
+
+        ' Update the list box
+        frm_allShifts_VisibleChanged(sender, e)
+
+        'Reset the labels
+        lbl_shiftID_dynamic.Text = "<ShiftID>"
+        lbl_startDateTime_dynamic.Text = "<DD/MM/YYYY HH:mm>"
+        lbl_endDateTime_dynamic.Text = "<DD/MM/YYYY HH:mm>"
+        lbl_isTaken_dynamic.Text = "<Yes/No>"
+        lbl_takenBy_dynamic.Text = "<StaffUserName>"
 
     End Sub
 End Class

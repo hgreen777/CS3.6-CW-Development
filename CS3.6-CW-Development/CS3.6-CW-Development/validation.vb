@@ -59,6 +59,10 @@ Module Validation
     End Function
 
     Public Function correctTimeFormat(inp As String)
+        If Not ((inp Like "[0-1]#:[0-5]#") Or (inp Like "2[0-3]:[0-5]#")) Then
+            Return False
+        End If
+
         Return True
     End Function
 
