@@ -34,11 +34,11 @@ Partial Class frm_myShifts
         Me.lbl_startDateTime_static = New System.Windows.Forms.Label()
         Me.lbl_shiftID_static = New System.Windows.Forms.Label()
         Me.grp_myShifts = New System.Windows.Forms.GroupBox()
-        Me.btn_removeShift_process = New System.Windows.Forms.Button()
         Me.lst_myShifts = New System.Windows.Forms.ListView()
         Me.shiftID = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.startTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.endTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.btn_removeShift_process = New System.Windows.Forms.Button()
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grp_selectedShift.SuspendLayout()
         Me.grp_myShifts.SuspendLayout()
@@ -161,19 +161,6 @@ Partial Class frm_myShifts
         Me.grp_myShifts.TabStop = False
         Me.grp_myShifts.Text = "My Shifts:"
         '
-        'btn_removeShift_process
-        '
-        Me.btn_removeShift_process.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.btn_removeShift_process.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_removeShift_process.ForeColor = System.Drawing.Color.Red
-        Me.btn_removeShift_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_removeShift_process.Location = New System.Drawing.Point(520, 230)
-        Me.btn_removeShift_process.Name = "btn_removeShift_process"
-        Me.btn_removeShift_process.Size = New System.Drawing.Size(150, 70)
-        Me.btn_removeShift_process.TabIndex = 20
-        Me.btn_removeShift_process.Text = "Remove Selected Shift"
-        Me.btn_removeShift_process.UseVisualStyleBackColor = True
-        '
         'lst_myShifts
         '
         Me.lst_myShifts.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.shiftID, Me.startTime, Me.endTime})
@@ -200,6 +187,19 @@ Partial Class frm_myShifts
         '
         Me.endTime.Text = "End Time"
         Me.endTime.Width = 130
+        '
+        'btn_removeShift_process
+        '
+        Me.btn_removeShift_process.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btn_removeShift_process.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_removeShift_process.ForeColor = System.Drawing.Color.Red
+        Me.btn_removeShift_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btn_removeShift_process.Location = New System.Drawing.Point(520, 230)
+        Me.btn_removeShift_process.Name = "btn_removeShift_process"
+        Me.btn_removeShift_process.Size = New System.Drawing.Size(150, 70)
+        Me.btn_removeShift_process.TabIndex = 20
+        Me.btn_removeShift_process.Text = "Remove Selected Shift"
+        Me.btn_removeShift_process.UseVisualStyleBackColor = True
         '
         'frm_myShifts
         '

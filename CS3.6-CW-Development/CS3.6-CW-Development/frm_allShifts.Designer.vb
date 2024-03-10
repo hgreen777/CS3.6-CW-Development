@@ -24,14 +24,13 @@ Partial Class frm_allShifts
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_allShifts))
         Me.grp_allShifts = New System.Windows.Forms.GroupBox()
-        Me.lst_allShifts = New System.Windows.Forms.ListBox()
         Me.lbl_endTime = New System.Windows.Forms.Label()
         Me.lbl_startTime = New System.Windows.Forms.Label()
         Me.txt_startTime_inp = New System.Windows.Forms.TextBox()
         Me.txt_endTime_inp = New System.Windows.Forms.TextBox()
         Me.grp_shiftControl = New System.Windows.Forms.GroupBox()
         Me.lbl_date = New System.Windows.Forms.Label()
-        Me.DatePicker = New System.Windows.Forms.DateTimePicker()
+        Me.dtePicker_date = New System.Windows.Forms.DateTimePicker()
         Me.lbl_endDateTime_dynamic = New System.Windows.Forms.Label()
         Me.lbl_startDateTime_dynamic = New System.Windows.Forms.Label()
         Me.grp_selectedShift = New System.Windows.Forms.GroupBox()
@@ -47,6 +46,16 @@ Partial Class frm_allShifts
         Me.btn_editShift_process = New System.Windows.Forms.Button()
         Me.btn_addShift_process = New System.Windows.Forms.Button()
         Me.btn_removeShift_process = New System.Windows.Forms.Button()
+        Me.lst_allShifts = New System.Windows.Forms.ListView()
+        Me.shiftID = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.startTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.endTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.isTaken = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.takenBy = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.lbl_isTaken_static = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lbl_isTaken_dynamic = New System.Windows.Forms.Label()
+        Me.lbl_takenBy_dynamic = New System.Windows.Forms.Label()
         Me.grp_allShifts.SuspendLayout()
         Me.grp_shiftControl.SuspendLayout()
         Me.grp_selectedShift.SuspendLayout()
@@ -58,18 +67,10 @@ Partial Class frm_allShifts
         Me.grp_allShifts.Controls.Add(Me.lst_allShifts)
         Me.grp_allShifts.Location = New System.Drawing.Point(9, 46)
         Me.grp_allShifts.Name = "grp_allShifts"
-        Me.grp_allShifts.Size = New System.Drawing.Size(375, 392)
+        Me.grp_allShifts.Size = New System.Drawing.Size(540, 436)
         Me.grp_allShifts.TabIndex = 22
         Me.grp_allShifts.TabStop = False
         Me.grp_allShifts.Text = "All Shifts:"
-        '
-        'lst_allShifts
-        '
-        Me.lst_allShifts.FormattingEnabled = True
-        Me.lst_allShifts.Location = New System.Drawing.Point(6, 19)
-        Me.lst_allShifts.Name = "lst_allShifts"
-        Me.lst_allShifts.Size = New System.Drawing.Size(363, 368)
-        Me.lst_allShifts.TabIndex = 0
         '
         'lbl_endTime
         '
@@ -112,12 +113,12 @@ Partial Class frm_allShifts
         'grp_shiftControl
         '
         Me.grp_shiftControl.Controls.Add(Me.lbl_date)
-        Me.grp_shiftControl.Controls.Add(Me.DatePicker)
+        Me.grp_shiftControl.Controls.Add(Me.dtePicker_date)
         Me.grp_shiftControl.Controls.Add(Me.lbl_endTime)
         Me.grp_shiftControl.Controls.Add(Me.lbl_startTime)
         Me.grp_shiftControl.Controls.Add(Me.txt_startTime_inp)
         Me.grp_shiftControl.Controls.Add(Me.txt_endTime_inp)
-        Me.grp_shiftControl.Location = New System.Drawing.Point(393, 193)
+        Me.grp_shiftControl.Location = New System.Drawing.Point(555, 249)
         Me.grp_shiftControl.Name = "grp_shiftControl"
         Me.grp_shiftControl.Size = New System.Drawing.Size(375, 137)
         Me.grp_shiftControl.TabIndex = 23
@@ -134,13 +135,13 @@ Partial Class frm_allShifts
         Me.lbl_date.TabIndex = 5
         Me.lbl_date.Text = "Date:"
         '
-        'DatePicker
+        'dtePicker_date
         '
-        Me.DatePicker.Location = New System.Drawing.Point(139, 19)
-        Me.DatePicker.MinDate = New Date(2024, 1, 1, 0, 0, 0, 0)
-        Me.DatePicker.Name = "DatePicker"
-        Me.DatePicker.Size = New System.Drawing.Size(137, 20)
-        Me.DatePicker.TabIndex = 4
+        Me.dtePicker_date.Location = New System.Drawing.Point(139, 19)
+        Me.dtePicker_date.MinDate = New Date(2024, 1, 1, 0, 0, 0, 0)
+        Me.dtePicker_date.Name = "dtePicker_date"
+        Me.dtePicker_date.Size = New System.Drawing.Size(137, 20)
+        Me.dtePicker_date.TabIndex = 4
         '
         'lbl_endDateTime_dynamic
         '
@@ -164,15 +165,19 @@ Partial Class frm_allShifts
         '
         'grp_selectedShift
         '
+        Me.grp_selectedShift.Controls.Add(Me.lbl_takenBy_dynamic)
+        Me.grp_selectedShift.Controls.Add(Me.lbl_isTaken_dynamic)
+        Me.grp_selectedShift.Controls.Add(Me.Label1)
+        Me.grp_selectedShift.Controls.Add(Me.lbl_isTaken_static)
         Me.grp_selectedShift.Controls.Add(Me.lbl_endDateTime_dynamic)
         Me.grp_selectedShift.Controls.Add(Me.lbl_startDateTime_dynamic)
         Me.grp_selectedShift.Controls.Add(Me.lbl_shiftID_dynamic)
         Me.grp_selectedShift.Controls.Add(Me.lbl_endDateTime_static)
         Me.grp_selectedShift.Controls.Add(Me.lbl_startDateTime_static)
         Me.grp_selectedShift.Controls.Add(Me.lbl_shiftID_static)
-        Me.grp_selectedShift.Location = New System.Drawing.Point(393, 53)
+        Me.grp_selectedShift.Location = New System.Drawing.Point(555, 53)
         Me.grp_selectedShift.Name = "grp_selectedShift"
-        Me.grp_selectedShift.Size = New System.Drawing.Size(375, 125)
+        Me.grp_selectedShift.Size = New System.Drawing.Size(375, 190)
         Me.grp_selectedShift.TabIndex = 24
         Me.grp_selectedShift.TabStop = False
         Me.grp_selectedShift.Text = "Selected Shift:"
@@ -244,7 +249,7 @@ Partial Class frm_allShifts
         Me.lbl_allShifts_TITLE.Location = New System.Drawing.Point(0, 0)
         Me.lbl_allShifts_TITLE.Margin = New System.Windows.Forms.Padding(3, 5, 3, 0)
         Me.lbl_allShifts_TITLE.Name = "lbl_allShifts_TITLE"
-        Me.lbl_allShifts_TITLE.Size = New System.Drawing.Size(800, 50)
+        Me.lbl_allShifts_TITLE.Size = New System.Drawing.Size(942, 50)
         Me.lbl_allShifts_TITLE.TabIndex = 20
         Me.lbl_allShifts_TITLE.Text = "All Shifts"
         Me.lbl_allShifts_TITLE.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -253,7 +258,7 @@ Partial Class frm_allShifts
         '
         Me.chkbox_filterTaken.AutoSize = True
         Me.chkbox_filterTaken.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbox_filterTaken.Location = New System.Drawing.Point(556, 18)
+        Me.chkbox_filterTaken.Location = New System.Drawing.Point(718, 19)
         Me.chkbox_filterTaken.Name = "chkbox_filterTaken"
         Me.chkbox_filterTaken.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.chkbox_filterTaken.Size = New System.Drawing.Size(212, 28)
@@ -266,7 +271,7 @@ Partial Class frm_allShifts
         Me.btn_assignShift_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_assignShift_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_assignShift_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_assignShift_redir.Location = New System.Drawing.Point(403, 336)
+        Me.btn_assignShift_redir.Location = New System.Drawing.Point(565, 392)
         Me.btn_assignShift_redir.Name = "btn_assignShift_redir"
         Me.btn_assignShift_redir.Size = New System.Drawing.Size(150, 42)
         Me.btn_assignShift_redir.TabIndex = 20
@@ -278,7 +283,7 @@ Partial Class frm_allShifts
         Me.btn_editShift_process.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_editShift_process.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_editShift_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_editShift_process.Location = New System.Drawing.Point(604, 336)
+        Me.btn_editShift_process.Location = New System.Drawing.Point(766, 392)
         Me.btn_editShift_process.Name = "btn_editShift_process"
         Me.btn_editShift_process.Size = New System.Drawing.Size(150, 42)
         Me.btn_editShift_process.TabIndex = 26
@@ -290,7 +295,7 @@ Partial Class frm_allShifts
         Me.btn_addShift_process.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_addShift_process.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_addShift_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_addShift_process.Location = New System.Drawing.Point(403, 384)
+        Me.btn_addShift_process.Location = New System.Drawing.Point(565, 440)
         Me.btn_addShift_process.Name = "btn_addShift_process"
         Me.btn_addShift_process.Size = New System.Drawing.Size(150, 42)
         Me.btn_addShift_process.TabIndex = 27
@@ -303,19 +308,96 @@ Partial Class frm_allShifts
         Me.btn_removeShift_process.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_removeShift_process.ForeColor = System.Drawing.Color.Red
         Me.btn_removeShift_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_removeShift_process.Location = New System.Drawing.Point(604, 384)
+        Me.btn_removeShift_process.Location = New System.Drawing.Point(766, 440)
         Me.btn_removeShift_process.Name = "btn_removeShift_process"
         Me.btn_removeShift_process.Size = New System.Drawing.Size(150, 42)
         Me.btn_removeShift_process.TabIndex = 28
         Me.btn_removeShift_process.Text = "Remove Shift"
         Me.btn_removeShift_process.UseVisualStyleBackColor = True
         '
+        'lst_allShifts
+        '
+        Me.lst_allShifts.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.shiftID, Me.startTime, Me.endTime, Me.isTaken, Me.takenBy})
+        Me.lst_allShifts.FullRowSelect = True
+        Me.lst_allShifts.HideSelection = False
+        Me.lst_allShifts.Location = New System.Drawing.Point(6, 19)
+        Me.lst_allShifts.Name = "lst_allShifts"
+        Me.lst_allShifts.Size = New System.Drawing.Size(528, 411)
+        Me.lst_allShifts.TabIndex = 21
+        Me.lst_allShifts.UseCompatibleStateImageBehavior = False
+        Me.lst_allShifts.View = System.Windows.Forms.View.Details
+        '
+        'shiftID
+        '
+        Me.shiftID.Text = "ShiftID"
+        Me.shiftID.Width = 47
+        '
+        'startTime
+        '
+        Me.startTime.Text = "Start Time"
+        Me.startTime.Width = 130
+        '
+        'endTime
+        '
+        Me.endTime.Text = "End Time"
+        Me.endTime.Width = 130
+        '
+        'isTaken
+        '
+        Me.isTaken.Text = "Is Taken"
+        Me.isTaken.Width = 87
+        '
+        'takenBy
+        '
+        Me.takenBy.Text = "Taken By"
+        Me.takenBy.Width = 111
+        '
+        'lbl_isTaken_static
+        '
+        Me.lbl_isTaken_static.AutoSize = True
+        Me.lbl_isTaken_static.Font = New System.Drawing.Font("Calibri", 15.0!)
+        Me.lbl_isTaken_static.Location = New System.Drawing.Point(6, 126)
+        Me.lbl_isTaken_static.Name = "lbl_isTaken_static"
+        Me.lbl_isTaken_static.Size = New System.Drawing.Size(80, 24)
+        Me.lbl_isTaken_static.TabIndex = 10
+        Me.lbl_isTaken_static.Text = "Is Taken:"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 15.0!)
+        Me.Label1.Location = New System.Drawing.Point(6, 160)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(87, 24)
+        Me.Label1.TabIndex = 11
+        Me.Label1.Text = "Taken By:"
+        '
+        'lbl_isTaken_dynamic
+        '
+        Me.lbl_isTaken_dynamic.AutoSize = True
+        Me.lbl_isTaken_dynamic.Font = New System.Drawing.Font("Calibri", 15.0!)
+        Me.lbl_isTaken_dynamic.Location = New System.Drawing.Point(151, 126)
+        Me.lbl_isTaken_dynamic.Name = "lbl_isTaken_dynamic"
+        Me.lbl_isTaken_dynamic.Size = New System.Drawing.Size(89, 24)
+        Me.lbl_isTaken_dynamic.TabIndex = 12
+        Me.lbl_isTaken_dynamic.Text = "<Yes/No>"
+        '
+        'lbl_takenBy_dynamic
+        '
+        Me.lbl_takenBy_dynamic.AutoSize = True
+        Me.lbl_takenBy_dynamic.Font = New System.Drawing.Font("Calibri", 15.0!)
+        Me.lbl_takenBy_dynamic.Location = New System.Drawing.Point(151, 160)
+        Me.lbl_takenBy_dynamic.Name = "lbl_takenBy_dynamic"
+        Me.lbl_takenBy_dynamic.Size = New System.Drawing.Size(155, 24)
+        Me.lbl_takenBy_dynamic.TabIndex = 13
+        Me.lbl_takenBy_dynamic.Text = "<StaffUserName>"
+        '
         'frm_allShifts
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(194, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(800, 451)
+        Me.ClientSize = New System.Drawing.Size(942, 494)
         Me.Controls.Add(Me.btn_removeShift_process)
         Me.Controls.Add(Me.btn_addShift_process)
         Me.Controls.Add(Me.btn_editShift_process)
@@ -343,7 +425,6 @@ Partial Class frm_allShifts
     End Sub
 
     Friend WithEvents grp_allShifts As GroupBox
-    Friend WithEvents lst_allShifts As ListBox
     Friend WithEvents lbl_endTime As Label
     Friend WithEvents lbl_startTime As Label
     Friend WithEvents txt_startTime_inp As TextBox
@@ -360,10 +441,20 @@ Partial Class frm_allShifts
     Friend WithEvents img_blc_logo As PictureBox
     Friend WithEvents lbl_allShifts_TITLE As Label
     Friend WithEvents chkbox_filterTaken As CheckBox
-    Friend WithEvents DatePicker As DateTimePicker
+    Friend WithEvents dtePicker_date As DateTimePicker
     Friend WithEvents lbl_date As Label
     Friend WithEvents btn_assignShift_redir As Button
     Friend WithEvents btn_editShift_process As Button
     Friend WithEvents btn_addShift_process As Button
     Friend WithEvents btn_removeShift_process As Button
+    Friend WithEvents lst_allShifts As ListView
+    Friend WithEvents shiftID As ColumnHeader
+    Friend WithEvents startTime As ColumnHeader
+    Friend WithEvents endTime As ColumnHeader
+    Friend WithEvents isTaken As ColumnHeader
+    Friend WithEvents takenBy As ColumnHeader
+    Friend WithEvents lbl_takenBy_dynamic As Label
+    Friend WithEvents lbl_isTaken_dynamic As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents lbl_isTaken_static As Label
 End Class

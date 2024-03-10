@@ -6,6 +6,7 @@ Module FileHandler
     ' Declaring all filenames as constant strings to reduce bugs in code
     Const staffFile As String = "staff.txt"     ' FilePath for staff File storing all staff data.
     Const shiftFile As String = "shifts.txt"    ' FilePath for shift file storing all shift data.
+    Const notificationFile As String = "notification.txt" ' FilePath for notification file storing all shift data.
     '
     ' Read/Write For Staff File (Hash Table <-> List of records in file)
     '
@@ -133,7 +134,7 @@ Module FileHandler
 
         Catch ex As Exception
             FileClose(1)
-
+            MsgBox(ex.ToString())
             MsgBox("Error Reading Shift File: Please restart Program.")
         End Try
 
@@ -141,6 +142,27 @@ Module FileHandler
     End Function
 
     Public Function notificationRead() As Boolean
-        Return False
+        Return True
+    End Function
+
+    Public Function notificationWrite() As Boolean
+        ' Preorder the tree into a list
+        Dim preOrderedIDs As List(Of Integer) = DataStructures.NotificationTree.preOrderTraversal(DataStructures.NotificationTree._root, preOrderedIDs)
+
+        FileOpen(1, notificationFile, OpenMode.Output)
+        For Each id In preOrderedIDs
+            Dim tmpNotification As Notification = DataStructures.NotificationTree.find(DataStructures.NotificationTree._root, id)
+
+            ' Check node is not nothing
+            If tmpNotification.notificationID = Nothing Then Return False
+
+            ' Write node to file
+            WriteLine(1, tmpNotification.notificationID,
+                      tmpNotification.content,
+                      tmpNotification.sender, tmpNotification.sentDate)
+        Next
+        FileClose(1)
+
+        Return True
     End Function
 End Module

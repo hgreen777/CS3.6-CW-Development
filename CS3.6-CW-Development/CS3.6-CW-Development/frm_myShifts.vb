@@ -10,6 +10,9 @@
 
     Private Sub frm_myShifts_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Me.Visible() Then
+            ' Clear the list boxes
+            lst_myShifts.Items.Clear()
+
             ' Update listbox with all shifts
             Dim staffShifts As List(Of Integer) = DataStructures.ShiftLL.findStaffShifts(activeUser)
 
@@ -63,4 +66,19 @@
         lbl_startDateTime_dynamic.Text = lst_myShifts.SelectedItems(0).SubItems(1).Text
         lbl_endDateTime_dynamic.Text = lst_myShifts.SelectedItems(0).SubItems(2).Text
     End Sub
+
+    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
+        ' Redirect to relevent menu for user type
+        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True) ' Get the active user details.
+        ' Check if the user is a manager or not
+        If tmpStaff.isManager Then
+            ' Show the manager menu is user is a manager
+            frm_managerMenu.Show()
+        Else
+            ' Show the staff menu if the user is not a manager
+            frm_staffMenu.Show()
+        End If
+        Me.Hide()   ' Hide the current form
+    End Sub
+
 End Class

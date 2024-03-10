@@ -361,7 +361,10 @@ Module DataStructures
 
             ' Loop over the whole LL to find either the end of the LL or the next node has a higher id then the cureent nodeID.
             ' Check if the next node to be checked is empty (if it is end of LL has been found).
-            While nextNode IsNot Nothing Or Not (newShiftData.shiftID < nextNode.shiftData.shiftID And newShiftData.shiftID > currentNode.shiftData.shiftID)
+            While nextNode IsNot Nothing
+                If newShiftData.shiftID < nextNode.shiftData.shiftID And newShiftData.shiftID > currentNode.shiftData.shiftID Then
+                    Exit While
+                End If
                 ' Process to repeat process using next node.
                 currentNode = nextNode          ' Sets the current node to move the process ine node along.
                 nextNode = nextNode.nextShift   ' Sets the next node to the next node after the current node.
@@ -473,15 +476,15 @@ Module DataStructures
                     Return currentNode.shiftData.shiftID + 1
                 End If
 
-                ' Keep a track of the current highest nodeID incase if the end of the LL is reached.
-                total = currentNode.shiftData.shiftID
                 ' Move onto the next node.
                 currentNode = currentNode.nextShift
                 nextNode = nextNode.nextShift
             End While
 
+            ' Keep a track of the current highest nodeID incase if the end of the LL is reached.
+            total = currentNode.shiftData.shiftID
             ' If the end of the LL is reached and the function as not returned it means there are no gaps and the new node should be added at the end of the LL.
-            Return total + 1
+            Return (total + 1)
         End Function
         '
         ' Assign Shift
@@ -509,6 +512,13 @@ Module DataStructures
                 newData.staffUserName = staffUserName       ' Sets the staff member that has taken the shift.
 
                 updateShiftData(oldData, newData)           ' Updates the shift data in the linked list.
+
+                ' If the shift times have been changed then the persistent data needs to be updated.
+                If FileHandler.shiftWrite() = False Then MsgBox("Error: Writing to file. Shift not added") : If FileHandler.shiftRead() = False Then MsgBox("Fatel Error: Please Restart Program") : Return False
+
+                MsgBox("Shift Successfully assigned to user") ' Informs the user that the shift has been successfully assigned to the user.
+                ' Return result to calling function
+                Return True
 
             ElseIf startTimeValid And endTimeValid And shiftID <> "<ShiftID>" And staffUserName <> "<StaffUserName" Then
                 ' Code for updating a shift if there are time alterations
@@ -633,7 +643,7 @@ Module DataStructures
 
             For i = 0 To staffShifts.Count - 1                              ' Loops over the staffShifts to obtain all the days which a user currently has shifts on.
                 currentShift = find(staffShifts(i))                         ' Gets the current shift data so the day of the week can be accessed.
-                If Not currentShift.staffUserName Is Nothing Then
+                If Not currentShift.shiftID = Nothing Then
                     If Not days.Contains(currentShift.startTime.DayOfWeek) Then ' Checks if the list already contains the day of the week of the shift.
                         days.Add(currentShift.startTime.DayOfWeek)              ' If it doesn't then the dat of the week is added to the list of integers.
                     End If
@@ -642,7 +652,7 @@ Module DataStructures
 
             For i = 0 To available.Count - 1                                ' Loops over the available shifts 
                 currentShift = find(available(i))                           ' Finds the current shift data so the node data can be manipulated.
-                If Not currentShift.staffUserName Is Nothing Then                      ' Ensures that find has returned something else it will just skip that shift as it is not vital and skipping a shift is better then whole system crashing.
+                If Not currentShift.shiftID = Nothing Then                      ' Ensures that find has returned something else it will just skip that shift as it is not vital and skipping a shift is better then whole system crashing.
                     If days.Contains(currentShift.startTime.DayOfWeek) Then     ' If the shift's day of the week is in the days list then there is an available shift on the same day as a shift the user already has
                         suggested.Add(currentShift.shiftID)                     ' So add shift to the suggested list which will be returned to the calling subroutine.
                     End If
@@ -659,16 +669,179 @@ Module DataStructures
     '
     ' Class design for storing all subroutines related to storing and manipulating notification data
     ' Notification Binary Tree
+    Public Class NotificationDataTreeDesign
+        Public _root As NotificationNode ' Creates a root node for the tree.
+        '
+        ' New Tree
+        ' Procedure that will take the root node and create a new tree out of it.
+        Sub newTree(ByVal rootData As Notification)
+            _root = GetNode(rootData) ' Sets the root of the tree to the new data passed into the function.
 
+            ' Write Data.
+        End Sub
+        '
+        ' Get Node
+        ' This functions adds the data to a new node so that it can be added to the tree.
+        Private Function GetNode(ByVal data As Notification) As NotificationNode
+            ' Create a new instance of a notification node
+            Dim node As New NotificationNode()
+            node.notificationData = data    ' Set the notificationData element of the record to the data passed into the function.
+            Return node                     ' Return the node for pointer assignment.
+        End Function
+        '
+        ' add node to tree
+        ' This procedure runs through the treee to find where a new node should be added.
+        Public Sub add(ByVal data As Notification)
+            ' Declaring temp pointers at the root so all nodes can be searched with a binary search ot where the node can be added.
+            Dim currentNode As NotificationNode = _root     ' Set a pointer to the root of the tree.
+            Dim nextNode As NotificationNode = _root        ' Set a pointer to the root of the tree.
+
+            ' While loop makes sure that the node it is searching does not have the same data as the new node and checks to see if the node is not at the bottom of its branch.
+            While currentNode.notificationData.notificationID <> data.notificationID And Not nextNode Is Nothing
+                ' Ready to check the next node (Currentnode updated fo pointer assignment later)
+                currentNode = nextNode
+                ' Decision to search either the left or right branch
+                If nextNode.notificationData.notificationID < data.notificationID Then
+                    nextNode = nextNode.rightPointer    ' Search right subtree next.
+                Else
+                    nextNode = nextNode.leftPointer     ' Search left subtree next.
+                End If
+            End While
+
+            ' Set the pointers but check there is no duplicate ID as this would cause problems later whensearching etc.
+            If currentNode.notificationData.notificationID = data.notificationID Then
+                MsgBox("Error : Duplicate Staff IDs (Node not inserted): Try restarting the system.")   ' Inform user of error and to restart to try and fix error.
+            ElseIf currentNode.notificationData.notificationID < data.notificationID Then
+                ' If the node should be inserted in the right subtree then insert it there.
+                currentNode.rightPointer = GetNode(data)
+            Else
+                ' If it is meant to be in the left tree then add it to the left pointer.
+                currentNode.leftPointer = GetNode(data)
+            End If
+
+            ' Write data.
+
+        End Sub
+        '
+        ' Find Node
+        ' Function that finds a node in the notification data tree by recursing down the tree to find the node. (returns found node)
+        Public Function find(ByVal node As NotificationNode, ByVal searchData As Integer) As Notification
+            ' Ensures tree is not empty (or if node is not in tree function will ultimately return nothing)
+            If node Is Nothing Then Return Nothing
+
+            ' Checks if the current node is the node being searched for.
+            If node.notificationData.notificationID = searchData Then
+                Return node.notificationData
+            End If
+
+            ' Check if the left or right branch should be searched.
+            If searchData < node.notificationData.notificationID Then
+                Return find(node.leftPointer, searchData)   ' Recurse through left tree.
+            Else
+                Return find(node.rightPointer, searchData)  ' Recurse through right tree.
+            End If
+        End Function
+        '
+        ' Next available ID
+        ' This function checks if the gap between 2 ordered nodes is more then 2 (ie a gap between the numbers and an available id)
+        Public Function nextAvailableID() As Integer
+            ' In order traversal of tree into a list.
+            Dim orderedIDs As New List(Of Integer)
+            orderedIDs = inOrderTraversal(_root, orderedIDs)    ' Obtains an ordered list of all ids in the tree.
+            ' Loop over the list to find gaps to return an available id
+            For i = 0 To orderedIDs.Count - 2
+                Dim difference = orderedIDs(i + 1) - orderedIDs(i)  ' Find the difference between 2 ordered node ids.
+
+                ' If the gap is more then 2 then there is a gap between the ids.
+                If difference >= 2 Then
+                    Return orderedIDs(i) + 1    ' Therefore, return 1+ the current id so it fills that gap.
+                End If
+            Next
+
+            ' If not gaps return the highest id +1 to be unique id.
+            Return orderedIDs(orderedIDs.Count - 1) + 1
+        End Function
+        '
+        ' in order traversal
+        ' This function traverses the tree in an ordered fashion to return a list of all the notification ID ordered.
+        Function inOrderTraversal(ByVal node As NotificationNode, currentList As List(Of Integer))
+            ' To prevent bug on first iteration ensure current list has been set to something
+            If currentList Is Nothing Then
+                ' Create a new list so nodes can be added to it.
+                currentList = New List(Of Integer)()
+            End If
+
+            ' Check that the current node is not nothing (ie the bottom of the tree has not been found)
+            If node IsNot Nothing Then
+                ' Left Subtree recurse to add all elements in the left subtree
+                currentList = inOrderTraversal(node.leftPointer, currentList)
+                ' Add current node to list
+                currentList.Add(node.notificationData.notificationID)
+                ' Right Subtree recurse to add all elements in the right subtree
+                currentList = inOrderTraversal(node.rightPointer, currentList)
+            End If
+
+            ' Return the currentList if the bottom of the subtree has been found
+            Return currentList
+        End Function
+        '
+        ' pre order traversal
+        ' This function traverses the tree in a pre ordered fashion to return a list of all the integers in an order required to copy the tree.
+        Function preOrderTraversal(ByVal node As NotificationNode, currentList As List(Of Integer))
+            ' To prevent bug on first iteration ensure current list has been set to something
+            If currentList Is Nothing Then
+                ' Create a new list so nodes can be added to it.
+                currentList = New List(Of Integer)()
+            End If
+
+            ' Check that the current node is not nothing (ie the bottom of the tree has not been found)
+            If node IsNot Nothing Then
+                ' Add current node to list.
+                currentList.Add(node.notificationData.notificationID)
+                ' Left Subtree recurse to add all elements in the left subtree
+                currentList = preOrderTraversal(node.leftPointer, currentList)
+                ' Right Subtree recurse to add all elements in the right subtree
+                currentList = preOrderTraversal(node.rightPointer, currentList)
+            End If
+
+            ' Return the currentList if the bottom of the subtree has been found
+            Return currentList
+        End Function
+    End Class
     '
     ' Class design for storing all subroutines related to storng and manupulating notification instance data
     ' Notificatyion Instance linked list
+    Public Class NotificationInstanceLinkedListDesign
+        Public _root As NotificationInstanceNode    ' Stores the root node of the LL (ie first node)
+        '
+        ' New List
+        ' Procedure that creates a new LL given notification instance data
+        Public Sub newList(ByVal notificationData As NotificationInstance)
+            _root = getNode(notificationData)
+        End Sub
+        '
+        ' Get node
+        ' This function creates a new node given the data to be stored in the node
+        Public Function getNode(ByVal data As NotificationInstance) As NotificationInstanceNode
+            ' Create a new instance of a notification node
+            Dim node As New NotificationInstanceNode
+            node.notificationInstanceData = data    ' Set the notificationData element of the record to the data passed into the function.
+            Return node                             ' Return the node for pointer assignment.
+        End Function
+        '
+        ' Append node
+        ' Procedure that adds a new node to the end of the LL.
+        Public Sub append(ByVal notificationData As NotificationInstance)
+            Dim currentNode As NotificationInstanceNode = _root
+        End Sub
 
+    End Class
     '
     ' New Class Instance Creation.
     '
     Public StaffHashTable As New StaffMembersHashTableDesign    ' Creates a new instance of the StaffMembersHashTableDesign class.
     Public ShiftLL As New ShiftsLinkedListDesign                ' Creates a new instance of the ShiftsLinkedListDesign class.
+    Public NotificationTree As New NotificationDataTreeDesign   ' Creates a new usntace of the notification binary search tree design class.
 
     ' Public variable to store the active user's username as it needs to be persistent throughout forms.
     Public activeUser As String
