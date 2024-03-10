@@ -419,6 +419,7 @@ Module DataStructures
             If nodeID = currentNode.shiftData.shiftID And                           ' Checks if the found node actually matches the search data.
                currentNode.shiftData.shiftID <> _root.shiftData.shiftID And         ' Checks if the node is the root of the LL.
                currentNode.nextShift IsNot Nothing Then                             ' Checks if the node is at the end of the LL.
+
                 currentNode.lastShift.nextShift = currentNode.nextShift             ' Sets the pointer for the shift before it to point at the shift after the current node.
                 currentNode.nextShift.lastShift = currentNode.lastShift             ' Sets the pointer for the shift after it to point to the shift before the current node.
                 ' This means that there is nothing pointing to this node and when the procedure finished running the node data will be lost and collected by garbage collection.
@@ -457,6 +458,9 @@ Module DataStructures
         ' This function will find the next available ID. This will be used when crating a new node.
         ' This function will work by traversing the LL and checking if the next nodes id has a difference > 1 and if it does then there is a gap and the node can have the id of i pluss the last as the gap will be minimum 2.
         Public Function nextAvailableID() As Integer
+            If _root Is Nothing Then
+                Return 1
+            End If
             Dim currentNode As ShiftNode = _root                ' Set the currentNode pointer to the root of the LL.
             Dim nextNode As ShiftNode = _root.nextShift         ' Pointer to the next node in the LL (ensures no error thrown from difference calculation)
             Dim total As Integer                                ' Create a variable for the total ID (if LL is already ordered perfectly).

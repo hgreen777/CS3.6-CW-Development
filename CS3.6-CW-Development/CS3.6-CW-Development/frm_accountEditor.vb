@@ -7,22 +7,8 @@ Public Class frm_accountEditor
         For Each btn As Button In Me.Controls.OfType(Of Button)
             standardProcedures.RoundButton(btn)
         Next
-
-        ' Set the form title to include the user's first name 
-        lbl_accountEditor_TITLE.Text = DataStructures.StaffHashTable.firstFromUserName(activeUser) & "'s Account Editor"
-
-        ' Set the username label to be the current user's username.
-        lbl_username_dynamic.Text = activeUser
-
-        ' Getting user details
-        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True)
-
-        ' Set the textboxes to the current user's data
-        txt_firstName_inp.Text = tmpStaff.firstName
-        txt_surname_inp.Text = tmpStaff.lastName
-        txt_password_inp.Text = tmpStaff.password
-
     End Sub
+
 
     Private Sub txt_firstName_inp_TextChanged(sender As Object, e As EventArgs) Handles txt_firstName_inp.TextChanged
         'Change the username label to change for the new updates. 
@@ -84,5 +70,23 @@ Public Class frm_accountEditor
             frm_staffMenu.Show()
         End If
         Me.Hide()
+    End Sub
+
+    Private Sub frm_accountEditor_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+        If Me.Visible Then
+            ' Set the form title to include the user's first name 
+            lbl_accountEditor_TITLE.Text = DataStructures.StaffHashTable.firstFromUserName(activeUser) & "'s Account Editor"
+
+            ' Set the username label to be the current user's username.
+            lbl_username_dynamic.Text = activeUser
+
+            ' Getting user details
+            Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True)
+
+            ' Set the textboxes to the current user's data
+            txt_firstName_inp.Text = tmpStaff.firstName
+            txt_surname_inp.Text = tmpStaff.lastName
+            txt_password_inp.Text = tmpStaff.password
+        End If
     End Sub
 End Class
