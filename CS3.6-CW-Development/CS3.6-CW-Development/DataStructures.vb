@@ -1087,12 +1087,55 @@ Module DataStructures
         End Function
         '
         ' remove
-        '
+        ' Procedure that removes a node from the LL given a notificationInstanceID
+        Public Sub remove(ByVal nodeID As Integer)
+            Dim currentNode As NotificationInstanceNode = _root    ' Set a pointer to the root of the tree
 
+            ' Loop over the LL to find the node to be deleted.
+            While currentNode IsNot Nothing And nodeID <> currentNode.notificationInstanceData.notificationInstanceID
+                currentNode = currentNode.nextNotificationInstance
+            End While
+
+            ' If the node is within the LL then pointers around the node should be changed to remove the node from the LL.
+            If nodeID = currentNode.notificationInstanceData.notificationInstanceID And
+               currentNode.notificationInstanceData.notificationInstanceID <> _root.notificationInstanceData.notificationInstanceID And
+               currentNode.nextNotificationInstance IsNot Nothing Then
+
+                currentNode.lastNotificationInstance.nextNotificationInstance = currentNode.nextNotificationInstance    ' Set the last node to point to the next node in the LL.
+                currentNode.nextNotificationInstance.lastNotificationInstance = currentNode.lastNotificationInstance    ' Set the next node to point to the last node in the LL.
+                ' If the node is the root then the root should be set to the next node in the LL.
+            ElseIf nodeID = _root.notificationInstanceData.notificationInstanceID Then
+                _root = currentNode.nextNotificationInstance    ' Set the root to the next node in the LL.
+
+                ' If the node is the last node in the LL then the last node should point to nothing.
+            ElseIf currentNode.nextNotificationInstance Is Nothing Then
+                currentNode.lastNotificationInstance.nextNotificationInstance = Nothing ' Set the last node to point to nothing as it is the end of the LL.
+            Else
+                MsgBox("Error: Notification not found in storage. Please restart system.")  ' Inform user of error and to restart to try and fix error.
+            End If
+        End Sub
         '
         ' user's notifications
-        '
+        ' Function that finds all the notificationInstanceIDs for the active user and returns them in a list.
+        Public Function userNotification() As List(Of Integer)
+            Dim returnArr As New List(Of Integer)   ' Creates a new list of integers to store the list of notificationInstanceIDs to be returned to the calling subroutine.
 
+            Dim currentNode As NotificationInstanceNode = _root    ' Set a pointer to the root of the tree
+
+            ' Loop over the LL until the end of the LL has been found.
+            While currentNode IsNot Nothing
+                ' Checks if the notificationInstance is for the active user
+                If currentNode.notificationInstanceData.recipient = activeUser Then
+                    returnArr.Add(currentNode.notificationInstanceData.notificationInstanceID)    ' If the notificationInstance is for the active user then add the notificationInstanceID to the return list.
+                End If
+
+                ' Move onto the next node.
+                currentNode = currentNode.nextNotificationInstance
+            End While
+
+            ' Return the list of notificationInstanceIDs for the active user.
+            Return returnArr
+        End Function
         '
         ' Distinct Notification 
         ' Get all the distinct notifications in the notification LL - used to find notifications that can be deleted.
