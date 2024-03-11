@@ -104,20 +104,30 @@
             currentNode = currentNode.nextShift
         End While
 
+        MsgBox("Old Shifts Deleted Succesfully.") ' Informs the user the old shifts have been deleted.
+        ' Write Shift LL to file to save
+        If Not FileHandler.shiftWrite() Then MsgBox("Error Writing to shift file, data not saved, please restart system.") : Exit Sub
+
         'Remove line when notification implemented
         Exit Sub
 
+        ' Get a list of all the notifications that currently have atleast one instance attached to it.
         Dim distinctNotifications As New List(Of Integer)
-        'distinctiNotifications = DataStructures.NotificationTree.distinctNotifications()
+        distinctNotifications = DataStructures.NotificationInstanceLL.distinctNotification()
+        ' Get a list of all the notifications in the binary tree.
         Dim notificationList As List(Of Integer)
         notificationList = DataStructures.NotificationTree.inOrderTraversal(DataStructures.NotificationTree._root, notificationList)
 
+        ' Loop over every notification in the tree and see if it has an instance attached to it
         For Each notification In notificationList
             If Not distinctNotifications.Contains(notification) Then
-                'DataStructures.NotificationTree.remove(notification)
+                ' Remove the notification if it does not have a notification instance in it.
+                DataStructures.NotificationTree.remove(DataStructures.NotificationTree._root, notification)
             End If
         Next
 
-        MsgBox("Old Notifications & Shifts Removed.") ' Notify user that old data has been removed.
+        MsgBox("Old Notifications Removed.") ' Notify user that old data has been removed.
+        ' Write Notification Tree to file to save
+        If Not FileHandler.notificationWrite() Then MsgBox("Error writing to notification file, data not saved, please restart system.") : Exit Sub
     End Sub
 End Class

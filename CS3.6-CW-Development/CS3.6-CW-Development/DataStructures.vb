@@ -2,6 +2,8 @@
 ' Classes Structures = PascalCase
 ' Files and objects = snake_case
 'DS assumes data has all been validated
+
+'Improvement, see all notifications list for managers like a send 
 Imports Validation
 Imports System.ComponentModel.DataAnnotations
 Imports System.IO
@@ -696,6 +698,12 @@ Module DataStructures
         ' add node to tree
         ' This procedure runs through the treee to find where a new node should be added.
         Public Sub add(ByVal data As Notification)
+            ' If tree is empty create a new one
+            If _root Is Nothing Then
+                newTree(data)
+                Exit Sub
+            End If
+
             ' Declaring temp pointers at the root so all nodes can be searched with a binary search ot where the node can be added.
             Dim currentNode As NotificationNode = _root     ' Set a pointer to the root of the tree.
             Dim nextNode As NotificationNode = _root        ' Set a pointer to the root of the tree.
@@ -811,6 +819,108 @@ Module DataStructures
             ' Return the currentList if the bottom of the subtree has been found
             Return currentList
         End Function
+        '
+        ' Remove Node
+        ' This function removes a node from the tree.
+        Public Function remove(ByVal node As NotificationNode, ByVal inpNotiID As Integer) As Boolean
+            ' Finds bottom of tree or if node is empty incase of an error ie the node that is passed ot the function is NOthing.
+            If node Is Nothing Then
+                Return False
+            End If
+
+            ' Find the node to delete -?? may not need
+            'Dim nodeToDelete As NotificationNode = find(_root, inpNotiID)
+
+            ' Pointers set to the current node and the parent of the node (parent important for pointers in deletion)
+            Dim parent As NotificationNode = Nothing
+            Dim current As NotificationNode = node
+
+            ' Find the node to be deleted and assign its parent's pointers
+            While current IsNot Nothing
+                If inpNotiID <> current.notificationData.notificationID Then
+                    parent = current
+
+                    If inpNotiID < current.notificationData.notificationID Then
+                        current = current.leftPointer
+                    Else
+                        current = current.rightPointer
+                    End If
+                End If
+            End While
+
+            ' If the node is not found but while is exited node is not in tree or  tree built incorrectly exit
+            If current Is Nothing Then
+                MsgBox("Notification not found in storage. Please restart system.")
+                Return False
+            End If
+
+            ' Select the case for deleting method depending on the node to be deleted's children nodes
+
+            ' Case 1 : Node is a leaf (ie no children)
+            If current.leftPointer Is Nothing And current.rightPointer Is Nothing Then
+                ' If it is the root and tree has no children ie tree has one node and will not be empty
+                If parent Is Nothing Then
+                    _root = Nothing
+
+                    ' If the node is a left child
+                ElseIf parent.leftPointer Is current Then
+                    parent.leftPointer = Nothing
+
+                    ' If the node is a right child
+                Else
+                    parent.rightPointer = Nothing
+                End If
+
+                ' Case 2a : Node has left child.
+            ElseIf current.leftPointer IsNot Nothing And current.rightPointer Is Nothing Then
+                ' if it is the root and tree has left child.
+                If parent Is Nothing Then
+                    _root = current.leftPointer
+
+                    ' if the node is a left child
+                ElseIf parent.leftPointer Is current Then
+                    parent.leftPointer = current.leftPointer
+
+                    ' If the node is a right child.
+                Else
+                    parent.rightPointer = current.leftPointer
+                End If
+
+                ' Case 2b : Node has a right child
+            ElseIf current.leftPointer Is Nothing And current.rightPointer IsNot Nothing Then
+                ' if it is the root and tree has right child.
+                If parent Is Nothing Then
+                    _root = current.rightPointer
+
+                    ' If the node is a left child.
+                ElseIf parent.leftPointer Is current Then
+                    parent.leftPointer = current.rightPointer
+
+                    ' If the node is a right child.
+                Else
+                    parent.rightPointer = current.rightPointer
+                End If
+
+                ' Case 3 : Node has Children
+            Else
+                ' Need to find the node to the right to replace the current node and then clean up by removing duplicate node (and subsequently moving all other nodes below it).
+                Dim replaceNode As NotificationNode = findMin(current.rightPointer)
+                current.notificationData = replaceNode.notificationData
+                remove(current.rightPointer, replaceNode.notificationData.notificationID)
+            End If
+
+            Return True
+        End Function
+        '
+        ' Find Min
+        ' Driver function for removing a node that finds the minimum node in a tree given the root node or another node.
+        Function findMin(ByVal node As NotificationNode) As NotificationNode
+            While node.leftPointer IsNot Nothing
+                node = node.leftPointer
+            End While
+
+            Return node
+        End Function
     End Class
     '
     ' Class design for storing all subroutines related to storng and manupulating notification instance data
@@ -836,16 +946,70 @@ Module DataStructures
         ' Append node
         ' Procedure that adds a new node to the end of the LL.
         Public Sub append(ByVal notificationData As NotificationInstance)
-            Dim currentNode As NotificationInstanceNode = _root
-        End Sub
+            ' Check list is not empty - if the list is empty then create a new list with the data.
+            If _root Is Nothing Then
+                newList(notificationData)   ' Create a new list using the data passed into the function as the LL is empty.
+                Exit Sub                    ' Return to prevent further processing causing a bug.
+            End If
 
+            Dim currentNode As NotificationInstanceNode = _root     ' Set pointer o the curentNode as the root of the LL.
+            Dim nextNode As NotificationInstanceNode = _root.nextNotificationInstance ' Pointer to the next node in the LL.
+
+            ' Loop over the whole LL to find the end of the LL.
+            ' Check if the next node to be checked is empty (if it is the end of LL has been found).
+            While nextNode IsNot Nothing
+                ' Process to repeat to shift pointers along one node.
+                currentNode = nextNode                          ' Sets the current node to move the process one node allong.
+                nextNode = nextNode.nextNotificationInstance    ' Sets the next node to the next node after the current node set to next node.
+            End While
+
+            ' Process for adding a new shift to end of LL.
+            ' Checks if an error has occured earlier in terms of notificationInstanceID generation(ensures no further error created with find etc).
+            If currentNode.notificationInstanceData.notificationInstanceID = notificationData.notificationInstanceID Then
+                MsgBox("Error: duplicate data (node not inserted) - Try action again.") ' Informs user of error and potential fix for error.
+            Else
+                currentNode.nextNotificationInstance = getNode(notificationData)    ' Sets the next notiInstance equal to the creation of a new node using the data passed into procedure.
+                nextNode = currentNode.nextNotificationInstance                     ' Sets the next node to the new notiInstance being created so pointers can be setup.
+                nextNode.lastNotificationInstance = currentNode                     ' Sets the lastshift pointer to the notification instance just before the new notiInstance being added to the LL.
+                ' Next shift pointer default to nothing as end of LL.
+            End If
+        End Sub
+        '
+        ' nextavailableID, add, user's notifications,  find, remove
+        '
+
+        '
+        ' Distinct Notification 
+        ' Get all the distinct notifications in the notification LL - used to find notifications that can be deleted.
+        Public Function distinctNotification()
+            Dim currentNode As NotificationInstanceNode = _root ' Set a pointer to the root of the tree
+            Dim returnNotificationList As New List(Of Integer)  ' Create a new list to store unique notificationIDs to be returned to calling function.
+
+            ' Check the current node is not nothing to loop over the tree
+            While currentNode IsNot Nothing
+                ' Check if the current notification in the notification instance is already in the list
+                If Not returnNotificationList.Contains(
+                    currentNode.notificationInstanceData.notificationID) Then
+
+                    'Add the notification id to the list if it is not already.
+                    returnNotificationList.Add(currentNode.notificationInstanceData.notificationID)
+                End If
+
+                ' Move onto the next node.
+                currentNode = currentNode.nextNotificationInstance
+            End While
+
+            ' Return the list of unique notification IDs.
+            Return returnNotificationList
+        End Function
     End Class
     '
     ' New Class Instance Creation.
     '
-    Public StaffHashTable As New StaffMembersHashTableDesign    ' Creates a new instance of the StaffMembersHashTableDesign class.
-    Public ShiftLL As New ShiftsLinkedListDesign                ' Creates a new instance of the ShiftsLinkedListDesign class.
-    Public NotificationTree As New NotificationDataTreeDesign   ' Creates a new usntace of the notification binary search tree design class.
+    Public StaffHashTable As New StaffMembersHashTableDesign                    ' Creates a new instance of the StaffMembersHashTableDesign class.
+    Public ShiftLL As New ShiftsLinkedListDesign                                ' Creates a new instance of the ShiftsLinkedListDesign class.
+    Public NotificationTree As New NotificationDataTreeDesign                   ' Creates a new usntace of the notification binary search tree design class.
+    Public NotificationInstanceLL As New NotificationInstanceLinkedListDesign   ' Creates a new instance of the notification instance linked list design class.
 
     ' Public variable to store the active user's username as it needs to be persistent throughout forms.
     Public activeUser As String
