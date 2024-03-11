@@ -1047,8 +1047,44 @@ Module DataStructures
         End Function
         '
         ' nextavailableID
-        '
+        ' Function that finds the next available ID in the LL to be used for a new node.
+        Public Function nextAvailableID() As Integer
+            ' If list is empty start ID allocation at 1
+            If _root Is Nothing Then
+                Return 1
+            End If
+            Dim currentNode As NotificationInstanceNode = _root    ' Set the currentNode pointer to the root of the LL.
+            Dim nextNode As NotificationInstanceNode = _root.nextNotificationInstance ' Pointer to the next node in the LL (ensures no error thrown from difference calculation)
+            Dim total As Integer                                ' Create a variable for the total ID (if LL is already ordered perfectly).
+            Dim difference As Integer                          ' Stores the difference betweeen 2 node IDs
 
+            ' If list is empty start ID allocation at 1
+            If _root Is Nothing Then
+                Return 1
+            Else
+                ' Sets the total to the ID of the first node as long as it is not nothing
+                total = _root.notificationInstanceData.notificationInstanceID
+            End If
+
+            ' Loop over the whole LL.
+            While nextNode IsNot Nothing
+                ' Checks if the next node ID is more then 2 away from the current node. If it is then there is a gap and the node can have the id of i pluss the last as the gap will be minimum 2.
+                difference = nextNode.notificationInstanceData.notificationInstanceID - currentNode.notificationInstanceData.notificationInstanceID
+                If difference >= 2 Then
+                    ' If there is a gap then return the currentID + 1 (ie the new ID will fill that gap)
+                    Return currentNode.notificationInstanceData.notificationInstanceID + 1
+                End If
+
+                ' Move onto the next node.
+                currentNode = currentNode.nextNotificationInstance
+                nextNode = nextNode.nextNotificationInstance
+            End While
+
+            ' If the end of the LL has been found the current highest ID is the currentNode
+            total = currentNode.notificationInstanceData.notificationInstanceID
+            ' If the end of the LL is reached and the function as not returned it means there are no gaps and the new node should be added at the end of the LL.
+            Return (total + 1)
+        End Function
         '
         ' remove
         '
