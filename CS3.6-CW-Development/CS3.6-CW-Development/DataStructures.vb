@@ -982,7 +982,62 @@ Module DataStructures
             End If
         End Sub
         '
-        ' nextavailableID, add, user's notifications,  find, remove
+        ' add node
+        '
+        Public Sub add(ByVal newNotiInstanceData As NotificationInstance)
+            ' If list is empty create a new one
+            If _root Is Nothing Then
+                newList(newNotiInstanceData)
+                Exit Sub
+            End If
+
+            Dim currentNode As NotificationInstanceNode = _root                         ' Set a pointer to the root of the tree
+            Dim nextNode As NotificationInstanceNode = _root.nextNotificationInstance   ' Create a pointer to the next node in the LL
+
+            ' Loop over the LL to find either the end of the LL or the next node has a higher ID then the current node.
+            While nextNode IsNot Nothing
+                ' If the new node has a higher ID then the current node and is lower then the next node then the new node should be added before the next node.
+                If newNotiInstanceData.notificationInstanceID < nextNode.notificationInstanceData.notificationInstanceID And
+                   newNotiInstanceData.notificationInstanceID > currentNode.notificationInstanceData.notificationInstanceID Then
+                    Exit While
+                End If
+
+                ' Move onto the next node
+                currentNode = nextNode
+                nextNode = nextNode.nextNotificationInstance
+            End While
+
+            ' Process for adding a new shift to LL
+            ' Checks if an error has occured earlier in terms of notificationInstanceID generation(ensures no further error created with find etc).
+            If currentNode.notificationInstanceData.notificationInstanceID = newNotiInstanceData.notificationInstanceID Then
+                MsgBox("Error: duplicate data (node not inserted) - Try action again.") ' Informs user of error and potential fix for error.
+            ElseIf nextNode Is Nothing Then
+                ' If the next node is nothing then the new node should be added to the end of the LL.
+                Dim newNode As NotificationInstanceNode = getNode(newNotiInstanceData)  ' Create a new node using the data passed into the function.
+                newNode.lastNotificationInstance = currentNode                          ' Set the last node of the new node to the current node in the LL.
+                currentNode.nextNotificationInstance = newNode                          ' Set the next node of the current node to the new node in the LL.
+            Else
+                Dim newNode As NotificationInstanceNode = getNode(newNotiInstanceData)  ' Create a new node using the data passed into the function.
+                newNode.nextNotificationInstance = nextNode                             ' Set the next node of the new node to the next node in the LL.
+                newNode.lastNotificationInstance = currentNode                          ' Set the last node of the new node to the current node in the LL.
+                currentNode.nextNotificationInstance = newNode                          ' Set the next node of the current node to the new node in the LL.
+                nextNode.lastNotificationInstance = newNode                             ' Set the last node of the next node to the new node in the LL.
+            End If
+        End Sub
+        '
+        ' find node
+        '
+
+        '
+        ' nextavailableID
+        '
+
+        '
+        ' remove
+        '
+
+        '
+        ' user's notifications
         '
 
         '
