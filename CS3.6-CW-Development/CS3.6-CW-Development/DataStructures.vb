@@ -983,7 +983,7 @@ Module DataStructures
         End Sub
         '
         ' add node
-        '
+        ' Procedure that adds a new node to the LL in the correct position.
         Public Sub add(ByVal newNotiInstanceData As NotificationInstance)
             ' If list is empty create a new one
             If _root Is Nothing Then
@@ -1026,8 +1026,25 @@ Module DataStructures
         End Sub
         '
         ' find node
-        '
+        ' Function which finds a node given a notificationInstanceID and returns the notification instance data if found (else returns nothing)
+        Public Function find(ByVal findData As Integer) As NotificationInstance
+            Dim currentNode As NotificationInstanceNode = _root    ' Sets the currentNode as the root of the LL.
 
+            ' Looping over the LL to try and find the notificationInstance.
+            While currentNode IsNot Nothing
+                ' Looks at the current node and compares the notificationinstanceID to the ID of the notificationInstance being searched for.
+                If currentNode.notificationInstanceData.notificationInstanceID = findData Then
+                    ' Returns the notification instance data of the notification instance  being looked for if the IDs match.
+                    Return currentNode.notificationInstanceData
+                End If
+
+                currentNode = currentNode.nextNotificationInstance     ' Sets the current node to the next node in the LL to prevent infinite loop and ensure whole LL is checked.
+            End While
+
+            ' Either LL is empty or the node is not in the LL.
+            ' Let calling function deal with error message as calling function may expect Nothing meaning no error has been created.
+            Return Nothing
+        End Function
         '
         ' nextavailableID
         '
