@@ -217,13 +217,67 @@ Module FileHandler
     ' Reading from notification instance file
     ' This function reads from the notification instance file into the linked list data structure. Returns True if process was successful.
     Public Function notificationInstanceRead() As Boolean
-        Return True
+        Try
+            ' Open file for reading
+            FileOpen(1, notificationInstanceFile, OpenMode.Input)
+
+            ' Create a new notification instance to store a record from the file
+            Dim tmpNotificationInstance As NotificationInstance
+
+            ' Try to read from file and add to linked list
+            ' Loop over the file and read in all the data for one record and add to the linked list
+            While Not EOF(1)
+                ' Read in the data for one record from the file
+                Input(1, tmpNotificationInstance.notificationInstanceID)
+                Input(1, tmpNotificationInstance.notificationID)
+                Input(1, tmpNotificationInstance.recipient)
+
+                ' Add the notification instance to the linked list
+                DataStructures.NotificationInstanceLL.append(tmpNotificationInstance)
+            End While
+
+            ' Close the file and return true if process was successful.
+            FileClose(1)
+            Return True
+        Catch ex As Exception
+            ' If an error occurs close the file and return false
+            FileClose(1)
+            MsgBox("Error Accessing Notification Instance Data, try restarting program. " & ex.ToString())  ' Display error message to user
+            Return False
+        End Try
     End Function
     '
     ' Writing to notification instance file
     ' This function writes all the data from the linked list to the notification instance persistent file.
     Public Function notificationInstanceWrite() As Boolean
-        Return True
+        Try
+            ' Open file for writing
+            FileOpen(1, notificationInstanceFile, OpenMode.Output)
+
+            ' Create a pointer to the root node used to traverse the linked list.
+            Dim currentNode As NotificationInstanceNode = DataStructures.NotificationInstanceLL._root
+
+            ' Loop over the linked list and write each node to the file.
+            While currentNode IsNot Nothing
+                ' Write the record to the file.
+                WriteLine(1,
+                          currentNode.notificationInstanceData.notificationInstanceID,
+                          currentNode.notificationInstanceData.notificationID,
+                          currentNode.notificationInstanceData.recipient)
+
+                ' Move to the next node in the linked list.
+                currentNode = currentNode.nextNotificationInstance
+            End While
+
+            ' Close the file and return true if process was successful.
+            FileClose(1)
+            Return True
+        Catch ex As Exception
+            ' If an error occurs close the file and return false.
+            FileClose(1)
+            MsgBox("Error Writing to the shift file. Please Retry process then restart system.")
+            Return False
+        End Try
     End Function
     '
     ' Read All Data
