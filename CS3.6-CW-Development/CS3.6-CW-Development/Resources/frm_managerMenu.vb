@@ -130,4 +130,9 @@
         ' Write Notification Tree to file to save
         If Not FileHandler.notificationWrite() Then MsgBox("Error writing to notification file, data not saved, please restart system.") : Exit Sub
     End Sub
+
+    Private Sub btn_notifications_redir_Click(sender As Object, e As EventArgs) Handles btn_notifications_redir.Click
+        frm_notifications.Show()
+        Me.Hide()
+    End Sub
 End Class

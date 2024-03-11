@@ -29,6 +29,7 @@ Partial Class frm_notifications
         Me.grp_notificationPreview = New System.Windows.Forms.GroupBox()
         Me.lst_notificationPreview = New System.Windows.Forms.ListBox()
         Me.grp_selectedNotification = New System.Windows.Forms.GroupBox()
+        Me.txt_notificationContent_disp = New System.Windows.Forms.TextBox()
         Me.lbl_sentDate_dynamic = New System.Windows.Forms.Label()
         Me.lbl_sender_dynamic = New System.Windows.Forms.Label()
         Me.lbl_notificationID_dynamic = New System.Windows.Forms.Label()
@@ -36,7 +37,6 @@ Partial Class frm_notifications
         Me.lbl_sender_static = New System.Windows.Forms.Label()
         Me.lbl_notificationID_static = New System.Windows.Forms.Label()
         Me.btn_deleteNotification_process = New System.Windows.Forms.Button()
-        Me.txt_notificationContent_disp = New System.Windows.Forms.TextBox()
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grp_notificationPreview.SuspendLayout()
         Me.grp_selectedNotification.SuspendLayout()
@@ -107,6 +107,15 @@ Partial Class frm_notifications
         Me.grp_selectedNotification.TabIndex = 29
         Me.grp_selectedNotification.TabStop = False
         Me.grp_selectedNotification.Text = "Selected Notification:"
+        '
+        'txt_notificationContent_disp
+        '
+        Me.txt_notificationContent_disp.Enabled = False
+        Me.txt_notificationContent_disp.Location = New System.Drawing.Point(10, 121)
+        Me.txt_notificationContent_disp.Multiline = True
+        Me.txt_notificationContent_disp.Name = "txt_notificationContent_disp"
+        Me.txt_notificationContent_disp.Size = New System.Drawing.Size(351, 189)
+        Me.txt_notificationContent_disp.TabIndex = 10
         '
         'lbl_sentDate_dynamic
         '
@@ -180,15 +189,6 @@ Partial Class frm_notifications
         Me.btn_deleteNotification_process.TabIndex = 30
         Me.btn_deleteNotification_process.Text = "Delete Notification"
         Me.btn_deleteNotification_process.UseVisualStyleBackColor = True
-        '
-        'txt_notificationContent_disp
-        '
-        Me.txt_notificationContent_disp.Enabled = False
-        Me.txt_notificationContent_disp.Location = New System.Drawing.Point(10, 121)
-        Me.txt_notificationContent_disp.Multiline = True
-        Me.txt_notificationContent_disp.Name = "txt_notificationContent_disp"
-        Me.txt_notificationContent_disp.Size = New System.Drawing.Size(351, 189)
-        Me.txt_notificationContent_disp.TabIndex = 10
         '
         'frm_notifications
         '
