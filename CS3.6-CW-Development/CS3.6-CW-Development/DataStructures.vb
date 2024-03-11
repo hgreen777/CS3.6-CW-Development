@@ -293,6 +293,13 @@ Module DataStructures
             uniqueID += 1  ' Increments the unique ID by 1 to ensure the next unique ID is unique.
             Return uniqueID  ' Returns the unique ID to the calling function.
         End Function
+        '
+        ' clearHashTable
+        ' This procedure is used to clear the hash table so a new one can be created (for reading file so data isnt read into hash table twice)/
+        Public Sub clearHashTable()
+            Array.Clear(_hashTable, 0, _hashTable.Length)
+        End Sub
+
     End Class
 
     '
@@ -1126,7 +1133,7 @@ Module DataStructures
             While currentNode IsNot Nothing
                 ' Checks if the notificationInstance is for the active user
                 If currentNode.notificationInstanceData.recipient = activeUser Then
-                    returnArr.Add(currentNode.notificationInstanceData.notificationInstanceID)    ' If the notificationInstance is for the active user then add the notificationInstanceID to the return list.
+                    returnArr.Add(currentNode.notificationInstanceData.notificationID)    ' If the notificationInstance is for the active user then add the notificationInstanceID to the return list.
                 End If
 
                 ' Move onto the next node.

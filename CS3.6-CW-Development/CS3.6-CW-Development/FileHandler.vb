@@ -22,6 +22,9 @@ Module FileHandler
 
         ' Try to read from file and add to hash table
         Try
+            ' Clear the old hash table
+            DataStructures.StaffHashTable.clearHashTable()
+
             ' While not end of file read in all the data for one record and add to hash table
             While Not EOF(1)
                 Input(1, tmpStaff.staffID)                                      ' Read staffID from file.
@@ -129,7 +132,18 @@ Module FileHandler
             ' Create a new shift to store a record from the file
             Dim tmpShift As Shift
 
-            ' Append will create a new list
+            ' Create a new list with the first record
+            If Not EOF(1) Then
+                ' Read in the data for one record from the file
+                Input(1, tmpShift.shiftID)
+                Input(1, tmpShift.startTime) : Input(1, tmpShift.endTime)
+                Input(1, tmpShift.isTaken) : Input(1, tmpShift.staffUserName)
+
+                ' Create a new linked list with the first record
+                DataStructures.ShiftLL.newList(tmpShift)
+            End If
+
+
             ' Try to read from file and add to linked list
             While Not EOF(1)
                 ' Read in the data for one record from the file
@@ -167,6 +181,16 @@ Module FileHandler
 
         ' Try to read from file and add to binary tree
         Try
+            ' Create a new binary tree with the first record
+            If Not EOF(1) Then
+                ' Read in the data for one record from the file
+                Input(1, tmpNotification.notificationID) : Input(1, tmpNotification.content) ' Read notificationID and content from file.
+                Input(1, tmpNotification.sender) : Input(1, tmpNotification.sentDate)       ' Read sender and sentDate from file.
+
+                ' Create a new binary tree with the first record
+                DataStructures.NotificationTree.newTree(tmpNotification)
+            End If
+
             ' While not end of file read in all the data for one record and add to binary tree
             While Not EOF(1)
                 Input(1, tmpNotification.notificationID) : Input(1, tmpNotification.content) ' Read notificationID and content from file.
@@ -233,6 +257,17 @@ Module FileHandler
 
             ' Create a new notification instance to store a record from the file
             Dim tmpNotificationInstance As NotificationInstance
+
+            ' Create a new list with the first record
+            If Not EOF(1) Then
+                ' Read in the data for one record from the file
+                Input(1, tmpNotificationInstance.notificationInstanceID)
+                Input(1, tmpNotificationInstance.notificationID)
+                Input(1, tmpNotificationInstance.recipient)
+
+                ' Create a new linked list with the first record
+                DataStructures.NotificationInstanceLL.newList(tmpNotificationInstance)
+            End If
 
             ' Try to read from file and add to linked list
             ' Loop over the file and read in all the data for one record and add to the linked list

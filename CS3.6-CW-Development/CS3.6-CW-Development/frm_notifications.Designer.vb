@@ -27,7 +27,11 @@ Partial Class frm_notifications
         Me.img_blc_logo = New System.Windows.Forms.PictureBox()
         Me.lbl_notifications_TITLE = New System.Windows.Forms.Label()
         Me.grp_notificationPreview = New System.Windows.Forms.GroupBox()
-        Me.lst_notificationPreview = New System.Windows.Forms.ListBox()
+        Me.lsv_notificationPreview = New System.Windows.Forms.ListView()
+        Me.notiID = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.contentPreview = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.sender = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.sentDate = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grp_selectedNotification = New System.Windows.Forms.GroupBox()
         Me.txt_notificationContent_disp = New System.Windows.Forms.TextBox()
         Me.lbl_sentDate_dynamic = New System.Windows.Forms.Label()
@@ -37,6 +41,7 @@ Partial Class frm_notifications
         Me.lbl_sender_static = New System.Windows.Forms.Label()
         Me.lbl_notificationID_static = New System.Windows.Forms.Label()
         Me.btn_deleteNotification_process = New System.Windows.Forms.Button()
+        Me.notiInstanceID = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grp_notificationPreview.SuspendLayout()
         Me.grp_selectedNotification.SuspendLayout()
@@ -76,7 +81,7 @@ Partial Class frm_notifications
         '
         'grp_notificationPreview
         '
-        Me.grp_notificationPreview.Controls.Add(Me.lst_notificationPreview)
+        Me.grp_notificationPreview.Controls.Add(Me.lsv_notificationPreview)
         Me.grp_notificationPreview.Location = New System.Drawing.Point(12, 46)
         Me.grp_notificationPreview.Name = "grp_notificationPreview"
         Me.grp_notificationPreview.Size = New System.Drawing.Size(375, 392)
@@ -84,13 +89,37 @@ Partial Class frm_notifications
         Me.grp_notificationPreview.TabStop = False
         Me.grp_notificationPreview.Text = "Notification Preview:"
         '
-        'lst_notificationPreview
+        'lsv_notificationPreview
         '
-        Me.lst_notificationPreview.FormattingEnabled = True
-        Me.lst_notificationPreview.Location = New System.Drawing.Point(6, 19)
-        Me.lst_notificationPreview.Name = "lst_notificationPreview"
-        Me.lst_notificationPreview.Size = New System.Drawing.Size(363, 368)
-        Me.lst_notificationPreview.TabIndex = 0
+        Me.lsv_notificationPreview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.notiID, Me.contentPreview, Me.sender, Me.sentDate, Me.notiInstanceID})
+        Me.lsv_notificationPreview.FullRowSelect = True
+        Me.lsv_notificationPreview.HideSelection = False
+        Me.lsv_notificationPreview.Location = New System.Drawing.Point(6, 15)
+        Me.lsv_notificationPreview.MultiSelect = False
+        Me.lsv_notificationPreview.Name = "lsv_notificationPreview"
+        Me.lsv_notificationPreview.Size = New System.Drawing.Size(363, 371)
+        Me.lsv_notificationPreview.TabIndex = 1
+        Me.lsv_notificationPreview.UseCompatibleStateImageBehavior = False
+        Me.lsv_notificationPreview.View = System.Windows.Forms.View.Details
+        '
+        'notiID
+        '
+        Me.notiID.Text = "Notification ID"
+        Me.notiID.Width = 83
+        '
+        'contentPreview
+        '
+        Me.contentPreview.Text = "Content Preview"
+        Me.contentPreview.Width = 112
+        '
+        'sender
+        '
+        Me.sender.Text = "From"
+        '
+        'sentDate
+        '
+        Me.sentDate.Text = "Sent On"
+        Me.sentDate.Width = 84
         '
         'grp_selectedNotification
         '
@@ -110,10 +139,11 @@ Partial Class frm_notifications
         '
         'txt_notificationContent_disp
         '
-        Me.txt_notificationContent_disp.Enabled = False
+        Me.txt_notificationContent_disp.BackColor = System.Drawing.Color.White
         Me.txt_notificationContent_disp.Location = New System.Drawing.Point(10, 121)
         Me.txt_notificationContent_disp.Multiline = True
         Me.txt_notificationContent_disp.Name = "txt_notificationContent_disp"
+        Me.txt_notificationContent_disp.ReadOnly = True
         Me.txt_notificationContent_disp.Size = New System.Drawing.Size(351, 189)
         Me.txt_notificationContent_disp.TabIndex = 10
         '
@@ -190,6 +220,10 @@ Partial Class frm_notifications
         Me.btn_deleteNotification_process.Text = "Delete Notification"
         Me.btn_deleteNotification_process.UseVisualStyleBackColor = True
         '
+        'notiInstanceID
+        '
+        Me.notiInstanceID.Text = "NotificationID"
+        '
         'frm_notifications
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -217,7 +251,6 @@ Partial Class frm_notifications
     Friend WithEvents img_blc_logo As PictureBox
     Friend WithEvents lbl_notifications_TITLE As Label
     Friend WithEvents grp_notificationPreview As GroupBox
-    Friend WithEvents lst_notificationPreview As ListBox
     Friend WithEvents grp_selectedNotification As GroupBox
     Friend WithEvents lbl_sentDate_dynamic As Label
     Friend WithEvents lbl_sender_dynamic As Label
@@ -227,4 +260,10 @@ Partial Class frm_notifications
     Friend WithEvents lbl_notificationID_static As Label
     Friend WithEvents txt_notificationContent_disp As TextBox
     Friend WithEvents btn_deleteNotification_process As Button
+    Friend WithEvents lsv_notificationPreview As ListView
+    Friend WithEvents notiID As ColumnHeader
+    Friend WithEvents contentPreview As ColumnHeader
+    Friend WithEvents sender As ColumnHeader
+    Friend WithEvents sentDate As ColumnHeader
+    Friend WithEvents notiInstanceID As ColumnHeader
 End Class

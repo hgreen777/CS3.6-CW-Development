@@ -135,4 +135,11 @@
         frm_notifications.Show()
         Me.Hide()
     End Sub
+
+    Private Sub btn_logout_redir_Click(sender As Object, e As EventArgs) Handles btn_logout_redir.Click
+        activeUser = Nothing
+        frm_login_screen.Show()
+        Me.Hide()
+
+    End Sub
 End Class

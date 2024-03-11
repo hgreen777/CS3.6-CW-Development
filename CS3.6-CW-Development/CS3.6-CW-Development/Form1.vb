@@ -9,9 +9,7 @@
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         ' read all the data from files for testing
-        FileHandler.staffRead()
-        FileHandler.shiftRead()
-        FileHandler.notificationRead()
+        FileHandler.readAllData()
 
         activeUser = "HarrisonGreen0"
 
@@ -58,6 +56,7 @@
         tmpShift.startTime = "27/07/2006 00:01"
         tmpShift.endTime = "27/07/2006 23:59"
         tmpShift.isTaken = False
+        tmpShift.staffUserName = "HarrisonGreen0"
         DataStructures.ShiftLL.newList(tmpShift)
 
         tmpShift.shiftID = 2
