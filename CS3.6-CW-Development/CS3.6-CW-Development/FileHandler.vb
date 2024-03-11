@@ -7,6 +7,7 @@ Module FileHandler
     Const staffFile As String = "staff.txt"     ' FilePath for staff File storing all staff data.
     Const shiftFile As String = "shifts.txt"    ' FilePath for shift file storing all shift data.
     Const notificationFile As String = "notification.txt" ' FilePath for notification file storing all shift data.
+    Const notificationInstanceFile As String = "notificationInstance.txt" ' FilePath for notification file storing all shift data.
     '
     ' Read/Write For Staff File (Hash Table <-> List of records in file)
     '
@@ -140,29 +141,110 @@ Module FileHandler
 
         Return True
     End Function
-
+    '
+    ' Read/Write For Notification File (Binary Tree <-> List of records in file)
+    '
+    '
+    ' Reading from notification file
+    ' This function reads from the notification file into the binary tree data structure. Returns True if process was successful.
     Public Function notificationRead() As Boolean
+        ' Linearly read all records from file and create a new node out of them then add node to Hash Table.
+        ' Open file for reading.
+        FileOpen(1, notificationFile, OpenMode.Input)
+
+        ' Create a new notification to store the data from the file
+        Dim tmpNotification As Notification
+
+        ' Try to read from file and add to binary tree
+        Try
+            ' While not end of file read in all the data for one record and add to binary tree
+            While Not EOF(1)
+                Input(1, tmpNotification.notificationID) : Input(1, tmpNotification.content) ' Read notificationID and content from file.
+                Input(1, tmpNotification.sender) : Input(1, tmpNotification.sentDate)       ' Read sender and sentDate from file.
+
+                ' Add the notification to the binary tree
+                DataStructures.NotificationTree.add(tmpNotification)
+            End While
+            FileClose(1)    ' Close the file
+            Return True     ' Return True if process was successful
+        Catch ex As Exception
+            ' If an error occurs close the file and return false
+            FileClose(1)
+            MsgBox("Error Accessing Notification Data, try restarting program. " & ex.ToString())  ' Display error message to user
+            Return False
+        End Try
+    End Function
+    '
+    ' Writing to notification file
+    ' This function writes all the data from the binary tree to the notification persistent file.
+    Public Function notificationWrite() As Boolean
+        Try
+            ' Open file for writing
+            FileOpen(1, notificationFile, OpenMode.Output)
+
+            ' Get a list of all the notifications in the tree.
+            Dim preOrderedIDs As List(Of Integer) = DataStructures.NotificationTree.preOrderTraversal(DataStructures.NotificationTree._root, preOrderedIDs)
+            ' Create a new notification to store the data from the file
+            Dim tmpNotification As Notification     ' Create a new notification to store the data of a notification to be written to a file.
+
+            ' Loop over the list of all the notifications.
+            For Each id In preOrderedIDs
+                ' Find the notification in the tree.
+                tmpNotification = DataStructures.NotificationTree.find(DataStructures.NotificationTree._root, id)
+
+                ' Check node is not nothing.
+                If tmpNotification.notificationID = Nothing Then Return False
+
+                ' Write node to file.
+                WriteLine(1, tmpNotification.notificationID,
+                          tmpNotification.content,
+                          tmpNotification.sender, tmpNotification.sentDate)
+            Next
+            ' Close the file and return true if process was successful.
+            FileClose(1)
+            Return True
+        Catch ex As Exception
+            ' If an error occurs close the file and return false.
+            FileClose(1)
+            MsgBox("Error Writing to the notification file. Please Retry process then restart system.") ' Display error message to user.
+            Return False
+        End Try
+    End Function
+    '
+    ' Read/Write For Notification Instance File (Linked List <-> List of records in file)
+    '
+    '
+    ' Reading from notification instance file
+    ' This function reads from the notification instance file into the linked list data structure. Returns True if process was successful.
+    Public Function notificationInstanceRead() As Boolean
         Return True
     End Function
-
-    Public Function notificationWrite() As Boolean
-        ' Preorder the tree into a list
-        Dim preOrderedIDs As List(Of Integer) = DataStructures.NotificationTree.preOrderTraversal(DataStructures.NotificationTree._root, preOrderedIDs)
-
-        FileOpen(1, notificationFile, OpenMode.Output)
-        For Each id In preOrderedIDs
-            Dim tmpNotification As Notification = DataStructures.NotificationTree.find(DataStructures.NotificationTree._root, id)
-
-            ' Check node is not nothing
-            If tmpNotification.notificationID = Nothing Then Return False
-
-            ' Write node to file
-            WriteLine(1, tmpNotification.notificationID,
-                      tmpNotification.content,
-                      tmpNotification.sender, tmpNotification.sentDate)
-        Next
-        FileClose(1)
-
+    '
+    ' Writing to notification instance file
+    ' This function writes all the data from the linked list to the notification instance persistent file.
+    Public Function notificationInstanceWrite() As Boolean
+        Return True
+    End Function
+    '
+    ' Read All Data
+    ' This function reads all the data from the persistent files into the data structures. Returns True if process was successful.
+    Public Function readAllData() As Boolean
+        ' Read all data from files into data structures
+        If Not staffRead() Then Return False
+        If Not shiftRead() Then Return False
+        If Not notificationRead() Then Return False
+        If Not notificationInstanceRead() Then Return False
+        Return True
+    End Function
+    '
+    ' Write All Data
+    ' This function writes all the data from the data structures to the persistent files. Returns True if process was successful.
+    Public Function writeAllData() As Boolean
+        ' Write all data from data structures to files
+        If Not staffWrite() Then Return False
+        If Not shiftWrite() Then Return False
+        If Not notificationWrite() Then Return False
+        If Not notificationInstanceWrite() Then Return False
         Return True
     End Function
 End Module
