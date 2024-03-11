@@ -837,12 +837,16 @@ Module DataStructures
 
             ' Find the node to be deleted and assign its parent's pointers
             While current IsNot Nothing
+                ' If the node to be deleted is found then exit the loop
                 If inpNotiID <> current.notificationData.notificationID Then
+                    ' Set the parent pointer to the current node as the node to be deleted is not found yet.
                     parent = current
 
+                    ' If the node to be deleted is less then the current node then search the left subtree.
                     If inpNotiID < current.notificationData.notificationID Then
                         current = current.leftPointer
                     Else
+                        ' If the node to be deleted is more then the current node then search the right subtree.
                         current = current.rightPointer
                     End If
                 End If
@@ -860,65 +864,68 @@ Module DataStructures
             If current.leftPointer Is Nothing And current.rightPointer Is Nothing Then
                 ' If it is the root and tree has no children ie tree has one node and will not be empty
                 If parent Is Nothing Then
-                    _root = Nothing
+                    _root = Nothing                             ' Set the root to nothing.
 
                     ' If the node is a left child
                 ElseIf parent.leftPointer Is current Then
-                    parent.leftPointer = Nothing
+                    parent.leftPointer = Nothing                ' Set the left pointer of the parent to nothing.
 
                     ' If the node is a right child
                 Else
-                    parent.rightPointer = Nothing
+                    parent.rightPointer = Nothing               ' Set the right pointer of the parent to nothing.
                 End If
 
                 ' Case 2a : Node has left child.
             ElseIf current.leftPointer IsNot Nothing And current.rightPointer Is Nothing Then
                 ' if it is the root and tree has left child.
                 If parent Is Nothing Then
-                    _root = current.leftPointer
+                    _root = current.leftPointer                 ' Set the root to the left pointer of the current node.
 
                     ' if the node is a left child
                 ElseIf parent.leftPointer Is current Then
-                    parent.leftPointer = current.leftPointer
+                    parent.leftPointer = current.leftPointer    ' Set the left pointer of the parent to the left pointer of the current node.
 
                     ' If the node is a right child.
                 Else
-                    parent.rightPointer = current.leftPointer
+                    parent.rightPointer = current.leftPointer   ' Set the right pointer of the parent to the left pointer of the current node.
                 End If
 
                 ' Case 2b : Node has a right child
             ElseIf current.leftPointer Is Nothing And current.rightPointer IsNot Nothing Then
                 ' if it is the root and tree has right child.
                 If parent Is Nothing Then
-                    _root = current.rightPointer
+                    _root = current.rightPointer                ' Set the root to the right pointer of the current node.
 
                     ' If the node is a left child.
                 ElseIf parent.leftPointer Is current Then
-                    parent.leftPointer = current.rightPointer
+                    parent.leftPointer = current.rightPointer   ' Set the left pointer of the parent to the right pointer of the current node.
 
                     ' If the node is a right child.
                 Else
-                    parent.rightPointer = current.rightPointer
+                    parent.rightPointer = current.rightPointer  ' Set the right pointer of the parent to the right pointer of the current node.
                 End If
 
                 ' Case 3 : Node has Children
             Else
                 ' Need to find the node to the right to replace the current node and then clean up by removing duplicate node (and subsequently moving all other nodes below it).
+                ' ie shuffly the nodes around the point of the node being removed.
                 Dim replaceNode As NotificationNode = findMin(current.rightPointer)
                 current.notificationData = replaceNode.notificationData
-                remove(current.rightPointer, replaceNode.notificationData.notificationID)
+                remove(current.rightPointer, replaceNode.notificationData.notificationID)   ' Recurses function to remove the duplicate node.
             End If
 
-            Return True
+            Return True ' Return true to calling function to inform that the node has been deleted.
         End Function
         '
         ' Find Min
         ' Driver function for removing a node that finds the minimum node in a tree given the root node or another node.
         Function findMin(ByVal node As NotificationNode) As NotificationNode
+            ' Loop over the left subtree to find the minimum node.
             While node.leftPointer IsNot Nothing
-                node = node.leftPointer
+                node = node.leftPointer ' Set the node to the left node to find the minimum node.
             End While
 
+            ' Return the minimum node.
             Return node
         End Function
     End Class
