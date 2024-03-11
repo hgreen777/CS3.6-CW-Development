@@ -1,6 +1,4 @@
 ﻿Imports DataStructures
-
-
 Module FileHandler
     ' This module is responsible for handling all of the reading and writing between the datastructures and the persistent data files.
     ' Declaring all filenames as constant strings to reduce bugs in code
@@ -84,62 +82,74 @@ Module FileHandler
         End Try
 
     End Function
-
+    '
+    ' Read/Write For Shift File (Linked List <-> List of records in file)
+    '
+    '
+    ' Writing to shift file
+    ' This function writes all the data from the linked list to the shift persistent file.
     Public Function shiftWrite()
         Try
+            ' Open file for writing
             FileOpen(1, shiftFile, OpenMode.Output)
 
+            ' Create a pointer to the root node used to traverse the linked list.
             Dim currentNode As ShiftNode = DataStructures.ShiftLL._root
 
+            ' Loop over the linked list and write each node to the file.
             While currentNode IsNot Nothing
+                ' Write the record to the file.
                 WriteLine(1,
                           currentNode.shiftData.shiftID,
                           currentNode.shiftData.startTime, currentNode.shiftData.endTime,
                           currentNode.shiftData.isTaken, currentNode.shiftData.staffUserName)
 
+                ' Move to the next node in the linked list.
                 currentNode = currentNode.nextShift
             End While
+
+            ' Close the file and return true if process was successful.
+            FileClose(1)
+            Return True
         Catch ex As Exception
+            'If an error occurs close the file and return false.
             FileClose(1)
             MsgBox("Error Writing to the shift file. Please Retry process then restart system.")
             Return False
         End Try
-
-        FileClose(1)
-        Return True
     End Function
-
+    '
+    ' Reading from shift file
+    ' This function reads from the shift file into the linked list data structure. Returns True if process was successful.
     Public Function shiftRead()
         Try
+            ' Open file for reading
             FileOpen(1, shiftFile, OpenMode.Input)
 
+            ' Create a new shift to store a record from the file
             Dim tmpShift As Shift
 
-            If Not EOF(1) Then
-                Input(1, tmpShift.shiftID)
-                Input(1, tmpShift.startTime) : Input(1, tmpShift.endTime)
-                Input(1, tmpShift.isTaken) : Input(1, tmpShift.staffUserName)
-
-                DataStructures.ShiftLL.newList(tmpShift)
-            End If
-
+            ' Append will create a new list
+            ' Try to read from file and add to linked list
             While Not EOF(1)
+                ' Read in the data for one record from the file
                 Input(1, tmpShift.shiftID)
                 Input(1, tmpShift.startTime) : Input(1, tmpShift.endTime)
                 Input(1, tmpShift.isTaken) : Input(1, tmpShift.staffUserName)
 
+                ' Add the shift to the linked list
                 DataStructures.ShiftLL.append(tmpShift)
             End While
 
+            ' Close the file and return true if process was successful.
             FileClose(1)
-
+            Return True
         Catch ex As Exception
+            ' If an error occurs close the file and return false
             FileClose(1)
             MsgBox(ex.ToString())
             MsgBox("Error Reading Shift File: Please restart Program.")
         End Try
-
-        Return True
     End Function
     '
     ' Read/Write For Notification File (Binary Tree <-> List of records in file)

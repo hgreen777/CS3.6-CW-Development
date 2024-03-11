@@ -323,7 +323,7 @@ Module DataStructures
             ' Check list is not empty - If list is empty create a new list with the data.
             If _root Is Nothing Then
                 newList(newShiftData)               ' Create a new list using the data as the LL is empty.
-                Return                              ' Return to prevent any further processing which could cause a bug.
+                Exit Sub                            ' Return to prevent any further processing which could cause a bug.
             End If
 
             Dim currentNode As ShiftNode = _root            ' Sets the currentNode as the root of the LL.
@@ -355,7 +355,7 @@ Module DataStructures
             ' Check list is not empty - If list is empty create a new list with the data.
             If _root Is Nothing Then
                 newList(newShiftData)               ' Create a new list using the data as the LL is empty.
-                Return                              ' Return to prevent any further processing which could cause a bug.
+                Exit Sub                            ' Return to prevent any further processing which could cause a bug.
             End If
 
             Dim currentNode As ShiftNode = _root            ' Sets the currentNode as the root of the LL.
