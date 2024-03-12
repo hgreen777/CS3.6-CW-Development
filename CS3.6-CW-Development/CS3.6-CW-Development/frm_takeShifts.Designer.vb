@@ -83,7 +83,7 @@ Partial Class frm_takeShifts
         Me.lbl_takeShifts_TITLE.Location = New System.Drawing.Point(0, 0)
         Me.lbl_takeShifts_TITLE.Margin = New System.Windows.Forms.Padding(3, 5, 3, 0)
         Me.lbl_takeShifts_TITLE.Name = "lbl_takeShifts_TITLE"
-        Me.lbl_takeShifts_TITLE.Size = New System.Drawing.Size(784, 50)
+        Me.lbl_takeShifts_TITLE.Size = New System.Drawing.Size(884, 50)
         Me.lbl_takeShifts_TITLE.TabIndex = 14
         Me.lbl_takeShifts_TITLE.Text = "Take Shifts"
         Me.lbl_takeShifts_TITLE.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -93,7 +93,7 @@ Partial Class frm_takeShifts
         Me.grp_suggestedShifts.Controls.Add(Me.lst_suggestedShifts)
         Me.grp_suggestedShifts.Location = New System.Drawing.Point(12, 53)
         Me.grp_suggestedShifts.Name = "grp_suggestedShifts"
-        Me.grp_suggestedShifts.Size = New System.Drawing.Size(375, 152)
+        Me.grp_suggestedShifts.Size = New System.Drawing.Size(479, 152)
         Me.grp_suggestedShifts.TabIndex = 16
         Me.grp_suggestedShifts.TabStop = False
         Me.grp_suggestedShifts.Text = "Suggested Shifts:"
@@ -105,7 +105,7 @@ Partial Class frm_takeShifts
         Me.lst_suggestedShifts.HideSelection = False
         Me.lst_suggestedShifts.Location = New System.Drawing.Point(6, 19)
         Me.lst_suggestedShifts.Name = "lst_suggestedShifts"
-        Me.lst_suggestedShifts.Size = New System.Drawing.Size(363, 127)
+        Me.lst_suggestedShifts.Size = New System.Drawing.Size(467, 127)
         Me.lst_suggestedShifts.TabIndex = 20
         Me.lst_suggestedShifts.UseCompatibleStateImageBehavior = False
         Me.lst_suggestedShifts.View = System.Windows.Forms.View.Details
@@ -118,19 +118,19 @@ Partial Class frm_takeShifts
         'startTime
         '
         Me.startTime.Text = "Start Time"
-        Me.startTime.Width = 130
+        Me.startTime.Width = 175
         '
         'endTime
         '
         Me.endTime.Text = "End Time"
-        Me.endTime.Width = 130
+        Me.endTime.Width = 175
         '
         'grp_allAvailableShifts
         '
         Me.grp_allAvailableShifts.Controls.Add(Me.lst_availableShifts)
         Me.grp_allAvailableShifts.Location = New System.Drawing.Point(12, 211)
         Me.grp_allAvailableShifts.Name = "grp_allAvailableShifts"
-        Me.grp_allAvailableShifts.Size = New System.Drawing.Size(375, 250)
+        Me.grp_allAvailableShifts.Size = New System.Drawing.Size(479, 250)
         Me.grp_allAvailableShifts.TabIndex = 17
         Me.grp_allAvailableShifts.TabStop = False
         Me.grp_allAvailableShifts.Text = "All Available Shifts:"
@@ -142,7 +142,7 @@ Partial Class frm_takeShifts
         Me.lst_availableShifts.HideSelection = False
         Me.lst_availableShifts.Location = New System.Drawing.Point(6, 19)
         Me.lst_availableShifts.Name = "lst_availableShifts"
-        Me.lst_availableShifts.Size = New System.Drawing.Size(363, 225)
+        Me.lst_availableShifts.Size = New System.Drawing.Size(467, 225)
         Me.lst_availableShifts.TabIndex = 21
         Me.lst_availableShifts.UseCompatibleStateImageBehavior = False
         Me.lst_availableShifts.View = System.Windows.Forms.View.Details
@@ -155,12 +155,12 @@ Partial Class frm_takeShifts
         'ColumnHeader2
         '
         Me.ColumnHeader2.Text = "Start Time"
-        Me.ColumnHeader2.Width = 130
+        Me.ColumnHeader2.Width = 175
         '
         'ColumnHeader3
         '
         Me.ColumnHeader3.Text = "End Time"
-        Me.ColumnHeader3.Width = 130
+        Me.ColumnHeader3.Width = 175
         '
         'grp_selectedShift
         '
@@ -170,7 +170,7 @@ Partial Class frm_takeShifts
         Me.grp_selectedShift.Controls.Add(Me.lbl_endDateTime_static)
         Me.grp_selectedShift.Controls.Add(Me.lbl_startDateTime_static)
         Me.grp_selectedShift.Controls.Add(Me.lbl_shiftID_static)
-        Me.grp_selectedShift.Location = New System.Drawing.Point(393, 53)
+        Me.grp_selectedShift.Location = New System.Drawing.Point(497, 53)
         Me.grp_selectedShift.Name = "grp_selectedShift"
         Me.grp_selectedShift.Size = New System.Drawing.Size(375, 125)
         Me.grp_selectedShift.TabIndex = 18
@@ -243,7 +243,7 @@ Partial Class frm_takeShifts
         Me.grp_changeShiftTimes.Controls.Add(Me.lbl_startTime)
         Me.grp_changeShiftTimes.Controls.Add(Me.txt_startTime_inp)
         Me.grp_changeShiftTimes.Controls.Add(Me.txt_endTime_inp)
-        Me.grp_changeShiftTimes.Location = New System.Drawing.Point(393, 190)
+        Me.grp_changeShiftTimes.Location = New System.Drawing.Point(497, 190)
         Me.grp_changeShiftTimes.Name = "grp_changeShiftTimes"
         Me.grp_changeShiftTimes.Size = New System.Drawing.Size(375, 117)
         Me.grp_changeShiftTimes.TabIndex = 18
@@ -293,7 +293,7 @@ Partial Class frm_takeShifts
         Me.btn_takeShift_process.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_takeShift_process.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_takeShift_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_takeShift_process.Location = New System.Drawing.Point(500, 350)
+        Me.btn_takeShift_process.Location = New System.Drawing.Point(604, 350)
         Me.btn_takeShift_process.Name = "btn_takeShift_process"
         Me.btn_takeShift_process.Size = New System.Drawing.Size(150, 70)
         Me.btn_takeShift_process.TabIndex = 19
@@ -305,7 +305,7 @@ Partial Class frm_takeShifts
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(203, Byte), Integer), CType(CType(173, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(784, 471)
+        Me.ClientSize = New System.Drawing.Size(884, 471)
         Me.Controls.Add(Me.btn_takeShift_process)
         Me.Controls.Add(Me.grp_changeShiftTimes)
         Me.Controls.Add(Me.grp_selectedShift)

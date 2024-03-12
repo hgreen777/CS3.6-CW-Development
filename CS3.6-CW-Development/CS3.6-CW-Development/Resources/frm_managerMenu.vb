@@ -142,4 +142,9 @@
         Me.Hide()
 
     End Sub
+
+    Private Sub btn_sendNotis_redir_Click(sender As Object, e As EventArgs) Handles btn_sendNotis_redir.Click
+        frm_notificationManager.Show()
+        Me.Hide()
+    End Sub
 End Class

@@ -45,12 +45,12 @@
                 tmpNotificationInstance = DataStructures.NotificationInstanceLL.find(userNotificationInstances(i))
                 tmpNotification = DataStructures.NotificationTree.find(DataStructures.NotificationTree._root, tmpNotificationInstance.notificationID)
 
-                lsv_notificationPreview.Items.Add(tmpNotification.notificationID)
-                lsv_notificationPreview.Items(i).Tag = tmpNotificationInstance.notificationInstanceID
-                lsv_notificationPreview.Items(i).SubItems.Add(tmpNotification.content)
-
-                lsv_notificationPreview.Items(i).SubItems.Add(DataStructures.StaffHashTable.firstFromUserName(tmpNotification.sender))
-                lsv_notificationPreview.Items(i).SubItems.Add(tmpNotification.sentDate.ToString())
+                Dim tmpNotificationItem As ListViewItem = New ListViewItem(tmpNotification.notificationID)
+                tmpNotificationItem.Tag = tmpNotificationInstance.notificationInstanceID
+                tmpNotificationItem.SubItems.Add(tmpNotification.content)
+                tmpNotificationItem.SubItems.Add(DataStructures.StaffHashTable.firstFromUserName(tmpNotification.sender))
+                tmpNotificationItem.SubItems.Add(tmpNotification.sentDate.ToString())
+                lsv_notificationPreview.Items.Add(tmpNotificationItem)
 
             Next
         End If

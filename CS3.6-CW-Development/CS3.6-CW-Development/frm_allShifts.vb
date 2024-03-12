@@ -55,10 +55,11 @@
             For i = 0 To availableShifts.Count - 1
                 Dim tmpShift As Shift = DataStructures.ShiftLL.find(availableShifts(i))
                 ' Add Shift to mulitcolumned ListBox adding the shiftID, Start Time and End Time in columns
-                lst_allShifts.Items.Add(tmpShift.shiftID)
-                lst_allShifts.Items(i).SubItems.Add(tmpShift.startTime)
-                lst_allShifts.Items(i).SubItems.Add(tmpShift.endTime)
-                lst_allShifts.Items(i).SubItems.Add("No")
+                Dim tmpShiftItem As ListViewItem = New ListViewItem(tmpShift.shiftID)
+                tmpShiftItem.SubItems.Add(tmpShift.startTime)
+                tmpShiftItem.SubItems.Add(tmpShift.endTime)
+                tmpShiftItem.SubItems.Add("No")
+                lst_allShifts.Items.Add(tmpShiftItem)
             Next
         Else
             frm_allShifts_VisibleChanged(sender, e)
