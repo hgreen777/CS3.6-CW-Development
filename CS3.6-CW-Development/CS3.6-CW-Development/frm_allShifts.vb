@@ -23,20 +23,20 @@
 
             While currentNode IsNot Nothing
                 ' Add Shift to mulitcolumned ListBox adding the shiftID, Start Time and End Time in columns
-                lst_allShifts.Items.Add(currentNode.shiftData.shiftID)  ' Add the shiftID to the list
-                lst_allShifts.Items(lst_allShifts.Items.Count - 1).SubItems.Add(currentNode.shiftData.startTime)    ' Add the start time to the list
-                lst_allShifts.Items(lst_allShifts.Items.Count - 1).SubItems.Add(currentNode.shiftData.endTime)      ' Add the end time to the list
+                Dim tmpshiftItem As ListViewItem = New ListViewItem(currentNode.shiftData.shiftID)
+                tmpshiftItem.SubItems.Add(currentNode.shiftData.endTime.DayOfWeek.ToString.Substring(0, 3) & " " & currentNode.shiftData.startTime)
+                tmpshiftItem.SubItems.Add(currentNode.shiftData.endTime.DayOfWeek.ToString.Substring(0, 3) & " " & currentNode.shiftData.endTime)
                 ' Add the isTaken to the list however make the language more userfriendly. By using yes or no.
                 ' So if the shift is taken add yes, if it isn't then no.
                 If currentNode.shiftData.isTaken Then
-                    lst_allShifts.Items(lst_allShifts.Items.Count - 1).SubItems.Add("Yes")
+                    tmpshiftItem.SubItems.Add("Yes")
                     ' If the shift is taken then add the staff username to the list
                     ' As desault for not taken is the first user ie "HarrisonGreen0" but do not want to show anything if the shift ahs not been taken.
-                    lst_allShifts.Items(lst_allShifts.Items.Count - 1).SubItems.Add(currentNode.shiftData.staffUserName)
+                    tmpshiftItem.SubItems.Add(currentNode.shiftData.staffUserName)
                 Else
-                    lst_allShifts.Items(lst_allShifts.Items.Count - 1).SubItems.Add("No")
+                    tmpshiftItem.SubItems.Add("No")
                 End If
-
+                lst_allShifts.Items.Add(tmpshiftItem)
                 ' Move to the next node
                 currentNode = currentNode.nextShift
             End While

@@ -67,7 +67,7 @@ Partial Class frm_allShifts
         Me.grp_allShifts.Controls.Add(Me.lst_allShifts)
         Me.grp_allShifts.Location = New System.Drawing.Point(9, 46)
         Me.grp_allShifts.Name = "grp_allShifts"
-        Me.grp_allShifts.Size = New System.Drawing.Size(540, 436)
+        Me.grp_allShifts.Size = New System.Drawing.Size(582, 436)
         Me.grp_allShifts.TabIndex = 22
         Me.grp_allShifts.TabStop = False
         Me.grp_allShifts.Text = "All Shifts:"
@@ -79,7 +79,7 @@ Partial Class frm_allShifts
         Me.lst_allShifts.HideSelection = False
         Me.lst_allShifts.Location = New System.Drawing.Point(6, 19)
         Me.lst_allShifts.Name = "lst_allShifts"
-        Me.lst_allShifts.Size = New System.Drawing.Size(528, 411)
+        Me.lst_allShifts.Size = New System.Drawing.Size(570, 411)
         Me.lst_allShifts.TabIndex = 10
         Me.lst_allShifts.UseCompatibleStateImageBehavior = False
         Me.lst_allShifts.View = System.Windows.Forms.View.Details
@@ -92,12 +92,12 @@ Partial Class frm_allShifts
         'startTime
         '
         Me.startTime.Text = "Start Time"
-        Me.startTime.Width = 130
+        Me.startTime.Width = 150
         '
         'endTime
         '
         Me.endTime.Text = "End Time"
-        Me.endTime.Width = 130
+        Me.endTime.Width = 150
         '
         'isTaken
         '
@@ -155,7 +155,7 @@ Partial Class frm_allShifts
         Me.grp_shiftControl.Controls.Add(Me.lbl_startTime)
         Me.grp_shiftControl.Controls.Add(Me.txt_startTime_inp)
         Me.grp_shiftControl.Controls.Add(Me.txt_endTime_inp)
-        Me.grp_shiftControl.Location = New System.Drawing.Point(555, 249)
+        Me.grp_shiftControl.Location = New System.Drawing.Point(597, 249)
         Me.grp_shiftControl.Name = "grp_shiftControl"
         Me.grp_shiftControl.Size = New System.Drawing.Size(375, 137)
         Me.grp_shiftControl.TabIndex = 23
@@ -212,7 +212,7 @@ Partial Class frm_allShifts
         Me.grp_selectedShift.Controls.Add(Me.lbl_endDateTime_static)
         Me.grp_selectedShift.Controls.Add(Me.lbl_startDateTime_static)
         Me.grp_selectedShift.Controls.Add(Me.lbl_shiftID_static)
-        Me.grp_selectedShift.Location = New System.Drawing.Point(555, 53)
+        Me.grp_selectedShift.Location = New System.Drawing.Point(597, 53)
         Me.grp_selectedShift.Name = "grp_selectedShift"
         Me.grp_selectedShift.Size = New System.Drawing.Size(375, 190)
         Me.grp_selectedShift.TabIndex = 24
@@ -326,7 +326,7 @@ Partial Class frm_allShifts
         Me.lbl_allShifts_TITLE.Location = New System.Drawing.Point(0, 0)
         Me.lbl_allShifts_TITLE.Margin = New System.Windows.Forms.Padding(3, 5, 3, 0)
         Me.lbl_allShifts_TITLE.Name = "lbl_allShifts_TITLE"
-        Me.lbl_allShifts_TITLE.Size = New System.Drawing.Size(942, 50)
+        Me.lbl_allShifts_TITLE.Size = New System.Drawing.Size(984, 50)
         Me.lbl_allShifts_TITLE.TabIndex = 20
         Me.lbl_allShifts_TITLE.Text = "All Shifts"
         Me.lbl_allShifts_TITLE.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -335,7 +335,7 @@ Partial Class frm_allShifts
         '
         Me.chkbox_filterTaken.AutoSize = True
         Me.chkbox_filterTaken.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbox_filterTaken.Location = New System.Drawing.Point(718, 19)
+        Me.chkbox_filterTaken.Location = New System.Drawing.Point(760, 19)
         Me.chkbox_filterTaken.Name = "chkbox_filterTaken"
         Me.chkbox_filterTaken.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.chkbox_filterTaken.Size = New System.Drawing.Size(212, 28)
@@ -348,7 +348,7 @@ Partial Class frm_allShifts
         Me.btn_assignShift_redir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_assignShift_redir.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_assignShift_redir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_assignShift_redir.Location = New System.Drawing.Point(565, 392)
+        Me.btn_assignShift_redir.Location = New System.Drawing.Point(607, 392)
         Me.btn_assignShift_redir.Name = "btn_assignShift_redir"
         Me.btn_assignShift_redir.Size = New System.Drawing.Size(150, 42)
         Me.btn_assignShift_redir.TabIndex = 4
@@ -360,7 +360,7 @@ Partial Class frm_allShifts
         Me.btn_editShift_process.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_editShift_process.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_editShift_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_editShift_process.Location = New System.Drawing.Point(766, 392)
+        Me.btn_editShift_process.Location = New System.Drawing.Point(808, 392)
         Me.btn_editShift_process.Name = "btn_editShift_process"
         Me.btn_editShift_process.Size = New System.Drawing.Size(150, 42)
         Me.btn_editShift_process.TabIndex = 6
@@ -372,7 +372,7 @@ Partial Class frm_allShifts
         Me.btn_addShift_process.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btn_addShift_process.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_addShift_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_addShift_process.Location = New System.Drawing.Point(565, 440)
+        Me.btn_addShift_process.Location = New System.Drawing.Point(607, 440)
         Me.btn_addShift_process.Name = "btn_addShift_process"
         Me.btn_addShift_process.Size = New System.Drawing.Size(150, 42)
         Me.btn_addShift_process.TabIndex = 5
@@ -385,7 +385,7 @@ Partial Class frm_allShifts
         Me.btn_removeShift_process.Font = New System.Drawing.Font("Calibri", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_removeShift_process.ForeColor = System.Drawing.Color.Red
         Me.btn_removeShift_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_removeShift_process.Location = New System.Drawing.Point(766, 440)
+        Me.btn_removeShift_process.Location = New System.Drawing.Point(808, 440)
         Me.btn_removeShift_process.Name = "btn_removeShift_process"
         Me.btn_removeShift_process.Size = New System.Drawing.Size(150, 42)
         Me.btn_removeShift_process.TabIndex = 7
@@ -397,7 +397,7 @@ Partial Class frm_allShifts
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(194, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(942, 494)
+        Me.ClientSize = New System.Drawing.Size(984, 494)
         Me.Controls.Add(Me.btn_removeShift_process)
         Me.Controls.Add(Me.btn_addShift_process)
         Me.Controls.Add(Me.btn_editShift_process)
