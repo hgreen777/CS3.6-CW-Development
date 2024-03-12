@@ -98,6 +98,7 @@ Partial Class frm_notifications
         Me.lsv_notificationPreview.MultiSelect = False
         Me.lsv_notificationPreview.Name = "lsv_notificationPreview"
         Me.lsv_notificationPreview.Size = New System.Drawing.Size(363, 371)
+        Me.lsv_notificationPreview.Sorting = System.Windows.Forms.SortOrder.Ascending
         Me.lsv_notificationPreview.TabIndex = 1
         Me.lsv_notificationPreview.UseCompatibleStateImageBehavior = False
         Me.lsv_notificationPreview.View = System.Windows.Forms.View.Details

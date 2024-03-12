@@ -27,7 +27,6 @@ Partial Class frm_notificationManager
         Me.img_blc_logo = New System.Windows.Forms.PictureBox()
         Me.lbl_notificationManager_TITLE = New System.Windows.Forms.Label()
         Me.btn_removeFromNotification_process = New System.Windows.Forms.Button()
-        Me.btn_addToNotification_process = New System.Windows.Forms.Button()
         Me.btn_searchStaff_process = New System.Windows.Forms.Button()
         Me.btn_addAllStaff_process = New System.Windows.Forms.Button()
         Me.btn_sendNotification_process = New System.Windows.Forms.Button()
@@ -36,8 +35,6 @@ Partial Class frm_notificationManager
         Me.grp_notificationContent = New System.Windows.Forms.GroupBox()
         Me.txt_notificationContent_inp = New System.Windows.Forms.TextBox()
         Me.grp_findStaff = New System.Windows.Forms.GroupBox()
-        Me.lbl_selectedStaffMember_dynamic = New System.Windows.Forms.Label()
-        Me.lbl_selectedStaffMember_static = New System.Windows.Forms.Label()
         Me.lbl_searchInstructions = New System.Windows.Forms.Label()
         Me.txt_staffFirstName_inp = New System.Windows.Forms.TextBox()
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,25 +81,12 @@ Partial Class frm_notificationManager
         Me.btn_removeFromNotification_process.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_removeFromNotification_process.ForeColor = System.Drawing.Color.Red
         Me.btn_removeFromNotification_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_removeFromNotification_process.Location = New System.Drawing.Point(143, 163)
+        Me.btn_removeFromNotification_process.Location = New System.Drawing.Point(12, 118)
         Me.btn_removeFromNotification_process.Name = "btn_removeFromNotification_process"
-        Me.btn_removeFromNotification_process.Size = New System.Drawing.Size(125, 51)
+        Me.btn_removeFromNotification_process.Size = New System.Drawing.Size(190, 51)
         Me.btn_removeFromNotification_process.TabIndex = 31
         Me.btn_removeFromNotification_process.Text = "Remove from Notification"
         Me.btn_removeFromNotification_process.UseVisualStyleBackColor = True
-        '
-        'btn_addToNotification_process
-        '
-        Me.btn_addToNotification_process.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.btn_addToNotification_process.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_addToNotification_process.ForeColor = System.Drawing.Color.Black
-        Me.btn_addToNotification_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_addToNotification_process.Location = New System.Drawing.Point(12, 163)
-        Me.btn_addToNotification_process.Name = "btn_addToNotification_process"
-        Me.btn_addToNotification_process.Size = New System.Drawing.Size(125, 51)
-        Me.btn_addToNotification_process.TabIndex = 32
-        Me.btn_addToNotification_process.Text = "Add to Notification"
-        Me.btn_addToNotification_process.UseVisualStyleBackColor = True
         '
         'btn_searchStaff_process
         '
@@ -114,7 +98,7 @@ Partial Class frm_notificationManager
         Me.btn_searchStaff_process.Name = "btn_searchStaff_process"
         Me.btn_searchStaff_process.Size = New System.Drawing.Size(75, 31)
         Me.btn_searchStaff_process.TabIndex = 33
-        Me.btn_searchStaff_process.Text = "Search"
+        Me.btn_searchStaff_process.Text = "Add"
         Me.btn_searchStaff_process.UseVisualStyleBackColor = True
         '
         'btn_addAllStaff_process
@@ -123,9 +107,9 @@ Partial Class frm_notificationManager
         Me.btn_addAllStaff_process.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_addAllStaff_process.ForeColor = System.Drawing.Color.Black
         Me.btn_addAllStaff_process.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btn_addAllStaff_process.Location = New System.Drawing.Point(272, 163)
+        Me.btn_addAllStaff_process.Location = New System.Drawing.Point(208, 118)
         Me.btn_addAllStaff_process.Name = "btn_addAllStaff_process"
-        Me.btn_addAllStaff_process.Size = New System.Drawing.Size(125, 51)
+        Me.btn_addAllStaff_process.Size = New System.Drawing.Size(189, 51)
         Me.btn_addAllStaff_process.TabIndex = 34
         Me.btn_addAllStaff_process.Text = "Add all staff to notification"
         Me.btn_addAllStaff_process.UseVisualStyleBackColor = True
@@ -146,20 +130,19 @@ Partial Class frm_notificationManager
         'grp_notificationRecipients
         '
         Me.grp_notificationRecipients.Controls.Add(Me.lst_notificationRecipients)
-        Me.grp_notificationRecipients.Location = New System.Drawing.Point(12, 220)
+        Me.grp_notificationRecipients.Location = New System.Drawing.Point(12, 175)
         Me.grp_notificationRecipients.Name = "grp_notificationRecipients"
-        Me.grp_notificationRecipients.Size = New System.Drawing.Size(385, 179)
+        Me.grp_notificationRecipients.Size = New System.Drawing.Size(385, 224)
         Me.grp_notificationRecipients.TabIndex = 36
         Me.grp_notificationRecipients.TabStop = False
         Me.grp_notificationRecipients.Text = "Notification Recipients:"
         '
         'lst_notificationRecipients
         '
-        Me.lst_notificationRecipients.Enabled = False
         Me.lst_notificationRecipients.FormattingEnabled = True
         Me.lst_notificationRecipients.Location = New System.Drawing.Point(6, 20)
         Me.lst_notificationRecipients.Name = "lst_notificationRecipients"
-        Me.lst_notificationRecipients.Size = New System.Drawing.Size(373, 147)
+        Me.lst_notificationRecipients.Size = New System.Drawing.Size(373, 199)
         Me.lst_notificationRecipients.TabIndex = 0
         '
         'grp_notificationContent
@@ -182,37 +165,15 @@ Partial Class frm_notificationManager
         '
         'grp_findStaff
         '
-        Me.grp_findStaff.Controls.Add(Me.lbl_selectedStaffMember_dynamic)
-        Me.grp_findStaff.Controls.Add(Me.lbl_selectedStaffMember_static)
         Me.grp_findStaff.Controls.Add(Me.lbl_searchInstructions)
         Me.grp_findStaff.Controls.Add(Me.txt_staffFirstName_inp)
         Me.grp_findStaff.Controls.Add(Me.btn_searchStaff_process)
         Me.grp_findStaff.Location = New System.Drawing.Point(12, 46)
         Me.grp_findStaff.Name = "grp_findStaff"
-        Me.grp_findStaff.Size = New System.Drawing.Size(385, 111)
+        Me.grp_findStaff.Size = New System.Drawing.Size(385, 66)
         Me.grp_findStaff.TabIndex = 38
         Me.grp_findStaff.TabStop = False
         Me.grp_findStaff.Text = "Find Staff Member:"
-        '
-        'lbl_selectedStaffMember_dynamic
-        '
-        Me.lbl_selectedStaffMember_dynamic.AutoSize = True
-        Me.lbl_selectedStaffMember_dynamic.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_selectedStaffMember_dynamic.Location = New System.Drawing.Point(203, 73)
-        Me.lbl_selectedStaffMember_dynamic.Name = "lbl_selectedStaffMember_dynamic"
-        Me.lbl_selectedStaffMember_dynamic.Size = New System.Drawing.Size(120, 19)
-        Me.lbl_selectedStaffMember_dynamic.TabIndex = 36
-        Me.lbl_selectedStaffMember_dynamic.Text = "<StaffFirstName>"
-        '
-        'lbl_selectedStaffMember_static
-        '
-        Me.lbl_selectedStaffMember_static.AutoSize = True
-        Me.lbl_selectedStaffMember_static.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_selectedStaffMember_static.Location = New System.Drawing.Point(6, 73)
-        Me.lbl_selectedStaffMember_static.Name = "lbl_selectedStaffMember_static"
-        Me.lbl_selectedStaffMember_static.Size = New System.Drawing.Size(169, 19)
-        Me.lbl_selectedStaffMember_static.TabIndex = 35
-        Me.lbl_selectedStaffMember_static.Text = "Selected Staff Member:"
         '
         'lbl_searchInstructions
         '
@@ -244,7 +205,6 @@ Partial Class frm_notificationManager
         Me.Controls.Add(Me.grp_notificationRecipients)
         Me.Controls.Add(Me.btn_sendNotification_process)
         Me.Controls.Add(Me.btn_addAllStaff_process)
-        Me.Controls.Add(Me.btn_addToNotification_process)
         Me.Controls.Add(Me.btn_removeFromNotification_process)
         Me.Controls.Add(Me.btn_back_redir)
         Me.Controls.Add(Me.img_blc_logo)
@@ -268,7 +228,6 @@ Partial Class frm_notificationManager
     Friend WithEvents img_blc_logo As PictureBox
     Friend WithEvents lbl_notificationManager_TITLE As Label
     Friend WithEvents btn_removeFromNotification_process As Button
-    Friend WithEvents btn_addToNotification_process As Button
     Friend WithEvents btn_searchStaff_process As Button
     Friend WithEvents btn_addAllStaff_process As Button
     Friend WithEvents btn_sendNotification_process As Button
@@ -279,6 +238,4 @@ Partial Class frm_notificationManager
     Friend WithEvents grp_findStaff As GroupBox
     Friend WithEvents lbl_searchInstructions As Label
     Friend WithEvents txt_staffFirstName_inp As TextBox
-    Friend WithEvents lbl_selectedStaffMember_dynamic As Label
-    Friend WithEvents lbl_selectedStaffMember_static As Label
 End Class
