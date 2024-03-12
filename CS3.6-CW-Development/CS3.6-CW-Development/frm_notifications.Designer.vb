@@ -41,7 +41,7 @@ Partial Class frm_notifications
         Me.lbl_sender_static = New System.Windows.Forms.Label()
         Me.lbl_notificationID_static = New System.Windows.Forms.Label()
         Me.btn_deleteNotification_process = New System.Windows.Forms.Button()
-        Me.notiInstanceID = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.lbl_notificationInstance_hidden = New System.Windows.Forms.Label()
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grp_notificationPreview.SuspendLayout()
         Me.grp_selectedNotification.SuspendLayout()
@@ -91,7 +91,7 @@ Partial Class frm_notifications
         '
         'lsv_notificationPreview
         '
-        Me.lsv_notificationPreview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.notiID, Me.contentPreview, Me.sender, Me.sentDate, Me.notiInstanceID})
+        Me.lsv_notificationPreview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.notiID, Me.contentPreview, Me.sender, Me.sentDate})
         Me.lsv_notificationPreview.FullRowSelect = True
         Me.lsv_notificationPreview.HideSelection = False
         Me.lsv_notificationPreview.Location = New System.Drawing.Point(6, 15)
@@ -123,6 +123,7 @@ Partial Class frm_notifications
         '
         'grp_selectedNotification
         '
+        Me.grp_selectedNotification.Controls.Add(Me.lbl_notificationInstance_hidden)
         Me.grp_selectedNotification.Controls.Add(Me.txt_notificationContent_disp)
         Me.grp_selectedNotification.Controls.Add(Me.lbl_sentDate_dynamic)
         Me.grp_selectedNotification.Controls.Add(Me.lbl_sender_dynamic)
@@ -220,9 +221,15 @@ Partial Class frm_notifications
         Me.btn_deleteNotification_process.Text = "Delete Notification"
         Me.btn_deleteNotification_process.UseVisualStyleBackColor = True
         '
-        'notiInstanceID
+        'lbl_notificationInstance_hidden
         '
-        Me.notiInstanceID.Text = "NotificationID"
+        Me.lbl_notificationInstance_hidden.AutoSize = True
+        Me.lbl_notificationInstance_hidden.Location = New System.Drawing.Point(217, 6)
+        Me.lbl_notificationInstance_hidden.Name = "lbl_notificationInstance_hidden"
+        Me.lbl_notificationInstance_hidden.Size = New System.Drawing.Size(158, 13)
+        Me.lbl_notificationInstance_hidden.TabIndex = 11
+        Me.lbl_notificationInstance_hidden.Text = "<HiddenNotificationInstanceID>"
+        Me.lbl_notificationInstance_hidden.Visible = False
         '
         'frm_notifications
         '
@@ -265,5 +272,5 @@ Partial Class frm_notifications
     Friend WithEvents contentPreview As ColumnHeader
     Friend WithEvents sender As ColumnHeader
     Friend WithEvents sentDate As ColumnHeader
-    Friend WithEvents notiInstanceID As ColumnHeader
+    Friend WithEvents lbl_notificationInstance_hidden As Label
 End Class

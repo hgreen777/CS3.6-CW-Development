@@ -33,16 +33,20 @@
             txt_notificationContent_disp.Text = ""
             lbl_sender_dynamic.Text = "<StaffFirstName>"
             lbl_sentDate_dynamic.Text = "<DD/MM/YYYY HH:mm>"
+            lbl_notificationInstance_hidden.Text = "<HiddenNotificationInstanceID>"
 
 
             ' Get all user's notifications
-            Dim userNotifications As List(Of Integer) = DataStructures.NotificationInstanceLL.userNotification()
+            Dim userNotificationInstances As List(Of Integer) = DataStructures.NotificationInstanceLL.userNotificationInstances()
+            Dim tmpNotificationInstance As NotificationInstance
             Dim tmpNotification As Notification
 
-            For i = 0 To userNotifications.Count - 1
-                tmpNotification = DataStructures.NotificationTree.find(DataStructures.NotificationTree._root, userNotifications(i))
+            For i = 0 To userNotificationInstances.Count - 1
+                tmpNotificationInstance = DataStructures.NotificationInstanceLL.find(userNotificationInstances(i))
+                tmpNotification = DataStructures.NotificationTree.find(DataStructures.NotificationTree._root, tmpNotificationInstance.notificationID)
 
                 lsv_notificationPreview.Items.Add(tmpNotification.notificationID)
+                lsv_notificationPreview.Items(i).Tag = tmpNotificationInstance.notificationInstanceID
                 lsv_notificationPreview.Items(i).SubItems.Add(tmpNotification.content)
 
                 lsv_notificationPreview.Items(i).SubItems.Add(DataStructures.StaffHashTable.firstFromUserName(tmpNotification.sender))
@@ -59,6 +63,7 @@
             txt_notificationContent_disp.Text = ""
             lbl_sender_dynamic.Text = "<StaffFirstName>"
             lbl_sentDate_dynamic.Text = "<DD/MM/YYYY HH:mm>"
+            lbl_notificationInstance_hidden.Text = "<HiddenNotificationInstanceID>"
         End If
 
         ' Check if an item is selected
@@ -75,20 +80,23 @@
             lbl_sender_dynamic.Text = DataStructures.StaffHashTable.firstFromUserName(tmpNotification.sender)
             lbl_sentDate_dynamic.Text = tmpNotification.sentDate.ToString()
 
+            ' Populate the hidden label with the row tag
+            lbl_notificationInstance_hidden.Text = lsv_notificationPreview.SelectedItems(0).Tag
+
+
 
         End If
     End Sub
 
     Private Sub btn_deleteNotification_process_Click(sender As Object, e As EventArgs) Handles btn_deleteNotification_process.Click
-        Exit Sub
         ' Check if a notification is selected
-        If lbl_notificationID_dynamic.Text = "<NotificationID>" Then
+        If lbl_notificationInstance_hidden.Text = "<HiddenNotificationInstanceID>" Then
             MsgBox("Please select a notification to delete.")
             Exit Sub
         End If
 
         ' Delete the notification instance
-
+        DataStructures.NotificationInstanceLL.remove(Integer.Parse(lbl_notificationInstance_hidden.Text))
 
         ' Write the notificationinstanceLL to file
         If Not FileHandler.notificationInstanceWrite() Then

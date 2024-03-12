@@ -1095,7 +1095,7 @@ Module DataStructures
         End Function
         '
         ' remove
-        ' Procedure that removes a node from the LL given a notificationInstanceID
+        ' Procedure that removes a node from the LL. Removes an instance of a notification for a given user.
         Public Sub remove(ByVal nodeID As Integer)
             Dim currentNode As NotificationInstanceNode = _root    ' Set a pointer to the root of the tree
 
@@ -1125,7 +1125,7 @@ Module DataStructures
         '
         ' user's notifications
         ' Function that finds all the notificationInstanceIDs for the active user and returns them in a list.
-        Public Function userNotification() As List(Of Integer)
+        Public Function userNotificationInstances() As List(Of Integer)
             Dim returnArr As New List(Of Integer)   ' Creates a new list of integers to store the list of notificationInstanceIDs to be returned to the calling subroutine.
 
             Dim currentNode As NotificationInstanceNode = _root    ' Set a pointer to the root of the tree
@@ -1134,7 +1134,7 @@ Module DataStructures
             While currentNode IsNot Nothing
                 ' Checks if the notificationInstance is for the active user
                 If currentNode.notificationInstanceData.recipient = activeUser Then
-                    returnArr.Add(currentNode.notificationInstanceData.notificationID)    ' If the notificationInstance is for the active user then add the notificationInstanceID to the return list.
+                    returnArr.Add(currentNode.notificationInstanceData.notificationInstanceID)    ' If the notificationInstance is for the active user then add the notificationInstanceID to the return list.
                 End If
 
                 ' Move onto the next node.
