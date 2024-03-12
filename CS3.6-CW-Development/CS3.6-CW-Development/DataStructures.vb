@@ -576,16 +576,17 @@ Module DataStructures
                     newEarlyShift.shiftID = nextAvailableID()       ' Sets the shiftID of the new shift to be the next available ID.
                     newEarlyShift.startTime = oldData.startTime     ' Sets the start time of the new shift to be the same as the old start time.
                     newEarlyShift.endTime = newStartTime            ' Sets the end time of the new shift to be the new start time.
+                    newEarlyShift.staffUserName = "HarrisonGreen0"  ' Sets the username to something so no error is thrown when the shift is written to file.
                     add(newEarlyShift)                              ' Adds the new shift to the linked list.
                 End If
 
                 ' Adding new shifts if the times have been altered. Late Shift
                 If oldData.endTime <> newEndTime Then
-                    Dim newLateShift As Shift
-                    newLateShift.shiftID = nextAvailableID()
-                    newLateShift.startTime = newEndTime
-                    newLateShift.endTime = oldData.endTime
-
+                    Dim newLateShift As Shift                      ' Creates a new shift to store the data of the new shift.
+                    newLateShift.shiftID = nextAvailableID()       ' Sets the shiftID of the new shift to be the next available ID.
+                    newLateShift.startTime = newEndTime            ' Sets the start time of the new shift to be the new end time.
+                    newLateShift.endTime = oldData.endTime         ' Sets the end time of the new shift to be the same as the old end time.
+                    newLateShift.staffUserName = "HarrisonGreen0"  ' Sets the username to something so no error is thrown when the shift is written to file.
                     add(newLateShift)
                 End If
 
