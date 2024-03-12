@@ -32,8 +32,8 @@
                 Dim tmpShift As Shift = DataStructures.ShiftLL.find(allShifts(i))
                 ' Add Shift to mulitcolumned ListBox adding the shiftID, Start Time and End Time in columns
                 Dim lsvItem As ListViewItem = New ListViewItem(tmpShift.shiftID)
-                lsvItem.SubItems.Add(tmpShift.startTime)
-                lsvItem.SubItems.Add(tmpShift.endTime)
+                lsvItem.SubItems.Add(tmpShift.startTime.DayOfWeek.ToString.Substring(0, 3) & " " & tmpShift.startTime)
+                lsvItem.SubItems.Add(tmpShift.endTime.DayOfWeek.ToString.Substring(0, 3) & " " & tmpShift.endTime)
                 lst_availableShifts.Items.Add(lsvItem)
 
             Next
