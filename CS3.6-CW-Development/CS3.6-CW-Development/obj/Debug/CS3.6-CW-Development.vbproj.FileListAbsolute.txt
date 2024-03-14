@@ -34,3 +34,27 @@ C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Devel
 C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_notificationManager.resources
 C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_accountEditor.resources
 C:\Users\hjgre\OneDrive\Desktop\CSCoursework\CS3.6-CW-Development\CS3.6-CW-Development\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_accountManager.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\bin\Debug\CS3.6-CW-Development.exe.config
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\bin\Debug\CS3.6-CW-Development.exe
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\bin\Debug\CS3.6-CW-Development.pdb
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\bin\Debug\CS3.6-CW-Development.xml
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.vbproj.AssemblyReference.cache
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.vbproj.SuggestedBindingRedirects.cache
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.Form1.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_accountEditor.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_accountManager.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_allShifts.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_assignShifts.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_login_screen.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_myShifts.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_notificationManager.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_notifications.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_staffMenu.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_takeShifts.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.Resources.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3._6_CW_Development.frm_managerMenu.resources
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.vbproj.GenerateResource.cache
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.vbproj.CoreCompileInputs.cache
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.exe
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.xml
+\\bil-file2\studentdocuments$\2022 Intake\bil0084757\Downloads\C\W\CS3.6-CW-Development\obj\Debug\CS3.6-CW-Development.pdb

@@ -21,7 +21,7 @@ Module DataStructures
         Dim isManager As Boolean    ' Boolean stating wether the user is a manager or staff member.
         Dim isFullTime As Boolean   ' Boolean Stating whether the user is a full time staff member.
         Dim userName As String      ' Stores the Auto-generated username based of other fields.
-        Dim password As String      ' Stored the encrypted password for a user.
+        Dim password As String      ' Stored the encrypted password for a user. - Hash?
     End Structure
 
     ' Declaring the structure (class) that turns the staff details into a node.
@@ -299,7 +299,31 @@ Module DataStructures
         Public Sub clearHashTable()
             Array.Clear(_hashTable, 0, _hashTable.Length)
         End Sub
+        '
+        ' findFullTimeStaff()
+        ' This function is used to find all the full time staff members in the hash table.
+        ' This function will be used to assign shifts to full time staff members.
+        Public Function fullTimeStaff() As List(Of String)
+            ' Create a list to store the usernames of the full time staff members.
+            Dim fullTimeStaffList As New List(Of String)
+            ' Loop over the whole hash table to find the full time staff members.
+            For i = 0 To _hashTable.Length - 1
+                Dim currentNode As StaffMemberNode = _hashTable(i)  ' Creates a pointer to the current node in the linked list.
 
+                ' Loop over the linked list to find the full time staff members.
+                While currentNode IsNot Nothing
+                        ' Checks if the current node is a full time staff member.
+                        If currentNode.staffMemberData.isFullTime = True Then
+                            fullTimeStaffList.Add(currentNode.staffMemberData.userName)  ' Adds the username of the full time staff member to the list.
+                        End If
+
+                        currentNode = currentNode.nextStaffMember  ' Sets the current node to the next node in the linked list.
+                    End While
+
+            Next
+
+            Return fullTimeStaffList  ' Returns the list of full time staff members to the calling function.
+        End Function
     End Class
 
     '
@@ -507,7 +531,7 @@ Module DataStructures
             Dim endTimeValid As Boolean = True      ' Stores the result of the validation of the end time.
 
             ' Check the shiftID is of valid format
-            If Validation.TypeInteger(shiftID) = False Then MsgBox("No shift Selected!") : Return False
+            If Validation.typeIntegerCheck(shiftID) = False Then MsgBox("No shift Selected!") : Return False
             Dim oldData As Shift = find(shiftID)
 
             ' Validate oldData is not nothing

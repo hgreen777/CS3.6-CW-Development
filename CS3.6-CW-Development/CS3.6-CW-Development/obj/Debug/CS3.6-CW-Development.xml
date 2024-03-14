@@ -52,20 +52,5 @@ CS3.6-CW-Development
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
-<member name="M:CS3._6_CW_Development.Validation.PresenceValidation(System.String)">
- <summary>
- Function used to check if input strings are empty.
- </summary>
- <param name="str">Input String to be checked if empty</param>
- <returns>Boolean Result</returns>
-</member>
-<member name="M:CS3._6_CW_Development.Validation.FormatName(System.String@)">
- <summary>
- Used to format Name Inputs to be in title case (ie first letter capitilized)
- Important for later in system to split first names from last names etc
- </summary>
- <param name="name"></param>
- <returns></returns>
-</member>
 </members>
 </doc>
