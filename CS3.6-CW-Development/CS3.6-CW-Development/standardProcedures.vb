@@ -63,11 +63,21 @@ Public Class standardProcedures
                                          {"07:00-15:00", "15:00-20:00"}}     ' Sunday Shifts
 
         Dim shifts(6, 3) As Shift
+        Dim fullTimeStaff(3) As StaffMember
+        Dim offset As Integer = 0 ' Offset for shift allocation soa staff member does now work the same shift every week (read from file)
+        FileOpen(1, "offset.txt", OpenMode.Input)
+        Input(1, offset)
+        FileClose(1)
+
+        offset = offset Mod 4
+        ' Shift all items in the full time staff array by the offset (looping the staff at the end to the start)
+
 
         ' Get the current date and time
         Dim startDate As Date = Date.Now
         ' Set the start time to be the start of the day ie 00:00
         startDate = startDate.Date
+        MsgBox(startDate.ToString())
         ' Add 2 weeks to the current date
         startDate = startDate.AddDays(14)
         ' Set the start date to the start of the week it is currently in
@@ -106,54 +116,15 @@ Public Class standardProcedures
         Dim fullTimeStaffCount As Integer = listOfStaff.Count
         ' Calculate the number of shifts that need to be assigned - Full time staff should each have 40 hours over the week. Should not work more than 5 days in a row and should have 2 days off in a row and should not work longer then eight hours in a day.
         ' Use the number of full-time staff to calculate the number of shifts that need to be assigned and when they should be assigned given there are 4 shifts per day and 7 days in a week
-        'CHECK THIS vvv
-        Dim shiftsPerDay As Integer = 4
-        Dim daysInWeek As Integer = 7
-        Dim shiftsPerWeek As Integer = shiftsPerDay * daysInWeek
-        Dim shiftsPerStaff As Integer = shiftsPerWeek / fullTimeStaffCount
-        Dim shiftsAssigned As Integer = 0
-        Dim staffIndex As Integer = 0
-        Dim shiftIndex As Integer = 0
-        Dim dayIndex As Integer = 0
-        ' For every shift that needs to be assigned
-        For i = 0 To shiftsPerWeek - 1
-            ' If the shift is not taken
-            If shifts(dayIndex, shiftIndex).isTaken = False Then
-                ' Assign the shift to the staff member
-                shifts(dayIndex, shiftIndex).staffUserName = listOfStaff(staffIndex)
-                ' Set the shift to be taken
-                shifts(dayIndex, shiftIndex).isTaken = True
-                ' Increment the number of shifts assigned
-                shiftsAssigned += 1
-                ' If the number of shifts assigned to the staff member is equal to the number of shifts they should have
-                If shiftsAssigned = shiftsPerStaff Then
-                    ' Increment the staff index
-                    staffIndex += 1
-                    ' Reset the number of shifts assigned
-                    shiftsAssigned = 0
-                End If
-            End If
-            ' Increment the shift index
-            shiftIndex += 1
-            ' If the shift index is equal to the number of shifts per day
-            If shiftIndex = shiftsPerDay Then
-                ' Reset the shift index
-                shiftIndex = 0
-                ' Increment the day index
-                dayIndex += 1
-            End If
-        Next
-
-        ' For every shift that has been assigned
-        For i = 0 To shiftsPerWeek - 1
-            ' Add the shift to the linked list
-            DataStructures.ShiftLL.append(shifts(dayIndex, shiftIndex))
-        Next
-
-        ' Return a message to say that the shifts have been assigned
-        Return "Shifts have been assigned"
 
 
+        ' Update offset
+        offset += 1
+        FileOpen(1, "offset.txt", OpenMode.Output)
+        Write(1, offset)
+        FileClose(1)
+
+        Return "Shifts have been generated"
 
 
 
