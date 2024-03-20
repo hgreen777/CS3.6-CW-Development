@@ -14,7 +14,10 @@
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         ' read all the data from files for testing
+        standardProcedures.shuffleKey()
         FileHandler.readAllData()
+        FileHandler.writeAllData()
+
 
         activeUser = "HarrisonGreen0"
 
@@ -143,5 +146,19 @@
 
         frm_login_screen.Show()
         Me.Hide()
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+
+        ' Gain input from user any valid string
+        Dim input As String = "HarrisonGreen0"
+
+        Dim encryptedString As String = standardProcedures.encryptString(input)
+        Dim decrypted As String = standardProcedures.decryptString(encryptedString)
+
+
+        MsgBox(decrypted)
+
+
     End Sub
 End Class

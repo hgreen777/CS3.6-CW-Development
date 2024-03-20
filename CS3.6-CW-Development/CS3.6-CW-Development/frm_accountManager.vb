@@ -41,6 +41,8 @@ Public Class frm_accountManager
 
         ' Update User Details
         Dim tmpStaff As StaffMember ' Store the user's details in a temporary staff member to overwrite the old data.
+        ' Set the staffID to the current user's staffID
+        tmpStaff.staffID = DataStructures.StaffHashTable.findStaffMember(oldUsername, True).staffID
         tmpStaff.firstName = txt_firstName_inp.Text
         tmpStaff.lastName = txt_surname_inp.Text
         tmpStaff.password = txt_password_inp.Text

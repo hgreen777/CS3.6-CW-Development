@@ -1,4 +1,5 @@
-﻿Imports DataStructures
+﻿Imports System.Security.Cryptography
+Imports DataStructures
 Module FileHandler
     ' This module is responsible for handling all of the reading and writing between the datastructures and the persistent data files.
     ' Declaring all filenames as constant strings to reduce bugs in code
@@ -32,6 +33,11 @@ Module FileHandler
                 Input(1, tmpStaff.isFullTime) : Input(1, tmpStaff.isManager)    ' Read staff type from file.
                 Input(1, tmpStaff.userName) : Input(1, tmpStaff.password)       ' Read user's loging details from file.
 
+                ' Decrypt the staff member's password
+                tmpStaff.password = standardProcedures.decryptString(tmpStaff.password)
+
+                MsgBox(tmpStaff.password)
+
                 ' Add the staff member to the hash table
                 DataStructures.StaffHashTable.addStaffMember(tmpStaff, False)
             End While
@@ -59,6 +65,9 @@ Module FileHandler
                 currentNode = StaffHashTable._hashTable(i)
                 ' While the current node is not nothing write the data to the file
                 While currentNode IsNot Nothing
+                    ' Encypt the staff member's password of the node
+                    Dim tmpPassword As String = standardProcedures.decryptString(currentNode.staffMemberData.password)
+
                     ' Write one record at a time to file
                     WriteLine(1,
                               currentNode.staffMemberData.staffID,
@@ -67,7 +76,7 @@ Module FileHandler
                               currentNode.staffMemberData.isFullTime,
                               currentNode.staffMemberData.isManager,
                               currentNode.staffMemberData.userName,
-                              currentNode.staffMemberData.password)
+                              tmpPassword)
 
                     ' Move to the next node in the linked list
                     currentNode = currentNode.nextStaffMember

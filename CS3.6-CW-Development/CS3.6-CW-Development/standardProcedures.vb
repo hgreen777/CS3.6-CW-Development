@@ -195,6 +195,78 @@ Public Class standardProcedures
 
     End Function
 
+
+    '
+    ' ENCRYPTION/Decryption
+
+    ' Create a list of all characters
+    Private Shared allCharacters As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@£$%^&*()_+"
+    ' Create a copy of all the characters for the key
+    Private Shared key As String = allCharacters
+    ' Shuffle all character in the key by 5 characters
+    Public Shared Sub shuffleKey()
+        ' Create a new string builder
+        Dim newKey As New StringBuilder
+        ' Loop over all the characters in the key
+        For i = 0 To key.Length - 1
+            ' Get the character at the current index
+            Dim currentChar As Char = key(i)
+            ' Get the index of the current character in the all characters string
+            Dim index As Integer = allCharacters.IndexOf(currentChar)
+            ' Add 5 to the index
+            index += 7
+            ' If the index is greater than the length of the all characters string
+            If index > allCharacters.Length - 1 Then
+                ' Subtract the length of the all characters string from the index
+                index -= allCharacters.Length
+            End If
+            ' Get the character at the new index
+            Dim newChar As Char = allCharacters(index)
+            ' Append the new character to the new key
+            newKey.Append(newChar)
+        Next
+        ' Set the key to be the new key
+        key = newKey.ToString()
+    End Sub
+    ' Encrypt a string
+    Public Shared Function encryptString(ByVal input As String) As String
+        ' Create a new string builder
+        Dim output As New StringBuilder
+        ' Loop over all the characters in the input string
+        For i = 0 To input.Length - 1
+            ' Get the character at the current index
+            Dim currentChar As Char = input(i)
+            ' Get the index of the current character in the all characters string
+            Dim index As Integer = allCharacters.IndexOf(currentChar)
+            ' Get the character at the index of the key
+            Dim newChar As Char = key(index)
+            ' Append the new character to the output string
+            output.Append(newChar)
+        Next
+        ' Return the output string
+        Return output.ToString()
+    End Function
+
+    ' Decrypt a string
+    Public Shared Function decryptString(ByVal input As String) As String
+        ' Create a new string builder
+        Dim output As New StringBuilder
+        ' Loop over all the characters in the input string
+        For i = 0 To input.Length - 1
+            ' Get the character at the current index
+            Dim currentChar As Char = input(i)
+            ' Get the index of the current character in the key
+            Dim index As Integer = key.IndexOf(currentChar)
+            ' Get the character at the index of the all characters string
+            Dim newChar As Char = allCharacters(index)
+            ' Append the new character to the output string
+            output.Append(newChar)
+        Next
+        ' Return the output string
+        Return output.ToString()
+    End Function
+
+
 End Class
 
 
