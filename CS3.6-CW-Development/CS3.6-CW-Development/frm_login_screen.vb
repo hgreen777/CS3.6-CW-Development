@@ -1,6 +1,31 @@
 ﻿Imports System.Data.Common
 
 Public Class frm_login_screen
+    '
+    ' Form Open & Close Events
+    '
+    Private Sub frm_login_screen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        '
+        ' Formatting Buttons
+        ' Loop through all buttons on the form and set the colour and round the edges.
+        For Each btn As Button In Me.Controls.OfType(Of Button)
+            standardProcedures.RoundButton(btn)
+        Next
+        '
+        ' Read all data from persistent data files and store in data sxtructures (memory)
+        '
+        If FileHandler.readAllData() = False Then MsgBox("Fatal Error Reading Data: Exiting System.") : End
+    End Sub
+    ' Make sure textboxes are cleared on show to prevent an old user's details being shown when a new user goes to log in.
+    Private Sub frm_login_screen_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+        If Not Me.Visible Then
+            ' Clear all text boxes
+            txt_username_inp.Text = ""
+            txt_password_inp.Text = ""
+
+        End If
+    End Sub
+
     Private Sub btn_login_Click(sender As Object, e As EventArgs) Handles btn_login_redir.Click
         ' Validate input is present
         If Validation.PresenceValidation(txt_username_inp.Text) = False Then MsgBox("Please enter a username") : Exit Sub
@@ -30,23 +55,5 @@ Public Class frm_login_screen
             ' Error message for incorrect password.
             MsgBox("Incorrect Password")
         End If
-    End Sub
-
-    Private Sub frm_login_screen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        '
-        ' Formatting Buttons
-        ' Loop through all buttons on the form and set the colour and round the edges.
-        For Each btn As Button In Me.Controls.OfType(Of Button)
-            standardProcedures.RoundButton(btn)
-        Next
-        '
-        ' Shuffle the key for the simple password encryption
-        '
-        'standardProcedures.shuffleKey()
-        '
-        ' Read all data from persistent data files and store in data sxtructures (memory)
-        '
-        If FileHandler.readAllData() = False Then MsgBox("Fatal Error Reading Data: Exiting System.") : End
-
     End Sub
 End Class
