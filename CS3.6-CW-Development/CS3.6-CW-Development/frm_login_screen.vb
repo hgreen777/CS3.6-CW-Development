@@ -25,7 +25,10 @@ Public Class frm_login_screen
 
         End If
     End Sub
-
+    '
+    ' Redirect/Process Code
+    '
+    ' Login Button
     Private Sub btn_login_Click(sender As Object, e As EventArgs) Handles btn_login_redir.Click
         ' Validate input is present
         If Validation.PresenceValidation(txt_username_inp.Text) = False Then MsgBox("Please enter a username") : Exit Sub
