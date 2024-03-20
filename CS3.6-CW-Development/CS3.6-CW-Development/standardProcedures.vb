@@ -203,7 +203,8 @@ Public Class standardProcedures
     Private Shared allCharacters As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@£$%^&*()_+"
     ' Create a copy of all the characters for the key
     Private Shared key As String = allCharacters
-    ' Shuffle all character in the key by 5 characters
+    ' Needs to be done once at the start of every program launch.
+    ' Shuffle all character in the key by 7 characters
     Public Shared Sub shuffleKey()
         ' Create a new string builder
         Dim newKey As New StringBuilder
