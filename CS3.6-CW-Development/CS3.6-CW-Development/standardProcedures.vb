@@ -201,34 +201,34 @@ Public Class standardProcedures
 
     ' Create a list of all characters
     Private Shared allCharacters As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@£$%^&*()_+"
-    ' Create a copy of all the characters for the key
-    Private Shared key As String = allCharacters
+    ' Create a copy of all the characters for the key shuffled by 7 spaces to the left
+    Private Shared key As String = "hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@£$%^&*()_+abcdefg"
     ' Needs to be done once at the start of every program launch.
     ' Shuffle all character in the key by 7 characters
-    Public Shared Sub shuffleKey()
-        ' Create a new string builder
-        Dim newKey As New StringBuilder
-        ' Loop over all the characters in the key
-        For i = 0 To key.Length - 1
-            ' Get the character at the current index
-            Dim currentChar As Char = key(i)
-            ' Get the index of the current character in the all characters string
-            Dim index As Integer = allCharacters.IndexOf(currentChar)
-            ' Add 5 to the index
-            index += 7
-            ' If the index is greater than the length of the all characters string
-            If index > allCharacters.Length - 1 Then
-                ' Subtract the length of the all characters string from the index
-                index -= allCharacters.Length
-            End If
-            ' Get the character at the new index
-            Dim newChar As Char = allCharacters(index)
-            ' Append the new character to the new key
-            newKey.Append(newChar)
-        Next
-        ' Set the key to be the new key
-        key = newKey.ToString()
-    End Sub
+    '  Public Shared Sub shuffleKey()
+    ' Create a new string builder
+    ' Dim newKey As New StringBuilder
+    '' Loop over all the characters in the key
+    'For i = 0 To key.Length - 1
+    '' Get the character at the current index
+    'Dim currentChar As Char = key(i)
+    ' Get the index of the current character in the all characters string
+    'Dim index As Integer = allCharacters.IndexOf(currentChar)
+    ' Add 5 to the index
+    '       index += 7
+    ' If the index is greater than the length of the all characters string
+    'If index > allCharacters.Length - 1 Then
+    ' Subtract the length of the all characters string from the index
+    '           index -= allCharacters.Length
+    'End If
+    ' Get the character at the new index
+    'Dim newChar As Char = allCharacters(index)
+    ' Append the new character to the new key
+    '       newKey.Append(newChar)
+    'Next
+    ' Set the key to be the new key
+    '   key = newKey.ToString()
+    'End Sub
     ' Encrypt a string
     Public Shared Function encryptString(ByVal input As String) As String
         ' Create a new string builder

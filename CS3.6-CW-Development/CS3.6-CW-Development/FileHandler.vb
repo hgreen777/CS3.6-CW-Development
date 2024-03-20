@@ -34,7 +34,8 @@ Module FileHandler
                 Input(1, tmpStaff.userName) : Input(1, tmpStaff.password)       ' Read user's loging details from file.
 
                 ' Decrypt the staff member's password
-                tmpStaff.password = standardProcedures.decryptString(tmpStaff.password)
+                Dim tmpPassword As String = standardProcedures.decryptString(tmpStaff.password)
+                tmpStaff.password = tmpPassword
 
                 ' Add the staff member to the hash table
                 DataStructures.StaffHashTable.addStaffMember(tmpStaff, False)
@@ -64,7 +65,7 @@ Module FileHandler
                 ' While the current node is not nothing write the data to the file
                 While currentNode IsNot Nothing
                     ' Encypt the staff member's password of the node
-                    Dim tmpPassword As String = standardProcedures.decryptString(currentNode.staffMemberData.password)
+                    Dim tmpPassword As String = standardProcedures.encryptString(currentNode.staffMemberData.password)
 
                     ' Write one record at a time to file
                     WriteLine(1,

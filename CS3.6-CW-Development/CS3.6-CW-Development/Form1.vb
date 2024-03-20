@@ -14,7 +14,6 @@
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         ' read all the data from files for testing
-        standardProcedures.shuffleKey()
         FileHandler.readAllData()
         FileHandler.writeAllData()
 
@@ -136,14 +135,6 @@
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim password As String = "password"
-        MsgBox(standardProcedures.hashPassSHA256(password))
-        password = standardProcedures.hashPassSHA256(password)
-        MsgBox(standardProcedures.deHashPassSHA256(password))
-        If password = standardProcedures.hashPassSHA256("password") Then
-            MsgBox(True)
-        End If
-
         frm_login_screen.Show()
         Me.Hide()
     End Sub

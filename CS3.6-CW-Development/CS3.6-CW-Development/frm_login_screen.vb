@@ -40,16 +40,13 @@ Public Class frm_login_screen
             standardProcedures.RoundButton(btn)
         Next
         '
+        ' Shuffle the key for the simple password encryption
+        '
+        'standardProcedures.shuffleKey()
+        '
         ' Read all data from persistent data files and store in data sxtructures (memory)
         '
-        ' Read all staff members from the staff file and store in the staff hash table. Exit system if error occurs.
-        If FileHandler.staffRead() = False Then MsgBox("Fatal Error Reading Staff Data: Exiting System.") : End
-        ' Read all shift data from the shift file and store in the shift linked list. Exit system if error occurs.
-        If FileHandler.shiftRead() = False Then MsgBox("Fatal Error Reading Shift Data: Exiting System.") : End
-        ' Read all notification data from the notification file and store in the notification binary tree. Exit system if error occurs.
-        'If FileHandler.notificationRead() = False Then MsgBox("Fatal Error Reading Notification Data: Exiting System.") : End
-        ' Read all the notification instance data from the notification file and store in the notification linked list. Exit system is error occurs.
-        'If FileHandler.notificationInstanceRead() = False Then MsgBox("Fatal Error Reading Notification Instance Data: Exiting System.") : End
+        If FileHandler.readAllData() = False Then MsgBox("Fatal Error Reading Data: Exiting System.") : End
 
     End Sub
 End Class
