@@ -36,8 +36,6 @@ Module FileHandler
                 ' Decrypt the staff member's password
                 tmpStaff.password = standardProcedures.decryptString(tmpStaff.password)
 
-                MsgBox(tmpStaff.password)
-
                 ' Add the staff member to the hash table
                 DataStructures.StaffHashTable.addStaffMember(tmpStaff, False)
             End While

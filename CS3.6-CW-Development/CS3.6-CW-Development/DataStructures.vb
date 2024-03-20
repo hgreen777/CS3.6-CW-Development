@@ -701,6 +701,41 @@ Module DataStructures
         End Function
     End Class
 
+    ' *Force Sort Algorithm* - Quick Sort
+    ' Quick Sort
+    ' Sorts the array of shifts by the start time of the shift
+    Public Function quickSortShifts(ByRef arr() As Shift, ByVal first As Integer, ByVal last As Integer)
+        Dim left, right As Integer
+        Dim pivot, tmpShift As Shift
+
+        If last > first Then
+            left = first
+            right = last
+            pivot = arr((left + right) / 2)
+
+            Do
+                While arr(left).startTime <= pivot.startTime And arr(left).startTime <> pivot.startTime
+                    left = left + 1
+
+                End While
+                While arr(right).startTime >= pivot.startTime And arr(right).startTime <> pivot.startTime
+                    right = right - 1
+                End While
+
+                If left <> right Then
+                    tmpShift = arr(left)
+                    arr(left) = arr(right)
+                    arr(right) = tmpShift
+                End If
+            Loop Until (left = right) Or (arr(left).startTime = arr(right).startTime)
+
+            quickSortShifts(arr, first, left - 1)
+            quickSortShifts(arr, right + 1, last)
+
+            Return arr
+        End If
+    End Function
+
     ' ** LEAVE TILL LAST IN DEVELLOPMENT CAN BE RUSHED AS LONG AS SHIFT SUBROUTINES ARE SUFFICIENTLY TESTED **
 
 

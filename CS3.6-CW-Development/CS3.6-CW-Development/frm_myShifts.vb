@@ -16,6 +16,27 @@
             ' Update listbox with all shifts
             Dim staffShifts As List(Of Integer) = DataStructures.ShiftLL.findStaffShifts(activeUser)
 
+            ' Force a sort algorithm - Quick Sort - Due to implementation less efficient due to all the linear searching of LL to then sort.
+            ' Sort the array
+            If cbo_sortStartTime.Checked Then
+                ' Move the shifts to an array of Shifts
+                Dim staffShiftsArray(staffShifts.Count - 1) As Shift
+                For i = 0 To staffShifts.Count - 1
+                    ' Find the shift and add it to the array
+                    staffShiftsArray(i) = DataStructures.ShiftLL.find(staffShifts(i))
+                Next
+
+                staffShiftsArray = DataStructures.quickSortShifts(staffShiftsArray, 0, staffShiftsArray.Length - 1)
+
+                ' Clear the list 
+                staffShifts.Clear()
+                ' Add the sorted shifts back to the list - adding the shiftID to the list
+                For i = 0 To staffShiftsArray.Length - 1
+                    staffShifts.Add(staffShiftsArray(i).shiftID)
+                Next
+            End If
+
+
 
             For i = 0 To staffShifts.Count - 1
                 Dim tmpShift As Shift = DataStructures.ShiftLL.find(staffShifts(i))
@@ -80,5 +101,6 @@
         End If
         Me.Hide()   ' Hide the current form
     End Sub
+
 
 End Class

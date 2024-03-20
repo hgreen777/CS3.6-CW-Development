@@ -39,6 +39,7 @@ Partial Class frm_myShifts
         Me.startTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.endTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.btn_removeShift_process = New System.Windows.Forms.Button()
+        Me.cbo_sortStartTime = New System.Windows.Forms.CheckBox()
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grp_selectedShift.SuspendLayout()
         Me.grp_myShifts.SuspendLayout()
@@ -201,12 +202,23 @@ Partial Class frm_myShifts
         Me.btn_removeShift_process.Text = "Remove Selected Shift"
         Me.btn_removeShift_process.UseVisualStyleBackColor = True
         '
+        'cbo_sortStartTime
+        '
+        Me.cbo_sortStartTime.AutoSize = True
+        Me.cbo_sortStartTime.Location = New System.Drawing.Point(718, 14)
+        Me.cbo_sortStartTime.Name = "cbo_sortStartTime"
+        Me.cbo_sortStartTime.Size = New System.Drawing.Size(104, 17)
+        Me.cbo_sortStartTime.TabIndex = 21
+        Me.cbo_sortStartTime.Text = "Sort by start time"
+        Me.cbo_sortStartTime.UseVisualStyleBackColor = True
+        '
         'frm_myShifts
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(203, Byte), Integer), CType(CType(173, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(834, 391)
+        Me.Controls.Add(Me.cbo_sortStartTime)
         Me.Controls.Add(Me.btn_removeShift_process)
         Me.Controls.Add(Me.grp_myShifts)
         Me.Controls.Add(Me.grp_selectedShift)
@@ -222,6 +234,7 @@ Partial Class frm_myShifts
         Me.grp_selectedShift.PerformLayout()
         Me.grp_myShifts.ResumeLayout(False)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -241,4 +254,5 @@ Partial Class frm_myShifts
     Friend WithEvents shiftID As ColumnHeader
     Friend WithEvents startTime As ColumnHeader
     Friend WithEvents endTime As ColumnHeader
+    Friend WithEvents cbo_sortStartTime As CheckBox
 End Class
