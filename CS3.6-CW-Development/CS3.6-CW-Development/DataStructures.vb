@@ -700,38 +700,48 @@ Module DataStructures
             Return suggested                                                ' Return the list of shiftIDs of suggested shifts to the calling subroutine
         End Function
     End Class
-
     ' *Force Sort Algorithm* - Quick Sort
     ' Quick Sort
     ' Sorts the array of shifts by the start time of the shift
-    Public Function quickSortShifts(ByRef arr() As Shift, ByVal first As Integer, ByVal last As Integer)
-        Dim left, right As Integer
-        Dim pivot, tmpShift As Shift
+    Public Function quickSortShifts(ByRef arr() As Shift, ByVal low As Integer, ByVal high As Integer)
+        Dim left, right As Integer  ' Pointers to the left and right of the array.
+        Dim pivot                   ' Stores the pivot element which is used to compare the other elements to.
+        Dim tmpShift As Shift       ' Used to temporarily store a shift so that it can be swapped with another shift.
 
-        If last > first Then
-            left = first
-            right = last
+        ' Checks if the last element is greater then the first element.
+        If high > low Then
+            ' Sets the left and right pointers to the first and last elements of the array.
+            left = low
+            right = high
+            ' Sets the pivot element to be the middle element of the array.
             pivot = arr((left + right) / 2)
 
+            ' Loop to sort the array by the start time of the shift.
             Do
+                ' Loop to find the element in the array that is greater then the pivot element - meaning it would need to be moved.
                 While arr(left).startTime <= pivot.startTime And arr(left).startTime <> pivot.startTime
-                    left = left + 1
-
+                    left = left + 1 ' Move the left pointer to the right.
                 End While
+                ' Loop to find the element in the array that is greater then the pivot element - meaning it would need to be moved.
                 While arr(right).startTime >= pivot.startTime And arr(right).startTime <> pivot.startTime
-                    right = right - 1
+                    right = right - 1   ' Move the right pointer to the left.
                 End While
 
+                ' Swaps the elements in the array as long as they are not pointing to the same point as this would require no swap.
                 If left <> right Then
+                    ' Swaps the elements in the array.
                     tmpShift = arr(left)
                     arr(left) = arr(right)
                     arr(right) = tmpShift
                 End If
+
+                ' Loop until the left and right pointers are equal or the start time of the shifts are equal.
             Loop Until (left = right) Or (arr(left).startTime = arr(right).startTime)
 
-            quickSortShifts(arr, first, left - 1)
-            quickSortShifts(arr, right + 1, last)
+            quickSortShifts(arr, low, left - 1)     ' Recursive call to sort the left side of the array.
+            quickSortShifts(arr, right + 1, high)   ' Recursive call to sort the right side of the array.
 
+            ' Return the sorted array.
             Return arr
         End If
     End Function
