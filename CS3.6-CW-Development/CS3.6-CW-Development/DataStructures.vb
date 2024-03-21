@@ -350,6 +350,9 @@ Module DataStructures
         ' Procedure that adds a new node to the end of the linked list.
         ' instead of append add should be used to ensure node is added in order in linked list working with nextavailableID.
         Public Sub append(ByVal newShiftData As Shift)
+            ' Ensure that a shift always has a username attached to it - ie add a placeholder if nothing to prevent Error 15.
+            If newShiftData.staffUserName Is Nothing Then newShiftData.staffUserName = "HarrisonGreen0"
+
             ' Check list is not empty - If list is empty create a new list with the data.
             If _root Is Nothing Then
                 newList(newShiftData)               ' Create a new list using the data as the LL is empty.
@@ -382,6 +385,9 @@ Module DataStructures
         ' Procedure that adds a new node to the linked list (based of ID to ensure the LL is kept in order).
         ' **INCOMPLETE**? TEST
         Public Sub add(ByVal newShiftData As Shift)
+            ' Ensure that a shift always has a username attached to it - ie add a placeholder if nothing to prevent Error 15.
+            If newShiftData.staffUserName Is Nothing Then newShiftData.staffUserName = "HarrisonGreen0"
+
             ' Check list is not empty - If list is empty create a new list with the data.
             If _root Is Nothing Then
                 newList(newShiftData)               ' Create a new list using the data as the LL is empty.
