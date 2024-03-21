@@ -14,6 +14,15 @@
             lbl_shiftID_dynamic.Text = frm_allShifts.lbl_shiftID_dynamic.Text
             lbl_startDateTime_dynamic.Text = frm_allShifts.lbl_startDateTime_dynamic.Text
             lbl_endDateTime_dynamic.Text = frm_allShifts.lbl_endDateTime_dynamic.Text
+        Else
+            ' Clear all labels
+            lbl_shiftID_dynamic.Text = "<ShiftID>"
+            lbl_startDateTime_dynamic.Text = "<StartDateTime>"
+            lbl_endDateTime_dynamic.Text = "<EndDateTime>"
+            ' Clear text boxes
+            txt_firstName_search.Text = ""
+            txt_startTime_inp.Text = "HH:mm"
+            txt_endTime_inp.Text = "HH:mm"
         End If
     End Sub
 
