@@ -4,10 +4,9 @@ Imports System.Text
 Public Class standardProcedures
     ' Assign shifts to full-time staff members.
 
-
     Public Shared Sub RoundButton(btn As Button)
-        'TODO: Comment Code (And sort the commented line out)
         ' Edit button properties to make it consistent
+        ' Setting the style of the button and making it a consistent grey colour.
         btn.FlatStyle = FlatStyle.Flat
         btn.FlatAppearance.BorderSize = 0
         btn.FlatAppearance.BorderColor = Color.FromArgb(191, 191, 191)
@@ -15,27 +14,29 @@ Public Class standardProcedures
 
         ' Create a new graphics path to store the rounded edges of the button
         Dim radius As New Drawing2D.GraphicsPath
+        ' Start creating a "drawing" of the rounded edges of the button
         radius.StartFigure()
 
-        ' Rounding Geometry for top left corner
+        ' Rounding Geometry for top left corner - Adding an arc and then a line to the next corner.
         radius.AddArc(New Rectangle(0, 0, 10, 10), 180, 90)
         radius.AddLine(10, 0, btn.Width - 10, 0)
 
-        ' Rounding Geometry for top right corner
+        ' Rounding Geometry for top right corner - Adding an arc
         radius.AddArc(New Rectangle(btn.Width - 10, 0, 10, 10), -90, 90)
         'radius.AddLine(btnRound.Width, 29, btn.Width, btn.Height, -10)
 
-        ' Rounding Geometry for bottom right corner
+        ' Rounding Geometry for bottom right corner - Adding an arc and then a line to the next corner.
         radius.AddArc(New Rectangle(btn.Width - 10, btn.Height - 10, 10, 10), 0, 90)
         radius.AddLine(btn.Width - 10, btn.Height, 10, btn.Height)
 
-        ' Rounding Geometry for bottom left corner
+        ' Rounding Geometry for bottom left corner - Adding an arc and then a line to the next corner.
         radius.AddArc(New Rectangle(0, btn.Height - 10, 10, 10), 90, 90)
         radius.AddLine(0, btn.Height - 10, 0, 10)
 
+        ' End drawing the rounded edges of the button
         radius.CloseFigure()
+        ' Set the bounds (region) of the button to be the newly created outline.
         btn.Region = New Region(radius)
-
     End Sub
 
     ' Producing a hash for a password
