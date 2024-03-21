@@ -20,8 +20,8 @@ Module DataStructures
         Dim lastName As String      ' Stores the last name of the staff member.
         Dim isManager As Boolean    ' Boolean stating wether the user is a manager or staff member.
         Dim isFullTime As Boolean   ' Boolean Stating whether the user is a full time staff member.
-        Dim userName As String      ' Stores the Auto-generated username based of other fields.
-        Dim password As String      ' Stored the encrypted password for a user. - Hash?
+        Dim userName As String      ' Stores the Auto-generated username based of other fields. (FirstLastID)
+        Dim password As String      ' Stored the password for a user. - Ecncrypted when written to file.
     End Structure
 
     ' Declaring the structure (class) that turns the staff details into a node.
@@ -73,7 +73,7 @@ Module DataStructures
     Public Class NotificationInstanceNode
         Public notificationInstanceData As NotificationInstance         ' Stores the data for a particular notification instance.
         Public nextNotificationInstance As NotificationInstanceNode     ' Pointer to the next notification instance in the linked list.
-        Public lastNotificationInstance As NotificationInstanceNode     ' Pointer to the next notification instance in the linked list.
+        Public lastNotificationInstance As NotificationInstanceNode     ' Pointer to the last notification instance in the linked list.
     End Class
 
     ' Declaring the structre used in the 2D array to create a shift pattern that can be used to automatically assign shifts to user.
@@ -108,7 +108,6 @@ Module DataStructures
             firstName = userName.Substring(0, secondCapIndex)           ' Extracts the first name from the username.
             Return firstName
         End Function
-
         '
         ' Hash Function
         ' Function to calculate the hash value for a staff member based of the first name.
@@ -128,7 +127,6 @@ Module DataStructures
         '
         ' Adding a new staff member
         ' Function to add a new staff member to the hash table.
-        '
         Public Sub addStaffMember(ByVal staffMember As StaffMember, ByVal shouldWrite As Boolean)
             Dim hash As Integer = hashValue(staffMember.firstName)  ' Calculates the hash value for the staff member to be added.
             Dim currentNode As StaffMemberNode = _hashTable(hash)    ' Creates a pointer to the current node in the linked list.
@@ -139,7 +137,7 @@ Module DataStructures
                 _hashTable(hash).staffMemberData = staffMember  ' Sets the data in the new node to the staff member data.
 
                 ' Write to file
-                ' Should Write prevents Error #2 (See CS3.6a For more information.
+                ' Should Write prevents Error #2 (See CS3.6a For more information.) - Should remove write here and put in calling function - however no Error 2 :(.
                 If shouldWrite Then
                     If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not added") : Return
                 End If
@@ -162,9 +160,8 @@ Module DataStructures
         '
         ' Finding a staff member.
         ' Function to find a staff member in the hash table.
-        '
         Public Function findStaffMember(ByVal staffUserName As String, ByVal isUserName As Boolean) As StaffMember
-
+            ' Checks if the staff member is being searched for by username or first name.
             If isUserName = True Then
                 Dim staffFirstName As String = firstFromUserName(staffUserName)  ' Finds the first name of the staff member using the username.
                 Dim hash As Integer = hashValue(staffFirstName)  ' Calculates the hash value for the staff member to be found.
@@ -187,15 +184,19 @@ Module DataStructures
                 Dim hash As Integer = hashValue(staffUserName)  ' Calculates the hash value for the staff member to be found.
                 Dim currentNode As StaffMemberNode = _hashTable(hash)    ' Creates a pointer to the current node in the linked list.
                 If currentNode IsNot Nothing Then
+                    ' Verify that the node is the one being looked for by checking first name matches surname.
                     If currentNode.staffMemberData.firstName = staffUserName And currentNode.nextStaffMember Is Nothing Then
                         Return currentNode.staffMemberData
                     End If
 
                     'Returns either way fix result bit
                     While currentNode IsNot Nothing
+                        ' Checks if the current node is the staff member being searched for (as may be 2 users with the same first name so get user to verify desired user).
                         If currentNode.staffMemberData.firstName = staffUserName Then
+                            ' Ask user if this is the user they are looking for.
                             Dim result As Integer = MsgBox("Is the user you are searching for :" & currentNode.staffMemberData.userName, MsgBoxStyle.YesNo)
 
+                            ' If user says yes then return the user. Else move on to next node.
                             If result = 6 Then
                                 Return currentNode.staffMemberData
                             End If
@@ -207,8 +208,6 @@ Module DataStructures
                 ' If not then loop through LL and check if the name of the next node is the same as the input name and if it is put a yesno box to user to select the correct one once user says yes return that user.
             End If
 
-
-
             MsgBox("Error: Staff Member Does not exist")  ' Informs the user that the staff member was not found in the hash table.
             Return Nothing  ' Returns nothing to the calling function if the staff member was not found in the hash table.
         End Function
@@ -218,7 +217,7 @@ Module DataStructures
         ' Error 1: By changing the username (firstname) it means that first name does not hash to the same location anymore, therefore to update, the old node should be deleted and new one added.
         Public Function updateStaffMember(ByVal oldUserName As String, ByVal newStaffMember As StaffMember)
 
-            ' Remove the old node
+            ' Remove the old node - will produce error in testing to ensure some failed tests.
             removeStaffMember(oldUserName)
 
             'Add new node
@@ -229,7 +228,6 @@ Module DataStructures
         '
         ' Removing a staffmember from the hash table (deleting).
         ' Function to remove a staff member from the hash table.
-        '
         Public Function removeStaffMember(ByVal staffUserName As String) As Boolean
             Dim staffFirstName As String = firstFromUserName(staffUserName)  ' Finds the first name of the staff member using the username.
             Dim hash As Integer = hashValue(staffFirstName)  ' Calculates the hash value for the staff member to be removed.
@@ -240,9 +238,10 @@ Module DataStructures
                 ' Checks if the first node in the linked list is the staff member to be removed.
                 If currentNode.staffMemberData.userName = staffUserName Then
                     _hashTable(hash) = currentNode.nextStaffMember  ' Sets the next node in the linked list to be the first node in the linked list.
+                    ' Remove and allow calling function to handle eror messages as nodes are removed in update and may confuse user.
                     'MsgBox("User Removed")  ' Informs the user that the staff member has been removed.
                     ' Write data to file
-                    If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return False
+                    If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed or updated") : Return False
                     Return True
 
                 Else
@@ -252,7 +251,7 @@ Module DataStructures
                         If currentNode.nextStaffMember.staffMemberData.userName = staffUserName Then
                             currentNode.nextStaffMember = currentNode.nextStaffMember.nextStaffMember  ' Sets the next node in the linked list to the node after the next node.
                             'MsgBox("User Removed")  ' Informs the user that the staff member has been removed.
-                            If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed") : Return False
+                            If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not removed or updated") : Return False
                             Return True
                         End If
 
@@ -263,7 +262,7 @@ Module DataStructures
                 MsgBox("Error: Staff Member Does not exist - User already Removed")  ' Informs the user that the staff member was not found in the hash table.
                 Return False
             End If
-            MsgBox("Error: User Not removed - Retry process or reset system")  ' Informs the user that the staff member was not removed from the hash table.
+            MsgBox("Error: User Not removed/updated - Retry process or reset system")  ' Informs the user that the staff member was not removed from the hash table.
             Return False
         End Function
         '

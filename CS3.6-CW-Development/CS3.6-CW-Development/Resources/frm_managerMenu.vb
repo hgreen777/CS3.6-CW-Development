@@ -1,4 +1,8 @@
 ﻿Public Class frm_managerMenu
+    '
+    ' Form open & close events
+    '
+    ' Visually Change Buttons
     Private Sub frm_managerMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '
         ' Formatting Buttons
@@ -8,40 +12,61 @@
         Next
 
     End Sub
-
-
-    Private Sub btn_profile_redir_Click(sender As Object, e As EventArgs) Handles btn_profile_redir.Click
-        frm_accountEditor.Show()
-        Me.Hide()
-    End Sub
-
-    Private Sub btn_editAcc_redir_Click(sender As Object, e As EventArgs) Handles btn_editAcc_redir.Click
-        frm_accountManager.Show()
-        Me.Hide()
-    End Sub
-
-    Private Sub btn_myShifts_redir_Click(sender As Object, e As EventArgs) Handles btn_myShifts_redir.Click
-        frm_myShifts.Show()
-        Me.Hide()
-    End Sub
-
-    Private Sub btn_allShifts_redir_Click(sender As Object, e As EventArgs) Handles btn_allShifts_redir.Click
-        frm_allShifts.Show()
-        Me.Hide()
-    End Sub
-
-    Private Sub btn_takeShifts_redir_Click(sender As Object, e As EventArgs) Handles btn_takeShifts_redir.Click
-        frm_takeShifts.Show()
-        Me.Hide()
-    End Sub
-
+    ' Change Form Title to show user's first name when form is visible.
     Private Sub frm_managerMenu_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Me.Visible Then
             ' Edit title to show user's first name.
             lbl_menu_TITLE.Text = DataStructures.StaffHashTable.firstFromUserName(activeUser) & "'s Menu (Manager)"
         End If
     End Sub
+    '
+    ' Redirect Code
+    '
+    ' Profile Edit Redirect
+    Private Sub btn_profile_redir_Click(sender As Object, e As EventArgs) Handles btn_profile_redir.Click
+        frm_accountEditor.Show()
+        Me.Hide()
+    End Sub
+    ' Account Manager Redirect
+    Private Sub btn_editAcc_redir_Click(sender As Object, e As EventArgs) Handles btn_editAcc_redir.Click
+        frm_accountManager.Show()
+        Me.Hide()
+    End Sub
+    ' My Shifts Redirect
+    Private Sub btn_myShifts_redir_Click(sender As Object, e As EventArgs) Handles btn_myShifts_redir.Click
+        frm_myShifts.Show()
+        Me.Hide()
+    End Sub
+    ' All Shifts Redirect
+    Private Sub btn_allShifts_redir_Click(sender As Object, e As EventArgs) Handles btn_allShifts_redir.Click
+        frm_allShifts.Show()
+        Me.Hide()
+    End Sub
+    ' Take Shift Redirect
+    Private Sub btn_takeShifts_redir_Click(sender As Object, e As EventArgs) Handles btn_takeShifts_redir.Click
+        frm_takeShifts.Show()
+        Me.Hide()
+    End Sub
+    ' Notification Redirect
+    Private Sub btn_notifications_redir_Click(sender As Object, e As EventArgs) Handles btn_notifications_redir.Click
+        frm_notifications.Show()
+        Me.Hide()
+    End Sub
+    ' Send Notification Redirect
+    Private Sub btn_sendNotis_redir_Click(sender As Object, e As EventArgs) Handles btn_sendNotis_redir.Click
+        frm_notificationManager.Show()
+        Me.Hide()
+    End Sub
+    ' Logout Redirect
+    Private Sub btn_logout_redir_Click(sender As Object, e As EventArgs) Handles btn_logout_redir.Click
+        activeUser = Nothing
+        frm_login_screen.Show()
+        Me.Hide()
 
+    End Sub
+    '
+    ' Functionality/Process Code
+    '
     Private Sub btn_removeOldData_process_Click(sender As Object, e As EventArgs) Handles btn_removeOldData_process.Click
         ' Remove old shifts
         ' Check empty tree
@@ -108,9 +133,6 @@
         ' Write Shift LL to file to save
         If Not FileHandler.shiftWrite() Then MsgBox("Error Writing to shift file, data not saved, please restart system.") : Exit Sub
 
-        'Remove line when notification implemented
-        Exit Sub
-
         ' Get a list of all the notifications that currently have atleast one instance attached to it.
         Dim distinctNotifications As New List(Of Integer)
         distinctNotifications = DataStructures.NotificationInstanceLL.distinctNotification()
@@ -129,22 +151,5 @@
         MsgBox("Old Notifications Removed.") ' Notify user that old data has been removed.
         ' Write Notification Tree to file to save
         If Not FileHandler.notificationWrite() Then MsgBox("Error writing to notification file, data not saved, please restart system.") : Exit Sub
-    End Sub
-
-    Private Sub btn_notifications_redir_Click(sender As Object, e As EventArgs) Handles btn_notifications_redir.Click
-        frm_notifications.Show()
-        Me.Hide()
-    End Sub
-
-    Private Sub btn_logout_redir_Click(sender As Object, e As EventArgs) Handles btn_logout_redir.Click
-        activeUser = Nothing
-        frm_login_screen.Show()
-        Me.Hide()
-
-    End Sub
-
-    Private Sub btn_sendNotis_redir_Click(sender As Object, e As EventArgs) Handles btn_sendNotis_redir.Click
-        frm_notificationManager.Show()
-        Me.Hide()
     End Sub
 End Class
