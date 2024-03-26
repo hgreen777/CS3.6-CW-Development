@@ -53,9 +53,10 @@ Public Class standardProcedures
 
     Public Shared Function deHashPassSHA256(ByVal hashedPass As String) As String
     End Function
-
-    'COMMENT
-    Public Shared Function automaticShiftGeneration() As String '
+    '
+    ' Shift Generation
+    ' This function is used to automatically generate shifts for the full-time staff members and add remaining shifts for the week to available shifts.
+    Public Shared Function automaticShiftGeneration() As Boolean '
         'Improv,ments not actually how it works. if MORE THEN 4 STAFF MEMBERS 1 HAS WEEK OFF - many drawbbacks to implementation
         ' Last/Quick implementation to finish development so documentation is completed in time. - Therefore not efficient.
 
@@ -71,9 +72,17 @@ Public Class standardProcedures
         ' Declare a 2d array of shifts to store the shifts created from the shift pattern. 7 days in a week and 4 shifts per day
         Dim shifts(6, 3) As Shift
         Dim offset As Integer = 0 ' Offset for shift allocation so staff member does now work the same shift every week (read from file) persistent value.
+        Dim lastGeneration As DateTime ' Last time the shifts were generated (read from file) persistent value.
         FileOpen(1, "offset.txt", OpenMode.Input)
         Input(1, offset)
+        Input(1, lastGeneration)
         FileClose(1)
+
+        ' Check if the shifts have already been generated in the last week
+        If lastGeneration.AddDays(7) > Date.Now Then
+            MsgBox("Shifts have already been generated this week")
+            Return False
+        End If
 
         'Mod by 4 as 4 shifts per day so no point shifting staff members more then 4 locations as it will just be extra processing.
         offset = offset Mod 4
@@ -98,7 +107,6 @@ Public Class standardProcedures
         Next
 
         ' CREATE SHIFTS.
-
 
         ' Get the current date and time
         Dim startDate As Date = Date.Now
@@ -183,17 +191,16 @@ Public Class standardProcedures
             Next
         Next
 
-
         ' Update offset
         offset += 1
         FileOpen(1, "offset.txt", OpenMode.Output)
-        Write(1, offset)
+        Write(1, offset, Date.Now)
         FileClose(1)
 
-        Return "Shifts have been generated"
+        ' Write all shifts to the file
+        If FileHandler.shiftWrite() = False Then MsgBox("Error saving new shifts to file") : Return False
 
-
-
+        Return True
     End Function
 
 
