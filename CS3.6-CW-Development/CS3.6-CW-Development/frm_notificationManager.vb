@@ -12,12 +12,21 @@
         ' Validate Input 
         If Validation.PresenceValidation(txt_staffFirstName_inp.Text) = False Then MsgBox("Must enter a name to search") : Exit Sub
 
-        ' Format Input
-        Dim firstName As String = Validation.FormatName(txt_staffFirstName_inp.Text)
+        Dim searchData As String        ' Store the data to search for either a username or firstname
+        Dim tmpStaff As StaffMember     ' Store the staff member that is found
+        ' Check if the input is a username or a name
+        Dim isUserName As Boolean = Validation.isUsernameFormat(txt_staffFirstName_inp.Text)
+
+        ' Checks if input is a username or a name
+        If isUserName Then
+            searchData = txt_staffFirstName_inp.Text
+        Else
+            ' Formatting input if it is not a username and is a name.
+            searchData = Validation.FormatName(txt_staffFirstName_inp.Text)
+        End If
 
         ' Find User
-        Dim tmpStaff As StaffMember
-        tmpStaff = DataStructures.StaffHashTable.findStaffMember(firstName, False)
+        tmpStaff = DataStructures.StaffHashTable.findStaffMember(searchData, isUserName)
 
         'Check if a user has been found before updating info.
         If tmpStaff.userName IsNot Nothing Then
