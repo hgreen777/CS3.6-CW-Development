@@ -2,12 +2,100 @@
 
 Public Class Form1
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim testData As String
-        While testData <> "-1"
-            testData = InputBox("TestData")
-            ' Test Function
-            MsgBox(Validation.correctTimeFormat(testData))
-        End While
+        MsgBox(FileHandler.staffRead)
+        For i = 0 To 100
+            If DataStructures.StaffHashTable._hashTable(i) IsNot Nothing Then
+                MsgBox(DataStructures.StaffHashTable._hashTable(i).staffMemberData.userName)
+            End If
+        Next
+
+
+
+
+
+
+        Exit Sub
+
+        Dim tmpStaff As StaffMember
+        tmpStaff.staffID = 0
+        tmpStaff.firstName = "Harrison"
+        tmpStaff.lastName = "Green"
+        tmpStaff.isManager = True
+        tmpStaff.isFullTime = True
+        tmpStaff.password = "password"
+        tmpStaff.userName = "HarrisonGreen0"
+        DataStructures.StaffHashTable.addStaffMember(tmpStaff, True)
+
+        tmpStaff.staffID = 1
+        tmpStaff.firstName = "Ellie"
+        tmpStaff.lastName = "Mccartney"
+        tmpStaff.isManager = False
+        tmpStaff.isFullTime = False
+        tmpStaff.password = "password"
+        tmpStaff.userName = "EllieMccartney1"
+        DataStructures.StaffHashTable.addStaffMember(tmpStaff, True)
+
+        activeUser = "EllieMccartney1"
+
+        Dim testData As Notification
+
+        testData.notificationID = 3
+        testData.content = "3"
+        testData.sentDate = Date.Now
+        testData.sender = "HarrisonGreen0"
+        DataStructures.NotificationTree.add(testData)
+
+        testData.notificationID = 2
+        testData.content = "2"
+        testData.sentDate = Date.Now
+        testData.sender = "HarrisonGreen0"
+        DataStructures.NotificationTree.add(testData)
+
+        testData.notificationID = 5
+        testData.content = "5"
+        testData.sentDate = Date.Now
+        testData.sender = "HarrisonGreen0"
+        DataStructures.NotificationTree.add(testData)
+
+        testData.notificationID = 1
+        testData.content = "1"
+        testData.sentDate = Date.Now
+        testData.sentDate = testData.sentDate.AddDays(-7)
+        testData.sender = "HarrisonGreen0"
+        DataStructures.NotificationTree.add(testData)
+
+        testData.notificationID = 4
+        testData.content = "4"
+        testData.sentDate = Date.Now
+        testData.sender = "HarrisonGreen0"
+        DataStructures.NotificationTree.add(testData)
+
+        testData.notificationID = 6
+        testData.content = "6"
+        testData.sentDate = Date.Now
+        testData.sender = "HarrisonGreen0"
+        DataStructures.NotificationTree.add(testData)
+
+
+        testData.notificationID = 2
+        testData.content = "2"
+        testData.sentDate = Date.Now
+        testData.sender = "HarrisonGreen0"
+
+
+        DataStructures.NotificationTree.remove(NotificationTree._root, 5)
+        ' Inorder traversal of the tree to see if node removed
+        Dim traversalList As List(Of Integer) = DataStructures.NotificationTree.inOrderTraversal(DataStructures.NotificationTree._root, traversalList)
+        For Each item In traversalList
+            MsgBox(item)
+        Next
+
+
+
+
+
+
+
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

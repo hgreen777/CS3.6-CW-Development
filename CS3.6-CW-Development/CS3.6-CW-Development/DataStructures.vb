@@ -8,6 +8,7 @@ Imports Validation
 Imports System.ComponentModel.DataAnnotations
 Imports System.IO
 Imports System.Text.RegularExpressions
+Imports System.CodeDom.Compiler
 
 Module DataStructures
     '
@@ -127,7 +128,10 @@ Module DataStructures
         '
         ' Adding a new staff member
         ' Function to add a new staff member to the hash table.
-        Public Sub addStaffMember(ByVal staffMember As StaffMember, ByVal shouldWrite As Boolean)
+        Public Function addStaffMember(ByVal staffMember As StaffMember, ByVal shouldWrite As Boolean) As Boolean
+            ' Checks if the staffMember is valid
+            If staffMember.userName Is Nothing Then Return False
+
             Dim hash As Integer = hashValue(staffMember.firstName)  ' Calculates the hash value for the staff member to be added.
             Dim currentNode As StaffMemberNode = _hashTable(hash)    ' Creates a pointer to the current node in the linked list.
 
@@ -139,7 +143,7 @@ Module DataStructures
                 ' Write to file
                 ' Should Write prevents Error #2 (See CS3.6a For more information.) - Should remove write here and put in calling function - however no Error 2 :(.
                 If shouldWrite Then
-                    If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not added") : Return
+                    If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not added") : Return False
                 End If
             Else
                 ' Loop over the linked list to find the end of the list.
@@ -152,11 +156,13 @@ Module DataStructures
 
                 ' Write to file
                 If shouldWrite Then
-                    If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not added") : Return
+                    If FileHandler.staffWrite() = False Then MsgBox("Error: Writing to file. Staff Member not added") : Return False
                 End If
 
             End If
-        End Sub
+
+            Return True  ' Returns true to the calling function to show that the staff member was added successfully.
+        End Function
         '
         ' Finding a staff member.
         ' Function to find a staff member in the hash table.
@@ -215,13 +221,18 @@ Module DataStructures
         ' Updating a staff member.
         ' Function to update a staff member in the hash table.
         ' Error 1: By changing the username (firstname) it means that first name does not hash to the same location anymore, therefore to update, the old node should be deleted and new one added.
-        Public Function updateStaffMember(ByVal oldUserName As String, ByVal newStaffMember As StaffMember)
+        Public Function updateStaffMember(ByVal oldUserName As String, ByVal newStaffMember As StaffMember) As Boolean
+            ' Check if old and new user are valid before making changes to DS
+            If Validation.isUsernameFormat(oldUserName) = False Then Return False
+            If findStaffMember(oldUserName, True).userName Is Nothing Then Return False
+            If newStaffMember.userName Is Nothing Then Return False
+            If Validation.isUsernameFormat(newStaffMember.userName) = False Then Return False
 
-            ' Remove the old node - will produce error in testing to ensure some failed tests.
-            removeStaffMember(oldUserName)
+            ' Remove the old node
+            If removeStaffMember(oldUserName) = False Then Return False
 
             'Add new node
-            addStaffMember(newStaffMember, True)
+            If addStaffMember(newStaffMember, True) = False Then Return False
 
             Return True
         End Function
@@ -269,28 +280,22 @@ Module DataStructures
         ' Function to find a unique ID.
         '
         Public Function findUniqueID() As Integer
-            Dim uniqueID As Integer = 0  ' Stores the unique ID to be returned to the calling function.
-
-            ' Loop over the whole hash table to find the highest unique ID.
+            Dim usedIDs As New List(Of Integer)
+            Dim currentNode As StaffMemberNode
             For i = 0 To _hashTable.Length - 1
-                Dim currentNode As StaffMemberNode = _hashTable(i)  ' Creates a pointer to the current node in the linked list.
-
-                ' Checks if the current cell in the hash table is empty (ie no staff members with a name that hashed to the same location).
-                If currentNode IsNot Nothing Then
-                    ' Loop over the linked list to find the staff member with the highest unique ID.
-                    While currentNode IsNot Nothing
-                        ' Checks if the current node has a higher unique ID then the current highest unique ID.
-                        If currentNode.staffMemberData.staffID > uniqueID Then
-                            uniqueID = currentNode.staffMemberData.staffID  ' Sets the current highest unique ID to the unique ID of the current node.
-                        End If
-
-                        currentNode = currentNode.nextStaffMember  ' Sets the current node to the next node in the linked list.
-                    End While
-                End If
+                currentNode = _hashTable(i)
+                While currentNode IsNot Nothing
+                    usedIDs.Add(currentNode.staffMemberData.staffID)
+                    currentNode = currentNode.nextStaffMember
+                End While
             Next
 
-            uniqueID += 1  ' Increments the unique ID by 1 to ensure the next unique ID is unique.
-            Return uniqueID  ' Returns the unique ID to the calling function.
+            Dim uniqueID As Integer = 0
+            While usedIDs.Contains(uniqueID)
+                uniqueID += 1
+            End While
+
+            Return uniqueID
         End Function
         '
         ' clearHashTable
@@ -311,13 +316,13 @@ Module DataStructures
 
                 ' Loop over the linked list to find the full time staff members.
                 While currentNode IsNot Nothing
-                        ' Checks if the current node is a full time staff member.
-                        If currentNode.staffMemberData.isFullTime = True Then
-                            fullTimeStaffList.Add(currentNode.staffMemberData.userName)  ' Adds the username of the full time staff member to the list.
-                        End If
+                    ' Checks if the current node is a full time staff member.
+                    If currentNode.staffMemberData.isFullTime = True Then
+                        fullTimeStaffList.Add(currentNode.staffMemberData.userName)  ' Adds the username of the full time staff member to the list.
+                    End If
 
-                        currentNode = currentNode.nextStaffMember  ' Sets the current node to the next node in the linked list.
-                    End While
+                    currentNode = currentNode.nextStaffMember  ' Sets the current node to the next node in the linked list.
+                End While
 
             Next
 
@@ -349,14 +354,14 @@ Module DataStructures
         '
         ' Procedure that adds a new node to the end of the linked list.
         ' instead of append add should be used to ensure node is added in order in linked list working with nextavailableID.
-        Public Sub append(ByVal newShiftData As Shift)
+        Public Function append(ByVal newShiftData As Shift) As Boolean
             ' Ensure that a shift always has a username attached to it - ie add a placeholder if nothing to prevent Error 15.
             If newShiftData.staffUserName Is Nothing Then newShiftData.staffUserName = "HarrisonGreen0"
 
             ' Check list is not empty - If list is empty create a new list with the data.
             If _root Is Nothing Then
                 newList(newShiftData)               ' Create a new list using the data as the LL is empty.
-                Exit Sub                            ' Return to prevent any further processing which could cause a bug.
+                Return True                           ' Return to prevent any further processing which could cause a bug.
             End If
 
             Dim currentNode As ShiftNode = _root            ' Sets the currentNode as the root of the LL.
@@ -365,43 +370,9 @@ Module DataStructures
             ' Loop over the whole LL to find either the end of the LL.
             ' Check if the next node to be checked is empty (if it is end of LL has been found).
             While nextNode IsNot Nothing
-                ' Process to repeat process using next node.
-                currentNode = nextNode          ' Sets the current node to move the process ine node along.
-                nextNode = nextNode.nextShift   ' Sets the next node to the next node after the current node.
-            End While
-
-            ' Process for adding a new shift to end of linked list.
-            ' Checks if an error has occured earlier in terms of shiftID generation (ensures no further error created with find etc).
-            If currentNode.shiftData.shiftID = newShiftData.shiftID Then
-                MsgBox("Error: Duplicate Data (Node not inserted) - Try action again.") ' Informs user of error and potential to fix error
-            Else
-                currentNode.nextShift = getNode(newShiftData)   ' Sets the next shift equal to the creation of a new node using the data passed into procedure.
-                nextNode = currentNode.nextShift                ' Sets the next node to the new shift being created so pointers can be setup.
-                nextNode.lastShift = currentNode                ' Stes the lastShift pointer to the shift just before the new shift being added to the LL.
-                ' No need to set next shift as pointer should be left as nothing as is the end of the LL.
-            End If
-        End Sub
-        '
-        ' Procedure that adds a new node to the linked list (based of ID to ensure the LL is kept in order).
-        ' **INCOMPLETE**? TEST
-        Public Sub add(ByVal newShiftData As Shift)
-            ' Ensure that a shift always has a username attached to it - ie add a placeholder if nothing to prevent Error 5.
-            If newShiftData.staffUserName Is Nothing Then newShiftData.staffUserName = "HarrisonGreen0"
-
-            ' Check list is not empty - If list is empty create a new list with the data.
-            If _root Is Nothing Then
-                newList(newShiftData)               ' Create a new list using the data as the LL is empty.
-                Exit Sub                            ' Return to prevent any further processing which could cause a bug.
-            End If
-
-            Dim currentNode As ShiftNode = _root            ' Sets the currentNode as the root of the LL.
-            Dim nextNode As ShiftNode = _root.nextShift     ' Creates a pointer to the next node in the LL.
-
-            ' Loop over the whole LL to find either the end of the LL or the next node has a higher id then the cureent nodeID.
-            ' Check if the next node to be checked is empty (if it is end of LL has been found).
-            While nextNode IsNot Nothing
-                If newShiftData.shiftID < nextNode.shiftData.shiftID And newShiftData.shiftID > currentNode.shiftData.shiftID Then
-                    Exit While
+                If currentNode.shiftData.shiftID = newShiftData.shiftID Then
+                    MsgBox("Error: Duplicate Data (Node not inserted) - Try action again.") ' Informs user of error and potential to fix error
+                    Return False
                 End If
                 ' Process to repeat process using next node.
                 currentNode = nextNode          ' Sets the current node to move the process ine node along.
@@ -412,23 +383,74 @@ Module DataStructures
             ' Checks if an error has occured earlier in terms of shiftID generation (ensures no further error created with find etc).
             If currentNode.shiftData.shiftID = newShiftData.shiftID Then
                 MsgBox("Error: Duplicate Data (Node not inserted) - Try action again.") ' Informs user of error and potential to fix error
-            ElseIf nextNode Is Nothing Then
-                ' Node is being added to the end of the LL.
+                Return False
+            Else
                 currentNode.nextShift = getNode(newShiftData)   ' Sets the next shift equal to the creation of a new node using the data passed into procedure.
                 nextNode = currentNode.nextShift                ' Sets the next node to the new shift being created so pointers can be setup.
                 nextNode.lastShift = currentNode                ' Stes the lastShift pointer to the shift just before the new shift being added to the LL.
+                ' No need to set next shift as pointer should be left as nothing as is the end of the LL.
+            End If
+            Return True
+        End Function
+        '
+        ' Adds a node to the shift LL
+        ' Procedure that adds a new node to the linked list (based of ID to ensure the LL is kept in order).
+        Public Function add(ByVal newShiftData As Shift) As Boolean
+            ' Ensure that a shift always has a username attached to it - ie add a placeholder if nothing to prevent Error 5.
+            If newShiftData.staffUserName Is Nothing Then newShiftData.staffUserName = "HarrisonGreen0"
+
+            ' Check list is not empty - If list is empty create a new list with the data.
+            If _root Is Nothing Then
+                newList(newShiftData)               ' Create a new list using the data as the LL is empty.
+                Return True                          ' Return to prevent any further processing which could cause a bug.
+            End If
+
+            Dim currentNode As ShiftNode = _root            ' Sets the currentNode as the root of the LL.
+            Dim nextNode As ShiftNode = _root.nextShift     ' Creates a pointer to the next node in the LL.
+
+            ' Loop over the whole LL to find either the end of the LL or the next node has a higher id then the cureent nodeID.
+            ' Check if the next node to be checked is empty (if it is end of LL has been found).
+            While nextNode IsNot Nothing
+                If newShiftData.shiftID < nextNode.shiftData.shiftID And newShiftData.shiftID > currentNode.shiftData.shiftID Then
+                    Exit While
+                ElseIf newShiftData.shiftID = currentNode.shiftData.shiftID Or newShiftData.shiftID = nextNode.shiftData.shiftID Then
+                    MsgBox("Error: Duplicate Data (Node not inserted) - Try action again.") ' Informs user of error and potential to fix error
+                    Return False
+                End If
+                ' Process to repeat process using next node.
+                currentNode = nextNode          ' Sets the current node to move the process ine node along.
+                nextNode = nextNode.nextShift   ' Sets the next node to the next node after the current node.
+            End While
+
+            ' Process for adding a new shift to end of linked list.
+            ' Checks if an error has occured earlier in terms of shiftID generation (ensures no further error created with find etc).
+            If currentNode.shiftData.shiftID = newShiftData.shiftID Then
+                MsgBox("Error: Duplicate Data (Node not inserted) - Try action again.") ' Informs user of error and potential to fix error
+                Return False
+            ElseIf nextNode Is Nothing Then
+                ' Node is being added to the end of the LL.
+                nextNode = getNode(newShiftData)   ' Sets the next shift equal to the creation of a new node using the data passed into procedure.
+                nextNode.lastShift = currentNode              ' Sets the next node to the new shift being created so pointers can be setup.
+                currentNode.nextShift = nextNode                ' Stes the lastShift pointer to the shift just before the new shift being added to the LL.
                 ' No need to set next shift as pointer should be left as nothing as is the end of the LL.
             Else
                 ' Node is being inserted between 2 nodes.
                 currentNode.nextShift = getNode(newShiftData)
                 currentNode.nextShift.lastShift = currentNode
+                currentNode.nextShift.nextShift = nextNode  'Test 33 Changes.
                 nextNode.lastShift = currentNode.nextShift
             End If
-        End Sub
+            Return True
+        End Function
         '
         ' Update Shift Data - This function update the data attached to a shift node. And returns if the operation was successfull to the calling subroutine.
         '
         Public Function updateShiftData(ByVal oldData As Shift, ByVal newData As Shift) As Boolean
+            ' Ensure the same node is being updated (and new node has a username attached to it).
+            If oldData.shiftID <> newData.shiftID Then Return False
+            If newData.staffUserName Is Nothing Then newData.staffUserName = "HarrisonGreen0"
+
+
             Dim currentNode As ShiftNode = _root                            'Sets a pointer to the current node to search for the node to be updated
 
             While currentNode IsNot Nothing                                 ' Loop through the LL to find the node that needs to be updated
@@ -444,15 +466,22 @@ Module DataStructures
         '
         ' Remove Shift - This function will remove a shift node given the shiftID.
         '
-        Public Sub remove(ByVal nodeID As Integer)
+        Public Function remove(ByVal nodeID As Integer) As Boolean
             Dim currentNode As ShiftNode = _root                                    ' Sets a pointer to the current node to search for the node to be deleted.
 
             While _                                                                 ' Loops through the LL looking for the node to be removed.
-                currentNode IsNot Nothing _                                         ' Check that the end of the LL has not been found (ie shift does not exist (and problem elsewhere)
-                And nodeID <> currentNode.shiftData.shiftID                         ' Checks if the current node is the one being searched for - loop condition
+                currentNode IsNot Nothing                                         ' Check that the end of the LL has not been found (ie shift does not exist (and problem elsewhere)
+                If nodeID <> currentNode.shiftData.shiftID Then
+                    currentNode = currentNode.nextShift                                 ' Sets the pointer to the next node to ensure lops through whole LL
+                Else
+                    Exit While
+                End If
 
                 currentNode = currentNode.nextShift                                 ' Sets the pointer to the next node to ensure lops through whole LL
             End While
+
+            If currentNode Is Nothing Then MsgBox("Error: Shift (node) not found meaning it was not deleted. Please retry or restart.") : Return False ' If the node is not found then return false to calling subroutine.
+
             ' Test Process
             If nodeID = currentNode.shiftData.shiftID And                           ' Checks if the found node actually matches the search data.
                currentNode.shiftData.shiftID <> _root.shiftData.shiftID And         ' Checks if the node is the root of the LL.
@@ -467,8 +496,10 @@ Module DataStructures
                 currentNode.lastShift.nextShift = Nothing                           ' Sets the one pointer to the node to nothing.
             Else                                                                    ' Null case
                 MsgBox("Error: Shift Not Deleted - Try restarting program and attempting to use feature again.") ' Error caused elsewehre ie nodeID given is not valid.
+                Return False
             End If
-        End Sub
+            Return True
+        End Function
         '
         ' Function which finds a node given a shiftID and returns the shift data if found (else returns nothing)
         ' Ensure caller function validates that something has returned.
@@ -545,6 +576,11 @@ Module DataStructures
             ' Validate TimeFormat
             If Validation.correctTimeFormat(startTime) = False Then startTimeValid = False
             If Validation.correctTimeFormat(endTime) = False Then endTimeValid = False
+
+            ' Validate User - Test 56
+            If Validation.isUsernameFormat(staffUserName) = False Then MsgBox("Error: Invalid Username") : Return False
+            ' Find user to check real
+            If StaffHashTable.findStaffMember(staffUserName, True).userName Is Nothing Then Return False
 
             ' If there are no time alterations for the shift.
             If startTime = "HH:mm" And endTime = "HH:mm" And shiftID <> "<ShiftID>" And staffUserName <> "<StaffUserName>" Then
@@ -779,11 +815,11 @@ Module DataStructures
         '
         ' add node to tree
         ' This procedure runs through the treee to find where a new node should be added.
-        Public Sub add(ByVal data As Notification)
+        Public Function add(ByVal data As Notification) As Boolean
             ' If tree is empty create a new one
             If _root Is Nothing Then
                 newTree(data)
-                Exit Sub
+                Return True
             End If
 
             ' Declaring temp pointers at the root so all nodes can be searched with a binary search ot where the node can be added.
@@ -805,6 +841,7 @@ Module DataStructures
             ' Set the pointers but check there is no duplicate ID as this would cause problems later whensearching etc.
             If currentNode.notificationData.notificationID = data.notificationID Then
                 MsgBox("Error : Duplicate Staff IDs (Node not inserted): Try restarting the system.")   ' Inform user of error and to restart to try and fix error.
+                Return False
             ElseIf currentNode.notificationData.notificationID < data.notificationID Then
                 ' If the node should be inserted in the right subtree then insert it there.
                 currentNode.rightPointer = GetNode(data)
@@ -812,10 +849,10 @@ Module DataStructures
                 ' If it is meant to be in the left tree then add it to the left pointer.
                 currentNode.leftPointer = GetNode(data)
             End If
-
+            Return True
             ' Write data.
 
-        End Sub
+        End Function
         '
         ' Find Node
         ' Function that finds a node in the notification data tree by recursing down the tree to find the node. (returns found node)
@@ -852,13 +889,16 @@ Module DataStructures
                 End If
             Next
 
+            ' If the tree is empty assign 1 to the first node. - Test 77
+            If orderedIDs.Count = 0 Then Return 1
+
             ' If not gaps return the highest id +1 to be unique id.
             Return orderedIDs(orderedIDs.Count - 1) + 1
         End Function
         '
         ' in order traversal
         ' This function traverses the tree in an ordered fashion to return a list of all the notification ID ordered.
-        Function inOrderTraversal(ByVal node As NotificationNode, currentList As List(Of Integer))
+        Function inOrderTraversal(ByVal node As NotificationNode, currentList As List(Of Integer)) As List(Of Integer)
             ' To prevent bug on first iteration ensure current list has been set to something
             If currentList Is Nothing Then
                 ' Create a new list so nodes can be added to it.
@@ -904,113 +944,68 @@ Module DataStructures
         '
         ' Remove Node
         ' This function removes a node from the tree.
-        Public Function remove(ByVal node As NotificationNode, ByVal inpNotiID As Integer) As Boolean
-            ' Finds bottom of tree or if node is empty incase of an error ie the node that is passed ot the function is NOthing.
+        Public Function remove(ByVal node As NotificationNode, ByVal inpNotiID As Integer)
+            ' Base case if the tree is empty or if the bottom of the tree has been found.
             If node Is Nothing Then
-                Return False
+                Return node
             End If
 
-            ' Find the node to delete -?? may not need
-            'Dim nodeToDelete As NotificationNode = find(_root, inpNotiID)
+            ' Make the node be the parent of the node to be removed.
+            ' Done by recursing down the tree to find the node and make a pointer to the node.
+            If node.notificationData.notificationID > inpNotiID Then
+                node.leftPointer = remove(node.leftPointer, inpNotiID)
+                Return node
+            ElseIf node.notificationData.notificationID < inpNotiID Then
+                node.rightPointer = remove(node.rightPointer, inpNotiID)
+                Return node
 
-            ' Pointers set to the current node and the parent of the node (parent important for pointers in deletion)
-            Dim parent As NotificationNode = Nothing
-            Dim current As NotificationNode = node
-
-            ' Find the node to be deleted and assign its parent's pointers
-            While current IsNot Nothing
-                ' If the node to be deleted is found then exit the loop
-                If inpNotiID <> current.notificationData.notificationID Then
-                    ' Set the parent pointer to the current node as the node to be deleted is not found yet.
-                    parent = current
-
-                    ' If the node to be deleted is less then the current node then search the left subtree.
-                    If inpNotiID < current.notificationData.notificationID Then
-                        current = current.leftPointer
-                    Else
-                        ' If the node to be deleted is more then the current node then search the right subtree.
-                        current = current.rightPointer
-                    End If
-                End If
-            End While
-
-            ' If the node is not found but while is exited node is not in tree or  tree built incorrectly exit
-            If current Is Nothing Then
-                MsgBox("Notification not found in storage. Please restart system.")
-                Return False
             End If
 
-            ' Select the case for deleting method depending on the node to be deleted's children nodes
+            ' node is now the node to be deleted
 
-            ' Case 1 : Node is a leaf (ie no children)
-            If current.leftPointer Is Nothing And current.rightPointer Is Nothing Then
-                ' If it is the root and tree has no children ie tree has one node and will not be empty
-                If parent Is Nothing Then
-                    _root = Nothing                             ' Set the root to nothing.
+            ' Case 2a : Node has one right child.
+            If node.leftPointer Is Nothing Then
+                Dim tmpNode As NotificationNode = node.rightPointer
+                node = Nothing
+                Return tmpNode
 
-                    ' If the node is a left child
-                ElseIf parent.leftPointer Is current Then
-                    parent.leftPointer = Nothing                ' Set the left pointer of the parent to nothing.
+                ' Case 2b : Node has one leftchild.
+            ElseIf node.rightPointer Is Nothing Then
+                Dim tmpNode As NotificationNode = node.leftPointer
+                node = Nothing
+                Return tmpNode
 
-                    ' If the node is a right child
-                Else
-                    parent.rightPointer = Nothing               ' Set the right pointer of the parent to nothing.
-                End If
-
-                ' Case 2a : Node has left child.
-            ElseIf current.leftPointer IsNot Nothing And current.rightPointer Is Nothing Then
-                ' if it is the root and tree has left child.
-                If parent Is Nothing Then
-                    _root = current.leftPointer                 ' Set the root to the left pointer of the current node.
-
-                    ' if the node is a left child
-                ElseIf parent.leftPointer Is current Then
-                    parent.leftPointer = current.leftPointer    ' Set the left pointer of the parent to the left pointer of the current node.
-
-                    ' If the node is a right child.
-                Else
-                    parent.rightPointer = current.leftPointer   ' Set the right pointer of the parent to the left pointer of the current node.
-                End If
-
-                ' Case 2b : Node has a right child
-            ElseIf current.leftPointer Is Nothing And current.rightPointer IsNot Nothing Then
-                ' if it is the root and tree has right child.
-                If parent Is Nothing Then
-                    _root = current.rightPointer                ' Set the root to the right pointer of the current node.
-
-                    ' If the node is a left child.
-                ElseIf parent.leftPointer Is current Then
-                    parent.leftPointer = current.rightPointer   ' Set the left pointer of the parent to the right pointer of the current node.
-
-                    ' If the node is a right child.
-                Else
-                    parent.rightPointer = current.rightPointer  ' Set the right pointer of the parent to the right pointer of the current node.
-                End If
-
-                ' Case 3 : Node has Children
+                ' Case 3: Node has 2 children
             Else
-                ' Need to find the node to the right to replace the current node and then clean up by removing duplicate node (and subsequently moving all other nodes below it).
-                ' ie shuffly the nodes around the point of the node being removed.
-                Dim replaceNode As NotificationNode = findMin(current.rightPointer)
-                current.notificationData = replaceNode.notificationData
-                remove(current.rightPointer, replaceNode.notificationData.notificationID)   ' Recurses function to remove the duplicate node.
+
+                ' Find the parent and child/successor (to replace the node being deleted) node of the node to be deleted.
+                Dim parent As NotificationNode = node
+                Dim child As NotificationNode = node.rightPointer
+                ' Find the leftmost node in the right subtree of the node to be deleted.
+                While child.leftPointer IsNot Nothing
+                    parent = child
+                    child = child.leftPointer
+                End While
+
+                ' Delete the successor node (child node)
+                ' Since the child node will always be a left child (due to it being searched for by left pointers (in the right tree))
+
+                If parent IsNot node Then
+                    parent.leftPointer = child.rightPointer
+                Else
+                    ' If there is no child/successor then the child right pointer will be the parent right pointer.
+                    parent.rightPointer = child.rightPointer
+                End If
+
+                'Copy the child/successor data to be the data in the new node and then delete the child node.
+                node.notificationData = child.notificationData
+                ' Delete the child and return the node to calling instance.
+                child = Nothing
+                Return node
             End If
-
-            Return True ' Return true to calling function to inform that the node has been deleted.
-        End Function
-        '
-        ' Find Min
-        ' Driver function for removing a node that finds the minimum node in a tree given the root node or another node.
-        Function findMin(ByVal node As NotificationNode) As NotificationNode
-            ' Loop over the left subtree to find the minimum node.
-            While node.leftPointer IsNot Nothing
-                node = node.leftPointer ' Set the node to the left node to find the minimum node.
-            End While
-
-            ' Return the minimum node.
-            Return node
         End Function
     End Class
+
     '
     ' Class design for storing all subroutines related to storng and manupulating notification instance data
     ' Notificatyion Instance linked list
@@ -1034,11 +1029,11 @@ Module DataStructures
         '
         ' Append node
         ' Procedure that adds a new node to the end of the LL.
-        Public Sub append(ByVal notificationData As NotificationInstance)
+        Public Function append(ByVal notificationData As NotificationInstance) As Boolean
             ' Check list is not empty - if the list is empty then create a new list with the data.
             If _root Is Nothing Then
                 newList(notificationData)   ' Create a new list using the data passed into the function as the LL is empty.
-                Exit Sub                    ' Return to prevent further processing causing a bug.
+                Return True                  ' Return to prevent further processing causing a bug.
             End If
 
             Dim currentNode As NotificationInstanceNode = _root     ' Set pointer o the curentNode as the root of the LL.
@@ -1047,6 +1042,11 @@ Module DataStructures
             ' Loop over the whole LL to find the end of the LL.
             ' Check if the next node to be checked is empty (if it is the end of LL has been found).
             While nextNode IsNot Nothing
+                If currentNode.notificationInstanceData.notificationInstanceID = notificationData.notificationInstanceID Then
+                    MsgBox("Error: duplicate data (node not inserted) - Try action again.") ' Informs user of error and potential fix for error.
+                    Return False
+                End If
+
                 ' Process to repeat to shift pointers along one node.
                 currentNode = nextNode                          ' Sets the current node to move the process one node allong.
                 nextNode = nextNode.nextNotificationInstance    ' Sets the next node to the next node after the current node set to next node.
@@ -1062,15 +1062,15 @@ Module DataStructures
                 nextNode.lastNotificationInstance = currentNode                     ' Sets the lastshift pointer to the notification instance just before the new notiInstance being added to the LL.
                 ' Next shift pointer default to nothing as end of LL.
             End If
-        End Sub
+        End Function
         '
         ' add node
         ' Procedure that adds a new node to the LL in the correct position.
-        Public Sub add(ByVal newNotiInstanceData As NotificationInstance)
+        Public Function add(ByVal newNotiInstanceData As NotificationInstance) As Boolean
             ' If list is empty create a new one
             If _root Is Nothing Then
                 newList(newNotiInstanceData)
-                Exit Sub
+                Return True
             End If
 
             Dim currentNode As NotificationInstanceNode = _root                         ' Set a pointer to the root of the tree
@@ -1082,6 +1082,9 @@ Module DataStructures
                 If newNotiInstanceData.notificationInstanceID < nextNode.notificationInstanceData.notificationInstanceID And
                    newNotiInstanceData.notificationInstanceID > currentNode.notificationInstanceData.notificationInstanceID Then
                     Exit While
+                ElseIf newNotiInstanceData.notificationInstanceID = currentNode.notificationInstanceData.notificationInstanceID Then
+                    MsgBox("Error: duplicate data (node not inserted) - Try action again.") ' Informs user of error and potential fix for error.
+                    Return False
                 End If
 
                 ' Move onto the next node
@@ -1093,6 +1096,7 @@ Module DataStructures
             ' Checks if an error has occured earlier in terms of notificationInstanceID generation(ensures no further error created with find etc).
             If currentNode.notificationInstanceData.notificationInstanceID = newNotiInstanceData.notificationInstanceID Then
                 MsgBox("Error: duplicate data (node not inserted) - Try action again.") ' Informs user of error and potential fix for error.
+                Return False
             ElseIf nextNode Is Nothing Then
                 ' If the next node is nothing then the new node should be added to the end of the LL.
                 Dim newNode As NotificationInstanceNode = getNode(newNotiInstanceData)  ' Create a new node using the data passed into the function.
@@ -1105,7 +1109,7 @@ Module DataStructures
                 currentNode.nextNotificationInstance = newNode                          ' Set the next node of the current node to the new node in the LL.
                 nextNode.lastNotificationInstance = newNode                             ' Set the last node of the next node to the new node in the LL.
             End If
-        End Sub
+        End Function
         '
         ' find node
         ' Function which finds a node given a notificationInstanceID and returns the notification instance data if found (else returns nothing)
@@ -1141,9 +1145,7 @@ Module DataStructures
             Dim difference As Integer                          ' Stores the difference betweeen 2 node IDs
 
             ' If list is empty start ID allocation at 1
-            If _root Is Nothing Then
-                Return 1
-            Else
+            If _root IsNot Nothing Then
                 ' Sets the total to the ID of the first node as long as it is not nothing
                 total = _root.notificationInstanceData.notificationInstanceID
             End If
@@ -1221,7 +1223,7 @@ Module DataStructures
         '
         ' Distinct Notification 
         ' Get all the distinct notifications in the notification LL - used to find notifications that can be deleted.
-        Public Function distinctNotification()
+        Public Function distinctNotification() As List(Of Integer)
             Dim currentNode As NotificationInstanceNode = _root ' Set a pointer to the root of the tree
             Dim returnNotificationList As New List(Of Integer)  ' Create a new list to store unique notificationIDs to be returned to calling function.
 
