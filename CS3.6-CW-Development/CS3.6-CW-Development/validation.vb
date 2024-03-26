@@ -25,7 +25,7 @@ Module Validation
     ' This function checks if a string input is in the correct format to be a valid time so system does not fail if string is converted to datetime.
     Public Function correctTimeFormat(inp As String) As Boolean
         ' Checks if the input is not like the expected format ie a valid 24hr time. 
-        If Not ((inp Like "[0-1]#:[0-5]#") Or (inp Like "2[0-3]:[0-5]#")) Then
+        If Not ((inp Like "[0-1]#:[0-5]#") Or (inp Like "2[0-3]:[0-5]#") Or (inp Like "[1-9]:[0-5]#")) Then
             Return False    ' Returns false if the inpu fails validation as the input is not in the correct format.
         End If
 
@@ -61,6 +61,12 @@ Module Validation
         If Regex.Matches(inp, "[A-Z]").Count <> 2 Or Regex.Matches(inp, "[0-9]$").Count = 0 Then
             Return False ' Return False if the input string has failed validation
         End If
+        ' Check if the first character is a capital letter.
+        ' See CS3.7 Test #25
+        If Not Char.IsUpper(inp(0)) Then
+            Return False ' Return False if the input string has failed validation
+        End If
+
 
         Return True ' Return True if the input string has passed validation
     End Function
