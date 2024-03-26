@@ -385,7 +385,7 @@ Module DataStructures
         ' Procedure that adds a new node to the linked list (based of ID to ensure the LL is kept in order).
         ' **INCOMPLETE**? TEST
         Public Sub add(ByVal newShiftData As Shift)
-            ' Ensure that a shift always has a username attached to it - ie add a placeholder if nothing to prevent Error 15.
+            ' Ensure that a shift always has a username attached to it - ie add a placeholder if nothing to prevent Error 5.
             If newShiftData.staffUserName Is Nothing Then newShiftData.staffUserName = "HarrisonGreen0"
 
             ' Check list is not empty - If list is empty create a new list with the data.
