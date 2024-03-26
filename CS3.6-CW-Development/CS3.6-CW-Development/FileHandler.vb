@@ -15,16 +15,28 @@ Module FileHandler
     ' Thie function reads from the staff file into the hashTable data structure. Returns True if process was successful.
     Public Function staffRead() As Boolean
         ' Linearly read all records from file and create a new node out of them then add node to Hash Table.
-        ' Open file for reading.
-        FileOpen(1, staffFile, OpenMode.Input)
 
         ' Create a new staff member to store the data from the file
         Dim tmpStaff As StaffMember
 
         ' Try to read from file and add to hash table
         Try
+            ' Open file for reading.
+            FileOpen(1, staffFile, OpenMode.Input)
+
             ' Clear the old hash table
             DataStructures.StaffHashTable.clearHashTable()
+
+            ' If the file is empty then create a new user so someone can log in to create new accounts
+            Dim admin As StaffMember
+            admin.staffID = 0
+            admin.firstName = "Admin"
+            admin.lastName = "Team"
+            admin.isManager = True
+            admin.isFullTime = True
+            admin.userName = "AdminTeam0"
+            admin.password = "password"
+            DataStructures.StaffHashTable.addStaffMember(admin, False)
 
             ' While not end of file read in all the data for one record and add to hash table
             While Not EOF(1)
@@ -53,9 +65,10 @@ Module FileHandler
     ' Writing to staff file
     ' This function writs all the data from the hash table to the staff persistent file.
     Public Function staffWrite() As Boolean
-        FileOpen(1, staffFile, OpenMode.Output)
 
         Try
+            FileOpen(1, staffFile, OpenMode.Output)
+
             ' For each cell in HashTable linearly run through the LL and write each one
             For i = 0 To DataStructures.StaffHashTable._hashTable.Length - 1
                 ' Create a new pointer to node to store the current staff member
@@ -87,8 +100,7 @@ Module FileHandler
         Catch ex As Exception
             ' If an error occurs close the file and return false
             FileClose(1)
-            MsgBox(ex.ToString())
-            MsgBox("Error Writing Staff Data, try restarting program.")  ' Display error message to user
+            MsgBox("Error Writing Staff Data, try restarting program." & " " & ex.ToString())  ' Display error message to user
             Return False
         End Try
 
@@ -169,8 +181,8 @@ Module FileHandler
         Catch ex As Exception
             ' If an error occurs close the file and return false
             FileClose(1)
-            MsgBox(ex.ToString())
-            MsgBox("Error Reading Shift File: Please restart Program.")
+            MsgBox("Error Reading Shift File: Please restart Program." & " " & ex.ToString())
+            Return False
         End Try
     End Function
     '
@@ -181,14 +193,14 @@ Module FileHandler
     ' This function reads from the notification file into the binary tree data structure. Returns True if process was successful.
     Public Function notificationRead() As Boolean
         ' Linearly read all records from file and create a new node out of them then add node to Hash Table.
-        ' Open file for reading.
-        FileOpen(1, notificationFile, OpenMode.Input)
-
         ' Create a new notification to store the data from the file
         Dim tmpNotification As Notification
 
         ' Try to read from file and add to binary tree
         Try
+            ' Open file for reading.
+            FileOpen(1, notificationFile, OpenMode.Input)
+
             ' Create a new binary tree with the first record
             If Not EOF(1) Then
                 ' Read in the data for one record from the file

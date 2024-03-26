@@ -96,6 +96,11 @@
         lst_notificationRecipients.Items.Clear()
 
 
+        ' Write to file
+        If FileHandler.notificationWrite() = False Then MsgBox("Error writing to file. Notification not saved - please restart")
+        If FileHandler.notificationInstanceWrite() = False Then MsgBox("Error writing to file - please restart")
+
+
     End Sub
 
     Private Sub lst_notificationRecipients_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lst_notificationRecipients.SelectedIndexChanged

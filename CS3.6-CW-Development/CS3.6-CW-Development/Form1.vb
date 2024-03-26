@@ -2,16 +2,6 @@
 
 Public Class Form1
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        MsgBox(FileHandler.staffRead)
-        For i = 0 To 100
-            If DataStructures.StaffHashTable._hashTable(i) IsNot Nothing Then
-                MsgBox(DataStructures.StaffHashTable._hashTable(i).staffMemberData.userName)
-            End If
-        Next
-
-
-
-
 
 
         Exit Sub
