@@ -2,18 +2,12 @@
 
 Public Class Form1
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-
-        readAllData()
-        standardProcedures.automaticShiftGeneration()
-        Exit Sub
-
-
-        Dim testSet As String() = {"00:00", "99:99", "19:00", "23:59", "12", "12:3123123", "James", "Ja:Me"}
-        For Each strs In testSet
-            MsgBox(strs & Validation.correctTimeFormat(strs))
-        Next
-
+        Dim testData As String
+        While testData <> "-1"
+            testData = InputBox("TestData")
+            ' Test Function
+            MsgBox(Validation.correctTimeFormat(testData))
+        End While
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
