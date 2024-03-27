@@ -15,7 +15,7 @@
     Private Sub frm_staffMenu_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Me.Visible Then
             ' Edit title to show user's first name.
-            lbl_menu_TITLE.Text = DataStructures.StaffHashTable.firstFromUserName(activeUser) & "'s Menu (Manager)"
+            lbl_menu_TITLE.Text = DataStructures.StaffHashTable.firstFromUserName(activeUser) & "'s Menu (Staff)"
         End If
     End Sub
     '

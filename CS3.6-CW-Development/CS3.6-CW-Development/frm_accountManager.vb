@@ -253,4 +253,17 @@ Public Class frm_accountManager
         frm_managerMenu.Show()
         Me.Hide()
     End Sub
+
+    Private Sub frm_accountManager_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+        If Me.Visible Then
+            ' Reset all labels and text boxes
+            lbl_username_dynamic.Text = "<StaffUserName>"
+            txt_firstName_search.Text = ""
+            txt_firstName_inp.Text = ""
+            txt_surname_inp.Text = ""
+            txt_password_inp.Text = ""
+            chBox_isManager.Checked = False
+            chBox_isfullTimeStaff.Checked = False
+        End If
+    End Sub
 End Class

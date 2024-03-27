@@ -11,6 +11,10 @@
 
     Private Sub frm_takeShifts_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Me.Visible() Then
+            ' Clear the labels
+            lbl_shiftID_dynamic.Text = "<ShiftID>"
+            lbl_startDateTime_dynamic.Text = "<DD/MM/YYYY HH:mm>"
+            lbl_endDateTime_dynamic.Text = "<DD/MM/YYYY HH:mm>"
             ' Clear the list boxes
             lst_suggestedShifts.Items.Clear()
             lst_availableShifts.Items.Clear()
@@ -18,27 +22,27 @@
             Dim suggestedShifts As List(Of Integer) = DataStructures.ShiftLL.usersSuggestedShifts()
 
             For i = 0 To suggestedShifts.Count - 1
-                    Dim tmpShift As Shift = DataStructures.ShiftLL.find(suggestedShifts(i))
-                    ' Add Shift to mulitcolumned ListBox adding the shiftID, Start Time and End Time in columns
-                    Dim lsvItem As ListViewItem = New ListViewItem(tmpShift.shiftID)
-                    lsvItem.SubItems.Add(tmpShift.startTime.DayOfWeek.ToString.Substring(0, 3) & " " & tmpShift.startTime.ToString)
-                    lsvItem.SubItems.Add(tmpShift.endTime.DayOfWeek.ToString.Substring(0, 3) & " " & tmpShift.endTime)
-                    lst_suggestedShifts.Items.Add(lsvItem)
+                Dim tmpShift As Shift = DataStructures.ShiftLL.find(suggestedShifts(i))
+                ' Add Shift to mulitcolumned ListBox adding the shiftID, Start Time and End Time in columns
+                Dim lsvItem As ListViewItem = New ListViewItem(tmpShift.shiftID)
+                lsvItem.SubItems.Add(tmpShift.startTime.DayOfWeek.ToString.Substring(0, 3) & " " & tmpShift.startTime.ToString)
+                lsvItem.SubItems.Add(tmpShift.endTime.DayOfWeek.ToString.Substring(0, 3) & " " & tmpShift.endTime)
+                lst_suggestedShifts.Items.Add(lsvItem)
 
-                Next
+            Next
 
-                'Update the all availabler shifts list box
-                Dim allShifts As List(Of Integer) = DataStructures.ShiftLL.availableShifts()
-                For i = 0 To allShifts.Count - 1
-                    Dim tmpShift As Shift = DataStructures.ShiftLL.find(allShifts(i))
-                    ' Add Shift to mulitcolumned ListBox adding the shiftID, Start Time and End Time in columns
-                    Dim lsvItem As ListViewItem = New ListViewItem(tmpShift.shiftID)
-                    lsvItem.SubItems.Add(tmpShift.startTime.DayOfWeek.ToString.Substring(0, 3) & " " & tmpShift.startTime)
-                    lsvItem.SubItems.Add(tmpShift.endTime.DayOfWeek.ToString.Substring(0, 3) & " " & tmpShift.endTime)
-                    lst_availableShifts.Items.Add(lsvItem)
+            'Update the all availabler shifts list box
+            Dim allShifts As List(Of Integer) = DataStructures.ShiftLL.availableShifts()
+            For i = 0 To allShifts.Count - 1
+                Dim tmpShift As Shift = DataStructures.ShiftLL.find(allShifts(i))
+                ' Add Shift to mulitcolumned ListBox adding the shiftID, Start Time and End Time in columns
+                Dim lsvItem As ListViewItem = New ListViewItem(tmpShift.shiftID)
+                lsvItem.SubItems.Add(tmpShift.startTime.DayOfWeek.ToString.Substring(0, 3) & " " & tmpShift.startTime)
+                lsvItem.SubItems.Add(tmpShift.endTime.DayOfWeek.ToString.Substring(0, 3) & " " & tmpShift.endTime)
+                lst_availableShifts.Items.Add(lsvItem)
 
-                Next
-            End If
+            Next
+        End If
     End Sub
 
     Private Sub lst_suggestedShifts_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lst_suggestedShifts.SelectedIndexChanged

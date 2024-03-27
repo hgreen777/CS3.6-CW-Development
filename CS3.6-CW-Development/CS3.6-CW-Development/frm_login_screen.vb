@@ -18,11 +18,12 @@ Public Class frm_login_screen
     End Sub
     ' Make sure textboxes are cleared on show to prevent an old user's details being shown when a new user goes to log in.
     Private Sub frm_login_screen_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
-        If Not Me.Visible Then
+        If Me.Visible Then
             ' Clear all text boxes
             txt_username_inp.Text = ""
             txt_password_inp.Text = ""
-
+            'Set focus to the username input box
+            txt_username_inp.Focus()
         End If
     End Sub
     '

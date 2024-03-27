@@ -91,7 +91,6 @@ Public Class Form1
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         ' read all the data from files for testing
         FileHandler.readAllData()
-        FileHandler.writeAllData()
 
 
         activeUser = "HarrisonGreen0"

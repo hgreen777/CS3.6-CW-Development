@@ -51,7 +51,7 @@ Partial Class frm_staffMenu
         Me.btn_logout_redir.Location = New System.Drawing.Point(46, 2)
         Me.btn_logout_redir.Name = "btn_logout_redir"
         Me.btn_logout_redir.Size = New System.Drawing.Size(75, 38)
-        Me.btn_logout_redir.TabIndex = 5
+        Me.btn_logout_redir.TabIndex = 1
         Me.btn_logout_redir.Text = "LOGOUT"
         Me.btn_logout_redir.UseVisualStyleBackColor = True
         '
@@ -63,7 +63,7 @@ Partial Class frm_staffMenu
         Me.btn_takeShifts_redir.Location = New System.Drawing.Point(165, 80)
         Me.btn_takeShifts_redir.Name = "btn_takeShifts_redir"
         Me.btn_takeShifts_redir.Size = New System.Drawing.Size(150, 70)
-        Me.btn_takeShifts_redir.TabIndex = 8
+        Me.btn_takeShifts_redir.TabIndex = 2
         Me.btn_takeShifts_redir.Text = "Take Shifts"
         Me.btn_takeShifts_redir.UseVisualStyleBackColor = True
         '
@@ -75,7 +75,7 @@ Partial Class frm_staffMenu
         Me.btn_myShifts_redir.Location = New System.Drawing.Point(415, 80)
         Me.btn_myShifts_redir.Name = "btn_myShifts_redir"
         Me.btn_myShifts_redir.Size = New System.Drawing.Size(150, 70)
-        Me.btn_myShifts_redir.TabIndex = 9
+        Me.btn_myShifts_redir.TabIndex = 3
         Me.btn_myShifts_redir.Text = "My Shifts"
         Me.btn_myShifts_redir.UseVisualStyleBackColor = True
         '
@@ -88,7 +88,7 @@ Partial Class frm_staffMenu
         Me.btn_notifications_redir.Location = New System.Drawing.Point(611, 43)
         Me.btn_notifications_redir.Name = "btn_notifications_redir"
         Me.btn_notifications_redir.Size = New System.Drawing.Size(111, 31)
-        Me.btn_notifications_redir.TabIndex = 7
+        Me.btn_notifications_redir.TabIndex = 5
         Me.btn_notifications_redir.Text = "Notifications"
         Me.btn_notifications_redir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btn_notifications_redir.UseVisualStyleBackColor = True
@@ -102,7 +102,7 @@ Partial Class frm_staffMenu
         Me.btn_profile_redir.Location = New System.Drawing.Point(648, 6)
         Me.btn_profile_redir.Name = "btn_profile_redir"
         Me.btn_profile_redir.Size = New System.Drawing.Size(74, 31)
-        Me.btn_profile_redir.TabIndex = 6
+        Me.btn_profile_redir.TabIndex = 4
         Me.btn_profile_redir.Text = "Profile"
         Me.btn_profile_redir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btn_profile_redir.UseVisualStyleBackColor = True

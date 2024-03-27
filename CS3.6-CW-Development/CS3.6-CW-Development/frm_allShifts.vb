@@ -15,6 +15,15 @@
             lst_allShifts.Items.Clear()
             'Set Check Box to unchecked - to ensure checkbox matches the list
             chkbox_filterTaken.Checked = False
+            'Reset the labels
+            lbl_shiftID_dynamic.Text = "<ShiftID>"
+            lbl_startDateTime_dynamic.Text = "<DD/MM/YYYY HH:mm>"
+            lbl_endDateTime_dynamic.Text = "<DD/MM/YYYY HH:mm>"
+            lbl_isTaken_dynamic.Text = "<Yes/No>"
+            lbl_takenBy_dynamic.Text = "<StaffUserName>"
+            txt_startTime_inp.Text = "HH:mm"
+            txt_endTime_inp.Text = "HH:mm"
+            dtePicker_date.Value = Date.Now
 
 
 

@@ -111,4 +111,13 @@
         frm_managerMenu.Show()
         Me.Hide()
     End Sub
+
+    Private Sub frm_notificationManager_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+        If Me.Visible Then
+            ' Clear the form
+            txt_notificationContent_inp.Text = ""
+            txt_staffFirstName_inp.Text = ""
+            lst_notificationRecipients.Items.Clear()
+        End If
+    End Sub
 End Class
