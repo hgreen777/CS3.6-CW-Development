@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 
 Public Class Form1
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
 
 
         Exit Sub
@@ -99,7 +99,7 @@ Public Class Form1
         Me.Hide()
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
         activeUser = "HarrisonGreen0"
         Dim tmpStaff As StaffMember
 
@@ -214,7 +214,7 @@ Public Class Form1
         Me.Hide()
     End Sub
 
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+    Private Sub Button5_Click(sender As Object, e As EventArgs)
 
         ' Gain input from user any valid string
         Dim input As String = "HarrisonGreen0"

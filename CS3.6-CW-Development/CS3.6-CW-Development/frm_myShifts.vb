@@ -1,4 +1,7 @@
 ﻿Public Class frm_myShifts
+    '
+    ' Form Open & close Events
+    '
     Private Sub frm_myShifts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '
         ' Formatting Buttons
@@ -7,7 +10,6 @@
             standardProcedures.RoundButton(btn)
         Next
     End Sub
-
     Private Sub frm_myShifts_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Me.Visible() Then
             ' Clear the list boxes
@@ -48,7 +50,25 @@
             Next
         End If
     End Sub
-
+    '
+    ' Redirect Code
+    '
+    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
+        ' Redirect to relevent menu for user type
+        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True) ' Get the active user details.
+        ' Check if the user is a manager or not
+        If tmpStaff.isManager Then
+            ' Show the manager menu is user is a manager
+            frm_managerMenu.Show()
+        Else
+            ' Show the staff menu if the user is not a manager
+            frm_staffMenu.Show()
+        End If
+        Me.Hide()   ' Hide the current form
+    End Sub
+    '
+    ' Processes code ie buttons for processing data
+    '
     Private Sub btn_removeShift_process_Click(sender As Object, e As EventArgs) Handles btn_removeShift_process.Click
         ' Check that a shift has been selected
         If lbl_shiftID_dynamic.Text = "<ShiftID>" Then MsgBox("Please select a shift to remove.") : Exit Sub
@@ -72,7 +92,6 @@
         ' Write to file
         FileHandler.shiftWrite()
     End Sub
-
     Private Sub lst_myShifts_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lst_myShifts.SelectedIndexChanged
         ' Check that a shift has been selected
         If lst_myShifts.SelectedItems.Count = 0 Then
@@ -87,20 +106,4 @@
         lbl_startDateTime_dynamic.Text = lst_myShifts.SelectedItems(0).SubItems(1).Text
         lbl_endDateTime_dynamic.Text = lst_myShifts.SelectedItems(0).SubItems(2).Text
     End Sub
-
-    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
-        ' Redirect to relevent menu for user type
-        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True) ' Get the active user details.
-        ' Check if the user is a manager or not
-        If tmpStaff.isManager Then
-            ' Show the manager menu is user is a manager
-            frm_managerMenu.Show()
-        Else
-            ' Show the staff menu if the user is not a manager
-            frm_staffMenu.Show()
-        End If
-        Me.Hide()   ' Hide the current form
-    End Sub
-
-
 End Class

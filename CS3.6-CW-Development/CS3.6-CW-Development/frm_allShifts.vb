@@ -1,5 +1,8 @@
 ﻿Public Class frm_allShifts
     'Evaulation - Very confusing screen
+    '
+    ' Form Open & close Events
+    '
     Private Sub frm_allShifts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '
         ' Formatting Buttons
@@ -8,7 +11,6 @@
             standardProcedures.RoundButton(btn)
         Next
     End Sub
-
     Private Sub frm_allShifts_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Me.Visible() Then
             ' Clear the list boxes
@@ -51,7 +53,34 @@
             End While
         End If
     End Sub
+    '
+    ' Redirect Code
+    '
+    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
+        ' Redirect to relevent menu for user type
+        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True) ' Get the active user details.
+        ' Check if the user is a manager or not
+        If tmpStaff.isManager Then
+            ' Show the manager menu is user is a manager
+            frm_managerMenu.Show()
+        Else
+            ' Show the staff menu if the user is not a manager
+            frm_staffMenu.Show()
+        End If
+        Me.Hide()   ' Hide the current form
+    End Sub
 
+    Private Sub btn_assignShift_redir_Click(sender As Object, e As EventArgs) Handles btn_assignShift_redir.Click
+        ' Redirect to the assign shift form
+        ' Ensure a shift is selected to redirect with the shiftID
+        If lbl_shiftID_dynamic.Text = "<ShiftID>" Then MsgBox("Please select a shift to assign.") : Exit Sub
+        ' Show the assign shifts form
+        frm_assignShifts.Show()
+        Me.Hide()
+    End Sub
+    '
+    ' Processes code ie buttons for processing data
+    '
     Private Sub chkbox_filterTaken_CheckedChanged(sender As Object, e As EventArgs) Handles chkbox_filterTaken.CheckedChanged
         If chkbox_filterTaken.Checked Then
             ' Clear the list box
@@ -137,9 +166,11 @@
         newShift.isTaken = False
         newShift.staffUserName = "HarrisonGreen0"
         ' Add the shift to the linked list
-        DataStructures.ShiftLL.add(newShift)
-
-        MsgBox("Shift added succesfully.") ' Inform the user the shift has been added successfully
+        If DataStructures.ShiftLL.add(newShift) = False Then
+            MsgBox("Shift added succesfully.") ' Inform the user the shift has been added successfully
+        Else
+            MsgBox("Shift could not be added.") ' Inform the user the shift could not be added
+        End If
 
         ' Clears the text boxes and resets date picker
         txt_startTime_inp.Text = "HH:mm"
@@ -155,8 +186,11 @@
         If lbl_shiftID_dynamic.Text = "<ShiftID>" Then MsgBox("Please select a shift to remove.") : Exit Sub
 
         ' Remove the shift from the linked list
-        DataStructures.ShiftLL.remove(Integer.Parse(lbl_shiftID_dynamic.Text))
-        MsgBox("Shift removed succesfully.") ' Inform the user the shift has been removed successfully
+        If DataStructures.ShiftLL.remove(Integer.Parse(lbl_shiftID_dynamic.Text)) = True Then
+            MsgBox("Shift removed succesfully.") ' Inform the user the shift has been removed successfully
+        Else
+            MsgBox("Shift could not be removed.") ' Inform the user the shift could not be removed
+        End If
 
         'Reset the labels
         lbl_shiftID_dynamic.Text = "<ShiftID>"
@@ -168,29 +202,6 @@
 
         ' Update the list box
         frm_allShifts_VisibleChanged(sender, e)
-    End Sub
-
-    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
-        ' Redirect to relevent menu for user type
-        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True) ' Get the active user details.
-        ' Check if the user is a manager or not
-        If tmpStaff.isManager Then
-            ' Show the manager menu is user is a manager
-            frm_managerMenu.Show()
-        Else
-            ' Show the staff menu if the user is not a manager
-            frm_staffMenu.Show()
-        End If
-        Me.Hide()   ' Hide the current form
-    End Sub
-
-    Private Sub btn_assignShift_redir_Click(sender As Object, e As EventArgs) Handles btn_assignShift_redir.Click
-        ' Redirect to the assign shift form
-        ' Ensure a shift is selected to redirect with the shiftID
-        If lbl_shiftID_dynamic.Text = "<ShiftID>" Then MsgBox("Please select a shift to assign.") : Exit Sub
-        ' Show the assign shifts form
-        frm_assignShifts.Show()
-        Me.Hide()
     End Sub
 
     Private Sub btn_editShift_process_Click(sender As Object, e As EventArgs) Handles btn_editShift_process.Click
@@ -223,9 +234,11 @@
         newShift.endTime = newShift.endTime.ToString.Substring(0, 10) & " " & txt_endTime_inp.Text
 
         ' Add the shift to the linked list
-        DataStructures.ShiftLL.updateShiftData(oldShift, newShift)
-
-        MsgBox("Shift edited succesfully.") ' Inform the user the shift has been edited successfully
+        If DataStructures.ShiftLL.updateShiftData(oldShift, newShift) = True Then
+            MsgBox("Shift edited succesfully.") ' Inform the user the shift has been edited successfully
+        Else
+            MsgBox("Shift could not be edited.") ' Inform the user the shift could not be edited
+        End If
 
         ' Clears the text boxes and resets date picker
         txt_startTime_inp.Text = "HH:mm"

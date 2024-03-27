@@ -51,7 +51,7 @@ Partial Class frm_myShifts
         Me.btn_back_redir.Location = New System.Drawing.Point(44, 2)
         Me.btn_back_redir.Name = "btn_back_redir"
         Me.btn_back_redir.Size = New System.Drawing.Size(75, 38)
-        Me.btn_back_redir.TabIndex = 18
+        Me.btn_back_redir.TabIndex = 0
         Me.btn_back_redir.Text = "Back"
         Me.btn_back_redir.UseVisualStyleBackColor = True
         '
@@ -170,7 +170,7 @@ Partial Class frm_myShifts
         Me.lst_myShifts.Location = New System.Drawing.Point(6, 19)
         Me.lst_myShifts.Name = "lst_myShifts"
         Me.lst_myShifts.Size = New System.Drawing.Size(419, 305)
-        Me.lst_myShifts.TabIndex = 2
+        Me.lst_myShifts.TabIndex = 1
         Me.lst_myShifts.UseCompatibleStateImageBehavior = False
         Me.lst_myShifts.View = System.Windows.Forms.View.Details
         '
@@ -198,7 +198,7 @@ Partial Class frm_myShifts
         Me.btn_removeShift_process.Location = New System.Drawing.Point(567, 230)
         Me.btn_removeShift_process.Name = "btn_removeShift_process"
         Me.btn_removeShift_process.Size = New System.Drawing.Size(150, 70)
-        Me.btn_removeShift_process.TabIndex = 20
+        Me.btn_removeShift_process.TabIndex = 3
         Me.btn_removeShift_process.Text = "Remove Selected Shift"
         Me.btn_removeShift_process.UseVisualStyleBackColor = True
         '
@@ -208,7 +208,7 @@ Partial Class frm_myShifts
         Me.cbo_sortStartTime.Location = New System.Drawing.Point(718, 14)
         Me.cbo_sortStartTime.Name = "cbo_sortStartTime"
         Me.cbo_sortStartTime.Size = New System.Drawing.Size(104, 17)
-        Me.cbo_sortStartTime.TabIndex = 21
+        Me.cbo_sortStartTime.TabIndex = 2
         Me.cbo_sortStartTime.Text = "Sort by start time"
         Me.cbo_sortStartTime.UseVisualStyleBackColor = True
         '

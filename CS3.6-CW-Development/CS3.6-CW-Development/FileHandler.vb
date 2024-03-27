@@ -27,17 +27,6 @@ Module FileHandler
             ' Clear the old hash table
             DataStructures.StaffHashTable.clearHashTable()
 
-            ' If the file is empty then create a new user so someone can log in to create new accounts
-            Dim admin As StaffMember
-            admin.staffID = 0
-            admin.firstName = "Admin"
-            admin.lastName = "Team"
-            admin.isManager = True
-            admin.isFullTime = True
-            admin.userName = "AdminTeam0"
-            admin.password = "password"
-            DataStructures.StaffHashTable.addStaffMember(admin, False)
-
             ' While not end of file read in all the data for one record and add to hash table
             While Not EOF(1)
                 Input(1, tmpStaff.staffID)                                      ' Read staffID from file.

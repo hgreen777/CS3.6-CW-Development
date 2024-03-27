@@ -49,7 +49,7 @@ Partial Class frm_notificationManager
         Me.btn_back_redir.Location = New System.Drawing.Point(44, 2)
         Me.btn_back_redir.Name = "btn_back_redir"
         Me.btn_back_redir.Size = New System.Drawing.Size(75, 38)
-        Me.btn_back_redir.TabIndex = 30
+        Me.btn_back_redir.TabIndex = 0
         Me.btn_back_redir.Text = "Back"
         Me.btn_back_redir.UseVisualStyleBackColor = True
         '
@@ -84,7 +84,7 @@ Partial Class frm_notificationManager
         Me.btn_removeFromNotification_process.Location = New System.Drawing.Point(12, 118)
         Me.btn_removeFromNotification_process.Name = "btn_removeFromNotification_process"
         Me.btn_removeFromNotification_process.Size = New System.Drawing.Size(190, 51)
-        Me.btn_removeFromNotification_process.TabIndex = 31
+        Me.btn_removeFromNotification_process.TabIndex = 3
         Me.btn_removeFromNotification_process.Text = "Remove from Notification"
         Me.btn_removeFromNotification_process.UseVisualStyleBackColor = True
         '
@@ -97,7 +97,7 @@ Partial Class frm_notificationManager
         Me.btn_searchStaff_process.Location = New System.Drawing.Point(306, 21)
         Me.btn_searchStaff_process.Name = "btn_searchStaff_process"
         Me.btn_searchStaff_process.Size = New System.Drawing.Size(75, 31)
-        Me.btn_searchStaff_process.TabIndex = 33
+        Me.btn_searchStaff_process.TabIndex = 2
         Me.btn_searchStaff_process.Text = "Add"
         Me.btn_searchStaff_process.UseVisualStyleBackColor = True
         '
@@ -110,7 +110,7 @@ Partial Class frm_notificationManager
         Me.btn_addAllStaff_process.Location = New System.Drawing.Point(208, 118)
         Me.btn_addAllStaff_process.Name = "btn_addAllStaff_process"
         Me.btn_addAllStaff_process.Size = New System.Drawing.Size(189, 51)
-        Me.btn_addAllStaff_process.TabIndex = 34
+        Me.btn_addAllStaff_process.TabIndex = 4
         Me.btn_addAllStaff_process.Text = "Add all staff to notification"
         Me.btn_addAllStaff_process.UseVisualStyleBackColor = True
         '
@@ -123,7 +123,7 @@ Partial Class frm_notificationManager
         Me.btn_sendNotification_process.Location = New System.Drawing.Point(499, 318)
         Me.btn_sendNotification_process.Name = "btn_sendNotification_process"
         Me.btn_sendNotification_process.Size = New System.Drawing.Size(185, 69)
-        Me.btn_sendNotification_process.TabIndex = 35
+        Me.btn_sendNotification_process.TabIndex = 7
         Me.btn_sendNotification_process.Text = "Send Notification"
         Me.btn_sendNotification_process.UseVisualStyleBackColor = True
         '
@@ -143,7 +143,7 @@ Partial Class frm_notificationManager
         Me.lst_notificationRecipients.Location = New System.Drawing.Point(6, 20)
         Me.lst_notificationRecipients.Name = "lst_notificationRecipients"
         Me.lst_notificationRecipients.Size = New System.Drawing.Size(373, 199)
-        Me.lst_notificationRecipients.TabIndex = 0
+        Me.lst_notificationRecipients.TabIndex = 5
         '
         'grp_notificationContent
         '
@@ -161,7 +161,7 @@ Partial Class frm_notificationManager
         Me.txt_notificationContent_inp.Multiline = True
         Me.txt_notificationContent_inp.Name = "txt_notificationContent_inp"
         Me.txt_notificationContent_inp.Size = New System.Drawing.Size(351, 233)
-        Me.txt_notificationContent_inp.TabIndex = 0
+        Me.txt_notificationContent_inp.TabIndex = 6
         '
         'grp_findStaff
         '
@@ -192,7 +192,7 @@ Partial Class frm_notificationManager
         Me.txt_staffFirstName_inp.Location = New System.Drawing.Point(159, 24)
         Me.txt_staffFirstName_inp.Name = "txt_staffFirstName_inp"
         Me.txt_staffFirstName_inp.Size = New System.Drawing.Size(141, 27)
-        Me.txt_staffFirstName_inp.TabIndex = 0
+        Me.txt_staffFirstName_inp.TabIndex = 1
         '
         'frm_notificationManager
         '

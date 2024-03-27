@@ -2,8 +2,6 @@
 Imports System.Text
 
 Public Class standardProcedures
-    ' Assign shifts to full-time staff members.
-
     Public Shared Sub RoundButton(btn As Button)
         ' Edit button properties to make it consistent
         ' Setting the style of the button and making it a consistent grey colour.
@@ -38,7 +36,6 @@ Public Class standardProcedures
         ' Set the bounds (region) of the button to be the newly created outline.
         btn.Region = New Region(radius)
     End Sub
-
     ' Producing a hash for a password
     Public Shared Function hashPassSHA256(ByVal pasword As String) As String
         Dim sha256 As New SHA256CryptoServiceProvider
@@ -49,9 +46,6 @@ Public Class standardProcedures
             stringBuilder.Append(hash(i).ToString("x2"))
         Next
         Return stringBuilder.ToString()
-    End Function
-
-    Public Shared Function deHashPassSHA256(ByVal hashedPass As String) As String
     End Function
     '
     ' Shift Generation
@@ -107,7 +101,6 @@ Public Class standardProcedures
         Next
 
         ' CREATE SHIFTS.
-
         ' Get the current date and time
         Dim startDate As Date = Date.Now
         ' Set the start time to be the start of the day ie 00:00
@@ -202,41 +195,12 @@ Public Class standardProcedures
 
         Return True
     End Function
-
-
     '
     ' ENCRYPTION/Decryption
-
     ' Create a list of all characters
     Private Shared allCharacters As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@£$%^&*()_+"
     ' Create a copy of all the characters for the key shuffled by 7 spaces to the left
     Private Shared key As String = "hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@£$%^&*()_+abcdefg"
-    ' Needs to be done once at the start of every program launch.
-    ' Shuffle all character in the key by 7 characters
-    '  Public Shared Sub shuffleKey()
-    ' Create a new string builder
-    ' Dim newKey As New StringBuilder
-    '' Loop over all the characters in the key
-    'For i = 0 To key.Length - 1
-    '' Get the character at the current index
-    'Dim currentChar As Char = key(i)
-    ' Get the index of the current character in the all characters string
-    'Dim index As Integer = allCharacters.IndexOf(currentChar)
-    ' Add 5 to the index
-    '       index += 7
-    ' If the index is greater than the length of the all characters string
-    'If index > allCharacters.Length - 1 Then
-    ' Subtract the length of the all characters string from the index
-    '           index -= allCharacters.Length
-    'End If
-    ' Get the character at the new index
-    'Dim newChar As Char = allCharacters(index)
-    ' Append the new character to the new key
-    '       newKey.Append(newChar)
-    'Next
-    ' Set the key to be the new key
-    '   key = newKey.ToString()
-    'End Sub
     ' Encrypt a string
     Public Shared Function encryptString(ByVal input As String) As String
         ' Create a new string builder
@@ -255,7 +219,6 @@ Public Class standardProcedures
         ' Return the output string
         Return output.ToString()
     End Function
-
     ' Decrypt a string
     Public Shared Function decryptString(ByVal input As String) As String
         ' Create a new string builder
@@ -274,10 +237,4 @@ Public Class standardProcedures
         ' Return the output string
         Return output.ToString()
     End Function
-
-
 End Class
-
-
-
-

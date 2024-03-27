@@ -1,4 +1,7 @@
 ﻿Public Class frm_takeShifts
+    '
+    ' Form Open & close Events
+    '
     Private Sub frm_takeShifts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '
         ' Formatting Buttons
@@ -8,7 +11,6 @@
         Next
 
     End Sub
-
     Private Sub frm_takeShifts_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Me.Visible() Then
             ' Clear the labels
@@ -21,8 +23,14 @@
             ' Update the suggested shifts list box
             Dim suggestedShifts As List(Of Integer) = DataStructures.ShiftLL.usersSuggestedShifts()
 
+            ' Populate the suggested shifts list box
             For i = 0 To suggestedShifts.Count - 1
                 Dim tmpShift As Shift = DataStructures.ShiftLL.find(suggestedShifts(i))
+                ' Check a shift has actually been found 
+                If tmpShift.shiftID = Nothing Then
+                    MsgBox("Error: Shift not found.")
+                    Exit Sub
+                End If
                 ' Add Shift to mulitcolumned ListBox adding the shiftID, Start Time and End Time in columns
                 Dim lsvItem As ListViewItem = New ListViewItem(tmpShift.shiftID)
                 lsvItem.SubItems.Add(tmpShift.startTime.DayOfWeek.ToString.Substring(0, 3) & " " & tmpShift.startTime.ToString)
@@ -35,6 +43,11 @@
             Dim allShifts As List(Of Integer) = DataStructures.ShiftLL.availableShifts()
             For i = 0 To allShifts.Count - 1
                 Dim tmpShift As Shift = DataStructures.ShiftLL.find(allShifts(i))
+                ' Check a shift has actually been found 
+                If tmpShift.shiftID = Nothing Then
+                    MsgBox("Error: Shift not found.")
+                    Exit Sub
+                End If
                 ' Add Shift to mulitcolumned ListBox adding the shiftID, Start Time and End Time in columns
                 Dim lsvItem As ListViewItem = New ListViewItem(tmpShift.shiftID)
                 lsvItem.SubItems.Add(tmpShift.startTime.DayOfWeek.ToString.Substring(0, 3) & " " & tmpShift.startTime)
@@ -44,7 +57,25 @@
             Next
         End If
     End Sub
-
+    '
+    ' Redirect Code
+    '
+    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
+        ' Redirect to relevent menu for user type
+        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True) ' Get the active user details.
+        ' Check if the user is a manager or not
+        If tmpStaff.isManager Then
+            ' Show the manager menu is user is a manager
+            frm_managerMenu.Show()
+        Else
+            ' Show the staff menu if the user is not a manager
+            frm_staffMenu.Show()
+        End If
+        Me.Hide()   ' Hide the current form
+    End Sub
+    '
+    ' Processes code ie buttons for processing data
+    '
     Private Sub lst_suggestedShifts_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lst_suggestedShifts.SelectedIndexChanged
         ' Check if a shift has been selected in availableShifts (if it has deselect it)
         If lst_availableShifts.SelectedItems.Count > 0 Then lst_availableShifts.SelectedItems(0).Selected = False
@@ -62,6 +93,11 @@
 
         ' Get the selected shift
         Dim tmpShift As Shift = DataStructures.ShiftLL.find(Integer.Parse(lst_suggestedShifts.SelectedItems(0).Text))
+        ' Check a shift has actually been found 
+        If tmpShift.shiftID = Nothing Then
+            MsgBox("Error: Shift not found.")
+            Exit Sub
+        End If
         ' Display the shift details
         lbl_shiftID_dynamic.Text = tmpShift.shiftID
         lbl_startDateTime_dynamic.Text = tmpShift.startTime
@@ -85,24 +121,15 @@
 
         ' Get the selected shift
         Dim tmpShift As Shift = DataStructures.ShiftLL.find(Integer.Parse(lst_availableShifts.SelectedItems(0).Text))
+        ' Check a shift has actually been found 
+        If tmpShift.shiftID = Nothing Then
+            MsgBox("Error: Shift not found.")
+            Exit Sub
+        End If
         ' Display the shift details
         lbl_shiftID_dynamic.Text = tmpShift.shiftID
         lbl_startDateTime_dynamic.Text = tmpShift.startTime
         lbl_endDateTime_dynamic.Text = tmpShift.endTime
-    End Sub
-
-    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
-        ' Redirect to relevent menu for user type
-        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True) ' Get the active user details.
-        ' Check if the user is a manager or not
-        If tmpStaff.isManager Then
-            ' Show the manager menu is user is a manager
-            frm_managerMenu.Show()
-        Else
-            ' Show the staff menu if the user is not a manager
-            frm_staffMenu.Show()
-        End If
-        Me.Hide()   ' Hide the current form
     End Sub
 
     Private Sub btn_takeShift_process_Click(sender As Object, e As EventArgs) Handles btn_takeShift_process.Click

@@ -1,4 +1,7 @@
 ﻿Public Class frm_notifications
+    '
+    ' Form Open & close Events
+    '
     Private Sub frm_notifications_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '
         ' Formatting Buttons
@@ -7,19 +10,6 @@
             standardProcedures.RoundButton(btn)
         Next
     End Sub
-
-    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
-        ' Show the previous form (depending on if user is a manager) and hide this one.
-        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True)
-
-        If tmpStaff.isManager Then
-            frm_managerMenu.Show()
-        Else
-            frm_staffMenu.Show()
-        End If
-        Me.Hide()
-    End Sub
-
     Private Sub frm_notifications_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Me.Visible() Then
             ' Update title
@@ -55,7 +45,23 @@
             Next
         End If
     End Sub
+    '
+    ' Redirect Code
+    '
+    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
+        ' Show the previous form (depending on if user is a manager) and hide this one.
+        Dim tmpStaff As StaffMember = DataStructures.StaffHashTable.findStaffMember(activeUser, True)
 
+        If tmpStaff.isManager Then
+            frm_managerMenu.Show()
+        Else
+            frm_staffMenu.Show()
+        End If
+        Me.Hide()
+    End Sub
+    '
+    ' Processes code ie buttons for processing data
+    '
     Private Sub lsv_notificationPreview_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lsv_notificationPreview.SelectedIndexChanged
         ' If a notification is deselected, clear the labels/textboxes
         If lsv_notificationPreview.SelectedItems.Count = 0 Then

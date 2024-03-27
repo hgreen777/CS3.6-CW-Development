@@ -1,4 +1,7 @@
 ﻿Public Class frm_notificationManager
+    '
+    ' Form Open & close Events
+    '
     Private Sub frm_notificationManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '
         ' Formatting Buttons
@@ -7,7 +10,24 @@
             standardProcedures.RoundButton(btn)
         Next
     End Sub
-
+    Private Sub frm_notificationManager_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+        If Me.Visible Then
+            ' Clear the form
+            txt_notificationContent_inp.Text = ""
+            txt_staffFirstName_inp.Text = ""
+            lst_notificationRecipients.Items.Clear()
+        End If
+    End Sub
+    '
+    ' Redirect Code
+    '
+    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
+        frm_managerMenu.Show()
+        Me.Hide()
+    End Sub
+    '
+    ' Processes code ie buttons for processing data
+    '
     Private Sub btn_searchStaff_process_Click(sender As Object, e As EventArgs) Handles btn_searchStaff_process.Click
         ' Validate Input 
         If Validation.PresenceValidation(txt_staffFirstName_inp.Text) = False Then MsgBox("Must enter a name to search") : Exit Sub
@@ -105,19 +125,5 @@
 
     Private Sub lst_notificationRecipients_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lst_notificationRecipients.SelectedIndexChanged
         ' Allow user to deselect a user
-    End Sub
-
-    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
-        frm_managerMenu.Show()
-        Me.Hide()
-    End Sub
-
-    Private Sub frm_notificationManager_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
-        If Me.Visible Then
-            ' Clear the form
-            txt_notificationContent_inp.Text = ""
-            txt_staffFirstName_inp.Text = ""
-            lst_notificationRecipients.Items.Clear()
-        End If
     End Sub
 End Class

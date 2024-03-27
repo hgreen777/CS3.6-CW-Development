@@ -62,7 +62,7 @@ Partial Class frm_takeShifts
         Me.btn_back_redir.Location = New System.Drawing.Point(44, 2)
         Me.btn_back_redir.Name = "btn_back_redir"
         Me.btn_back_redir.Size = New System.Drawing.Size(75, 38)
-        Me.btn_back_redir.TabIndex = 15
+        Me.btn_back_redir.TabIndex = 0
         Me.btn_back_redir.Text = "Back"
         Me.btn_back_redir.UseVisualStyleBackColor = True
         '
@@ -106,7 +106,7 @@ Partial Class frm_takeShifts
         Me.lst_suggestedShifts.Location = New System.Drawing.Point(6, 19)
         Me.lst_suggestedShifts.Name = "lst_suggestedShifts"
         Me.lst_suggestedShifts.Size = New System.Drawing.Size(467, 127)
-        Me.lst_suggestedShifts.TabIndex = 20
+        Me.lst_suggestedShifts.TabIndex = 1
         Me.lst_suggestedShifts.UseCompatibleStateImageBehavior = False
         Me.lst_suggestedShifts.View = System.Windows.Forms.View.Details
         '
@@ -143,7 +143,7 @@ Partial Class frm_takeShifts
         Me.lst_availableShifts.Location = New System.Drawing.Point(6, 19)
         Me.lst_availableShifts.Name = "lst_availableShifts"
         Me.lst_availableShifts.Size = New System.Drawing.Size(467, 225)
-        Me.lst_availableShifts.TabIndex = 21
+        Me.lst_availableShifts.TabIndex = 2
         Me.lst_availableShifts.UseCompatibleStateImageBehavior = False
         Me.lst_availableShifts.View = System.Windows.Forms.View.Details
         '
@@ -276,7 +276,7 @@ Partial Class frm_takeShifts
         Me.txt_startTime_inp.Location = New System.Drawing.Point(155, 19)
         Me.txt_startTime_inp.Name = "txt_startTime_inp"
         Me.txt_startTime_inp.Size = New System.Drawing.Size(100, 32)
-        Me.txt_startTime_inp.TabIndex = 1
+        Me.txt_startTime_inp.TabIndex = 3
         Me.txt_startTime_inp.Text = "HH:mm"
         '
         'txt_endTime_inp
@@ -285,7 +285,7 @@ Partial Class frm_takeShifts
         Me.txt_endTime_inp.Location = New System.Drawing.Point(155, 62)
         Me.txt_endTime_inp.Name = "txt_endTime_inp"
         Me.txt_endTime_inp.Size = New System.Drawing.Size(100, 32)
-        Me.txt_endTime_inp.TabIndex = 0
+        Me.txt_endTime_inp.TabIndex = 4
         Me.txt_endTime_inp.Text = "HH:mm"
         '
         'btn_takeShift_process
@@ -296,7 +296,7 @@ Partial Class frm_takeShifts
         Me.btn_takeShift_process.Location = New System.Drawing.Point(604, 350)
         Me.btn_takeShift_process.Name = "btn_takeShift_process"
         Me.btn_takeShift_process.Size = New System.Drawing.Size(150, 70)
-        Me.btn_takeShift_process.TabIndex = 19
+        Me.btn_takeShift_process.TabIndex = 5
         Me.btn_takeShift_process.Text = "Take Shift"
         Me.btn_takeShift_process.UseVisualStyleBackColor = True
         '

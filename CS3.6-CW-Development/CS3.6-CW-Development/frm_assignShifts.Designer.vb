@@ -61,7 +61,7 @@ Partial Class frm_assignShifts
         Me.btn_back_redir.Location = New System.Drawing.Point(44, 2)
         Me.btn_back_redir.Name = "btn_back_redir"
         Me.btn_back_redir.Size = New System.Drawing.Size(75, 38)
-        Me.btn_back_redir.TabIndex = 24
+        Me.btn_back_redir.TabIndex = 0
         Me.btn_back_redir.Text = "Back"
         Me.btn_back_redir.UseVisualStyleBackColor = True
         '
@@ -103,7 +103,7 @@ Partial Class frm_assignShifts
         Me.txt_firstName_search.Location = New System.Drawing.Point(431, 52)
         Me.txt_firstName_search.Name = "txt_firstName_search"
         Me.txt_firstName_search.Size = New System.Drawing.Size(141, 32)
-        Me.txt_firstName_search.TabIndex = 26
+        Me.txt_firstName_search.TabIndex = 1
         '
         'btn_searchStaff_process
         '
@@ -113,7 +113,7 @@ Partial Class frm_assignShifts
         Me.btn_searchStaff_process.Location = New System.Drawing.Point(594, 51)
         Me.btn_searchStaff_process.Name = "btn_searchStaff_process"
         Me.btn_searchStaff_process.Size = New System.Drawing.Size(150, 32)
-        Me.btn_searchStaff_process.TabIndex = 29
+        Me.btn_searchStaff_process.TabIndex = 2
         Me.btn_searchStaff_process.Text = "SEARCH"
         Me.btn_searchStaff_process.UseVisualStyleBackColor = True
         '
@@ -231,7 +231,7 @@ Partial Class frm_assignShifts
         Me.txt_startTime_inp.Location = New System.Drawing.Point(155, 13)
         Me.txt_startTime_inp.Name = "txt_startTime_inp"
         Me.txt_startTime_inp.Size = New System.Drawing.Size(100, 32)
-        Me.txt_startTime_inp.TabIndex = 1
+        Me.txt_startTime_inp.TabIndex = 3
         Me.txt_startTime_inp.Text = "HH:mm"
         '
         'txt_endTime_inp
@@ -240,7 +240,7 @@ Partial Class frm_assignShifts
         Me.txt_endTime_inp.Location = New System.Drawing.Point(155, 56)
         Me.txt_endTime_inp.Name = "txt_endTime_inp"
         Me.txt_endTime_inp.Size = New System.Drawing.Size(100, 32)
-        Me.txt_endTime_inp.TabIndex = 0
+        Me.txt_endTime_inp.TabIndex = 4
         Me.txt_endTime_inp.Text = "HH:mm"
         '
         'btn_assignShift_redir
@@ -251,7 +251,7 @@ Partial Class frm_assignShifts
         Me.btn_assignShift_redir.Location = New System.Drawing.Point(578, 259)
         Me.btn_assignShift_redir.Name = "btn_assignShift_redir"
         Me.btn_assignShift_redir.Size = New System.Drawing.Size(185, 72)
-        Me.btn_assignShift_redir.TabIndex = 32
+        Me.btn_assignShift_redir.TabIndex = 5
         Me.btn_assignShift_redir.Text = "Assign Shift"
         Me.btn_assignShift_redir.UseVisualStyleBackColor = True
         '

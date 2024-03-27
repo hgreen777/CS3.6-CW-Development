@@ -45,7 +45,7 @@ Partial Class frm_accountEditor
         Me.btn_back_redir.Location = New System.Drawing.Point(44, 2)
         Me.btn_back_redir.Name = "btn_back_redir"
         Me.btn_back_redir.Size = New System.Drawing.Size(75, 38)
-        Me.btn_back_redir.TabIndex = 33
+        Me.btn_back_redir.TabIndex = 0
         Me.btn_back_redir.Text = "Back"
         Me.btn_back_redir.UseVisualStyleBackColor = True
         '
@@ -116,7 +116,7 @@ Partial Class frm_accountEditor
         Me.btn_saveDetails_process.Location = New System.Drawing.Point(462, 110)
         Me.btn_saveDetails_process.Name = "btn_saveDetails_process"
         Me.btn_saveDetails_process.Size = New System.Drawing.Size(150, 75)
-        Me.btn_saveDetails_process.TabIndex = 38
+        Me.btn_saveDetails_process.TabIndex = 5
         Me.btn_saveDetails_process.Text = "Save Details"
         Me.btn_saveDetails_process.UseVisualStyleBackColor = True
         '
@@ -128,7 +128,7 @@ Partial Class frm_accountEditor
         Me.chkBox_showPassword.Name = "chkBox_showPassword"
         Me.chkBox_showPassword.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.chkBox_showPassword.Size = New System.Drawing.Size(66, 23)
-        Me.chkBox_showPassword.TabIndex = 39
+        Me.chkBox_showPassword.TabIndex = 4
         Me.chkBox_showPassword.Text = ":Show"
         Me.chkBox_showPassword.UseVisualStyleBackColor = True
         '
@@ -139,7 +139,7 @@ Partial Class frm_accountEditor
         Me.txt_password_inp.Name = "txt_password_inp"
         Me.txt_password_inp.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txt_password_inp.Size = New System.Drawing.Size(151, 32)
-        Me.txt_password_inp.TabIndex = 40
+        Me.txt_password_inp.TabIndex = 3
         '
         'txt_surname_inp
         '
@@ -147,7 +147,7 @@ Partial Class frm_accountEditor
         Me.txt_surname_inp.Location = New System.Drawing.Point(184, 160)
         Me.txt_surname_inp.Name = "txt_surname_inp"
         Me.txt_surname_inp.Size = New System.Drawing.Size(151, 32)
-        Me.txt_surname_inp.TabIndex = 41
+        Me.txt_surname_inp.TabIndex = 2
         '
         'txt_firstName_inp
         '
@@ -155,7 +155,7 @@ Partial Class frm_accountEditor
         Me.txt_firstName_inp.Location = New System.Drawing.Point(184, 105)
         Me.txt_firstName_inp.Name = "txt_firstName_inp"
         Me.txt_firstName_inp.Size = New System.Drawing.Size(151, 32)
-        Me.txt_firstName_inp.TabIndex = 42
+        Me.txt_firstName_inp.TabIndex = 1
         '
         'lbl_username_dynamic
         '

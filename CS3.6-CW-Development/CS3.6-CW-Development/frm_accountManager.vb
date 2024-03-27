@@ -2,7 +2,9 @@
 
 Public Class frm_accountManager
     Dim oldUsername As String
-
+    '
+    ' Form Open & close Events
+    '
     Private Sub frm_accountManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '
         ' Formatting Buttons
@@ -11,7 +13,28 @@ Public Class frm_accountManager
             standardProcedures.RoundButton(btn)
         Next
     End Sub
-
+    Private Sub frm_accountManager_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+        If Me.Visible Then
+            ' Reset all labels and text boxes
+            lbl_username_dynamic.Text = "<StaffUserName>"
+            txt_firstName_search.Text = ""
+            txt_firstName_inp.Text = ""
+            txt_surname_inp.Text = ""
+            txt_password_inp.Text = ""
+            chBox_isManager.Checked = False
+            chBox_isfullTimeStaff.Checked = False
+        End If
+    End Sub
+    '
+    ' Redirect Code
+    '
+    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
+        frm_managerMenu.Show()
+        Me.Hide()
+    End Sub
+    '
+    ' Processes code ie buttons for processing data
+    '
     Private Sub chkBox_showPassword_CheckedChanged(sender As Object, e As EventArgs) Handles chkBox_showPassword.CheckedChanged
         ' If the checkbox is checked then show the password
         If chkBox_showPassword.Checked = True Then
@@ -146,7 +169,6 @@ Public Class frm_accountManager
     End Sub
 
     Private Sub btn_createAccount_process_Click(sender As Object, e As EventArgs) Handles btn_createAccount_process.Click
-
         'Check if the username is set to new
         If lbl_username_dynamic.Text = "NEW" Then
             ' Presence Check all Input
@@ -169,9 +191,12 @@ Public Class frm_accountManager
             tmpStaff.isFullTime = chBox_isfullTimeStaff.Checked
 
             ' Add the staff member to the hash table
-            DataStructures.StaffHashTable.addStaffMember(tmpStaff, True)
-            MsgBox("User details updated successfully.")
-            MsgBox("New Username: " & tmpStaff.userName)
+            If DataStructures.StaffHashTable.addStaffMember(tmpStaff, True) Then
+                MsgBox("User details updated successfully.")
+                MsgBox("New Username: " & tmpStaff.userName)
+            Else
+                MsgBox("Error updating user details.")
+            End If
 
             ' Reset all labels and text boxes
             lbl_username_dynamic.Text = "<StaffUserName>"
@@ -246,24 +271,5 @@ Public Class frm_accountManager
         txt_password_inp.Text = tmpStaff.password
         chBox_isManager.Checked = tmpStaff.isManager
         chBox_isfullTimeStaff.Checked = tmpStaff.isFullTime
-
-    End Sub
-
-    Private Sub btn_back_redir_Click(sender As Object, e As EventArgs) Handles btn_back_redir.Click
-        frm_managerMenu.Show()
-        Me.Hide()
-    End Sub
-
-    Private Sub frm_accountManager_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
-        If Me.Visible Then
-            ' Reset all labels and text boxes
-            lbl_username_dynamic.Text = "<StaffUserName>"
-            txt_firstName_search.Text = ""
-            txt_firstName_inp.Text = ""
-            txt_surname_inp.Text = ""
-            txt_password_inp.Text = ""
-            chBox_isManager.Checked = False
-            chBox_isfullTimeStaff.Checked = False
-        End If
     End Sub
 End Class

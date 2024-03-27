@@ -153,6 +153,9 @@ Module DataStructures
 
                 currentNode.nextStaffMember = New StaffMemberNode()  ' Creates a new node at the end of the linked list.
                 currentNode.nextStaffMember.staffMemberData = staffMember  ' Sets the data in the new node to the staff member data.
+                ' Back pointer aswell
+                currentNode.nextStaffMember.lastStaffMember = currentNode
+
 
                 ' Write to file
                 If shouldWrite Then
@@ -472,15 +475,17 @@ Module DataStructures
             While _                                                                 ' Loops through the LL looking for the node to be removed.
                 currentNode IsNot Nothing                                         ' Check that the end of the LL has not been found (ie shift does not exist (and problem elsewhere)
                 If nodeID <> currentNode.shiftData.shiftID Then
+                    If currentNode.nextShift Is Nothing Then
+                        Exit While
+                    End If
                     currentNode = currentNode.nextShift                                 ' Sets the pointer to the next node to ensure lops through whole LL
                 Else
                     Exit While
                 End If
-
-                currentNode = currentNode.nextShift                                 ' Sets the pointer to the next node to ensure lops through whole LL
             End While
 
-            If currentNode Is Nothing Then MsgBox("Error: Shift (node) not found meaning it was not deleted. Please retry or restart.") : Return False ' If the node is not found then return false to calling subroutine.
+
+            'If currentNode Is Nothing Then MsgBox("Error: Shift (node) not found meaning it was not deleted. Please retry or restart.") : Return False ' If the node is not found then return false to calling subroutine.
 
             ' Test Process
             If nodeID = currentNode.shiftData.shiftID And                           ' Checks if the found node actually matches the search data.
@@ -786,10 +791,7 @@ Module DataStructures
             Return arr
         End If
     End Function
-
     ' ** LEAVE TILL LAST IN DEVELLOPMENT CAN BE RUSHED AS LONG AS SHIFT SUBROUTINES ARE SUFFICIENTLY TESTED **
-
-
     '
     ' Class design for storing all subroutines related to storing and manipulating notification data
     ' Notification Binary Tree
@@ -1005,7 +1007,6 @@ Module DataStructures
             End If
         End Function
     End Class
-
     '
     ' Class design for storing all subroutines related to storng and manupulating notification instance data
     ' Notificatyion Instance linked list

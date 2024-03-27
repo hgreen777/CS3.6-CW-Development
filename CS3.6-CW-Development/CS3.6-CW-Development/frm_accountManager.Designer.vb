@@ -53,7 +53,7 @@ Partial Class frm_accountManager
         Me.btn_back_redir.Location = New System.Drawing.Point(44, 2)
         Me.btn_back_redir.Name = "btn_back_redir"
         Me.btn_back_redir.Size = New System.Drawing.Size(75, 38)
-        Me.btn_back_redir.TabIndex = 36
+        Me.btn_back_redir.TabIndex = 0
         Me.btn_back_redir.Text = "Back"
         Me.btn_back_redir.UseVisualStyleBackColor = True
         '
@@ -87,7 +87,7 @@ Partial Class frm_accountManager
         Me.btn_searchStaff_process.Location = New System.Drawing.Point(519, 52)
         Me.btn_searchStaff_process.Name = "btn_searchStaff_process"
         Me.btn_searchStaff_process.Size = New System.Drawing.Size(150, 32)
-        Me.btn_searchStaff_process.TabIndex = 39
+        Me.btn_searchStaff_process.TabIndex = 2
         Me.btn_searchStaff_process.Text = "SEARCH"
         Me.btn_searchStaff_process.UseVisualStyleBackColor = True
         '
@@ -97,7 +97,7 @@ Partial Class frm_accountManager
         Me.txt_firstName_search.Location = New System.Drawing.Point(356, 53)
         Me.txt_firstName_search.Name = "txt_firstName_search"
         Me.txt_firstName_search.Size = New System.Drawing.Size(141, 32)
-        Me.txt_firstName_search.TabIndex = 38
+        Me.txt_firstName_search.TabIndex = 1
         '
         'lbl_searchInstructions
         '
@@ -125,7 +125,7 @@ Partial Class frm_accountManager
         Me.txt_firstName_inp.Location = New System.Drawing.Point(184, 158)
         Me.txt_firstName_inp.Name = "txt_firstName_inp"
         Me.txt_firstName_inp.Size = New System.Drawing.Size(151, 32)
-        Me.txt_firstName_inp.TabIndex = 52
+        Me.txt_firstName_inp.TabIndex = 3
         '
         'txt_surname_inp
         '
@@ -133,7 +133,7 @@ Partial Class frm_accountManager
         Me.txt_surname_inp.Location = New System.Drawing.Point(184, 213)
         Me.txt_surname_inp.Name = "txt_surname_inp"
         Me.txt_surname_inp.Size = New System.Drawing.Size(151, 32)
-        Me.txt_surname_inp.TabIndex = 51
+        Me.txt_surname_inp.TabIndex = 4
         '
         'txt_password_inp
         '
@@ -142,7 +142,7 @@ Partial Class frm_accountManager
         Me.txt_password_inp.Name = "txt_password_inp"
         Me.txt_password_inp.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txt_password_inp.Size = New System.Drawing.Size(151, 32)
-        Me.txt_password_inp.TabIndex = 50
+        Me.txt_password_inp.TabIndex = 5
         '
         'chkBox_showPassword
         '
@@ -152,7 +152,7 @@ Partial Class frm_accountManager
         Me.chkBox_showPassword.Name = "chkBox_showPassword"
         Me.chkBox_showPassword.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.chkBox_showPassword.Size = New System.Drawing.Size(66, 23)
-        Me.chkBox_showPassword.TabIndex = 49
+        Me.chkBox_showPassword.TabIndex = 6
         Me.chkBox_showPassword.Text = ":Show"
         Me.chkBox_showPassword.UseVisualStyleBackColor = True
         '
@@ -162,7 +162,7 @@ Partial Class frm_accountManager
         Me.btn_saveDetails_process.Location = New System.Drawing.Point(473, 95)
         Me.btn_saveDetails_process.Name = "btn_saveDetails_process"
         Me.btn_saveDetails_process.Size = New System.Drawing.Size(150, 65)
-        Me.btn_saveDetails_process.TabIndex = 48
+        Me.btn_saveDetails_process.TabIndex = 9
         Me.btn_saveDetails_process.Text = "Save Details"
         Me.btn_saveDetails_process.UseVisualStyleBackColor = True
         '
@@ -213,7 +213,7 @@ Partial Class frm_accountManager
         Me.btn_deleteAccount_process.Location = New System.Drawing.Point(473, 236)
         Me.btn_deleteAccount_process.Name = "btn_deleteAccount_process"
         Me.btn_deleteAccount_process.Size = New System.Drawing.Size(150, 65)
-        Me.btn_deleteAccount_process.TabIndex = 54
+        Me.btn_deleteAccount_process.TabIndex = 11
         Me.btn_deleteAccount_process.Text = "Delete Account"
         Me.btn_deleteAccount_process.UseVisualStyleBackColor = True
         '
@@ -223,7 +223,7 @@ Partial Class frm_accountManager
         Me.btn_createAccount_process.Location = New System.Drawing.Point(473, 165)
         Me.btn_createAccount_process.Name = "btn_createAccount_process"
         Me.btn_createAccount_process.Size = New System.Drawing.Size(150, 65)
-        Me.btn_createAccount_process.TabIndex = 55
+        Me.btn_createAccount_process.TabIndex = 10
         Me.btn_createAccount_process.Text = "Create Account"
         Me.btn_createAccount_process.UseVisualStyleBackColor = True
         '
@@ -233,7 +233,7 @@ Partial Class frm_accountManager
         Me.btn_resetPassword_process.Location = New System.Drawing.Point(473, 307)
         Me.btn_resetPassword_process.Name = "btn_resetPassword_process"
         Me.btn_resetPassword_process.Size = New System.Drawing.Size(150, 65)
-        Me.btn_resetPassword_process.TabIndex = 56
+        Me.btn_resetPassword_process.TabIndex = 12
         Me.btn_resetPassword_process.Text = "Reset Password"
         Me.btn_resetPassword_process.UseVisualStyleBackColor = True
         '
@@ -245,7 +245,7 @@ Partial Class frm_accountManager
         Me.chBox_isfullTimeStaff.Name = "chBox_isfullTimeStaff"
         Me.chBox_isfullTimeStaff.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.chBox_isfullTimeStaff.Size = New System.Drawing.Size(316, 28)
-        Me.chBox_isfullTimeStaff.TabIndex = 57
+        Me.chBox_isfullTimeStaff.TabIndex = 7
         Me.chBox_isfullTimeStaff.Text = "?Are they a full-time staff member"
         Me.chBox_isfullTimeStaff.UseVisualStyleBackColor = True
         '
@@ -257,7 +257,7 @@ Partial Class frm_accountManager
         Me.chBox_isManager.Name = "chBox_isManager"
         Me.chBox_isManager.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.chBox_isManager.Size = New System.Drawing.Size(305, 28)
-        Me.chBox_isManager.TabIndex = 58
+        Me.chBox_isManager.TabIndex = 8
         Me.chBox_isManager.Text = "?Are they a manager/duty officer"
         Me.chBox_isManager.UseVisualStyleBackColor = True
         '

@@ -33,6 +33,7 @@ Partial Class frm_notifications
         Me.sender = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.sentDate = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grp_selectedNotification = New System.Windows.Forms.GroupBox()
+        Me.lbl_notificationInstance_hidden = New System.Windows.Forms.Label()
         Me.txt_notificationContent_disp = New System.Windows.Forms.TextBox()
         Me.lbl_sentDate_dynamic = New System.Windows.Forms.Label()
         Me.lbl_sender_dynamic = New System.Windows.Forms.Label()
@@ -41,7 +42,6 @@ Partial Class frm_notifications
         Me.lbl_sender_static = New System.Windows.Forms.Label()
         Me.lbl_notificationID_static = New System.Windows.Forms.Label()
         Me.btn_deleteNotification_process = New System.Windows.Forms.Button()
-        Me.lbl_notificationInstance_hidden = New System.Windows.Forms.Label()
         CType(Me.img_blc_logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grp_notificationPreview.SuspendLayout()
         Me.grp_selectedNotification.SuspendLayout()
@@ -53,7 +53,7 @@ Partial Class frm_notifications
         Me.btn_back_redir.Location = New System.Drawing.Point(44, 2)
         Me.btn_back_redir.Name = "btn_back_redir"
         Me.btn_back_redir.Size = New System.Drawing.Size(75, 38)
-        Me.btn_back_redir.TabIndex = 27
+        Me.btn_back_redir.TabIndex = 0
         Me.btn_back_redir.Text = "Back"
         Me.btn_back_redir.UseVisualStyleBackColor = True
         '
@@ -139,6 +139,16 @@ Partial Class frm_notifications
         Me.grp_selectedNotification.TabStop = False
         Me.grp_selectedNotification.Text = "Selected Notification:"
         '
+        'lbl_notificationInstance_hidden
+        '
+        Me.lbl_notificationInstance_hidden.AutoSize = True
+        Me.lbl_notificationInstance_hidden.Location = New System.Drawing.Point(217, 6)
+        Me.lbl_notificationInstance_hidden.Name = "lbl_notificationInstance_hidden"
+        Me.lbl_notificationInstance_hidden.Size = New System.Drawing.Size(158, 13)
+        Me.lbl_notificationInstance_hidden.TabIndex = 11
+        Me.lbl_notificationInstance_hidden.Text = "<HiddenNotificationInstanceID>"
+        Me.lbl_notificationInstance_hidden.Visible = False
+        '
         'txt_notificationContent_disp
         '
         Me.txt_notificationContent_disp.BackColor = System.Drawing.Color.White
@@ -218,19 +228,9 @@ Partial Class frm_notifications
         Me.btn_deleteNotification_process.Location = New System.Drawing.Point(491, 374)
         Me.btn_deleteNotification_process.Name = "btn_deleteNotification_process"
         Me.btn_deleteNotification_process.Size = New System.Drawing.Size(186, 50)
-        Me.btn_deleteNotification_process.TabIndex = 30
+        Me.btn_deleteNotification_process.TabIndex = 2
         Me.btn_deleteNotification_process.Text = "Delete Notification"
         Me.btn_deleteNotification_process.UseVisualStyleBackColor = True
-        '
-        'lbl_notificationInstance_hidden
-        '
-        Me.lbl_notificationInstance_hidden.AutoSize = True
-        Me.lbl_notificationInstance_hidden.Location = New System.Drawing.Point(217, 6)
-        Me.lbl_notificationInstance_hidden.Name = "lbl_notificationInstance_hidden"
-        Me.lbl_notificationInstance_hidden.Size = New System.Drawing.Size(158, 13)
-        Me.lbl_notificationInstance_hidden.TabIndex = 11
-        Me.lbl_notificationInstance_hidden.Text = "<HiddenNotificationInstanceID>"
-        Me.lbl_notificationInstance_hidden.Visible = False
         '
         'frm_notifications
         '

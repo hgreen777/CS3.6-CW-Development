@@ -15,6 +15,9 @@ Public Class frm_login_screen
         ' Read all data from persistent data files and store in data sxtructures (memory)
         '
         If FileHandler.readAllData() = False Then MsgBox("Fatal Error Reading Data: Exiting System.") : End
+
+        ' Automatic Shifts Check or generate
+        standardProcedures.automaticShiftGeneration()
     End Sub
     ' Make sure textboxes are cleared on show to prevent an old user's details being shown when a new user goes to log in.
     Private Sub frm_login_screen_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
