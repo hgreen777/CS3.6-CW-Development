@@ -6,3 +6,5 @@ This is the repository containing the code behind my A-Level Coursework developm
 Most of the code is based on the prototype; however, it does include some substantial improvements/changes, including a change of data structures.
 This was the final stage of my coursework when it was handed in.
 This coursework has supporting documentation documenting the development process, including Analysis, Design, Prototyping, Development, Testing and final reflections on the project.
+
+Key files: DataStructures.vb, FileHandler, validation.vb
